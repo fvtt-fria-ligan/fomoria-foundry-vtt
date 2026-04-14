@@ -1,0 +1,1279 @@
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Noto+Serif&family=Pangolin&display=swap");
+:root {
+  --fo-accent-color: #71C5C9;
+  --fo-background-color: #FFFBF3;
+  --fo-border-blur: 5px;
+  --fo-button-foreground-color: #F800F8;
+  --fo-button-background-color: #F800F833;
+  --fo-cybertext-color: #F8F800;
+  --fo-disabled-color: gray;
+  --fo-foreground-color: #575A3F;
+  --fo-highlight-color: #F800F8;
+  --fo-sheet-shadow: none;
+  --fo-window-background-color: #FFFBF3;
+}
+
+@font-face {
+  font-family: "Pokoljaro";
+  src: url("../assets/fonts/Pokoljaro.otf") format("opentype");
+}
+.draw-from-table {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 5px;
+}
+.draw-from-table:hover {
+  text-shadow: 0 0 10px var(--fo-highlight-color);
+}
+
+.rollable {
+  text-decoration: underline;
+}
+.rollable:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px var(--fo-highlight-color);
+}
+
+.create-scvm {
+  text-decoration: underline;
+}
+.create-scvm:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px var(--fo-highlight-color);
+}
+
+.fomoria.sheet {
+  border: 2px solid var(--fo-accent-color);
+  border-radius: 5px;
+  box-shadow: var(--fo-sheet-shadow);
+}
+.fomoria.sheet header.window-header {
+  border-bottom: 2px solid var(--fo-accent-color);
+}
+.fomoria.sheet section.window-content {
+  background-color: var(--fo-window-background-color);
+  background-image: none;
+  color: var(--fo-foreground-color);
+  font-family: "Noto Serif";
+  font-size: 15px;
+  overflow-y: scroll;
+  padding-bottom: 11px;
+  padding-left: 11px;
+  padding-right: 0;
+  padding-top: 11px;
+  scrollbar-color: var(--fo-highlight-color) var(--fo-window-background-color);
+  scrollbar-width: thin;
+}
+.fomoria.sheet section.window-content form {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  height: 100%;
+}
+.fomoria.sheet section.window-content nav.tabs [data-tab] {
+  color: var(--fo-foreground-color);
+}
+.fomoria.sheet section.window-content nav.sheet-tabs.tabs {
+  background: none;
+  border-bottom: 4px solid var(--fo-foreground-color);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  margin: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+.fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  font-family: "Amaranth";
+  font-size: 8px;
+  justify-content: center;
+  height: 30px;
+  margin-right: 2px;
+  opacity: 0.5;
+}
+.fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item:last-child {
+  margin-right: 0px;
+}
+.fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item:hover {
+  color: var(--fo-background-color);
+  opacity: 1;
+  text-shadow: none;
+}
+.fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item.active {
+  background-color: var(--fo-window-background-color);
+  color: var(--fo-foreground-color);
+  border-bottom: none;
+  opacity: 1;
+  position: relative;
+  text-shadow: none;
+  top: 4px;
+}
+.fomoria.sheet section.window-content .sheet-tabs {
+  background-color: var(--fo-foreground-color);
+  border: none;
+  flex: 0 0 30px;
+  padding: 0;
+}
+.fomoria.sheet section.window-content .sheet-tabs a.item {
+  border: 4px solid var(--fo-foreground-color);
+  border-radius: 5px;
+  height: 57;
+  flex: 1;
+  padding: 4px;
+  text-align: center;
+}
+.fomoria.sheet section.window-content .sheet-tabs a.item:hover {
+  background-color: var(--fo-highlight-color);
+}
+.fomoria.sheet section.window-content .sheet-tabs a.item.active {
+  background-color: var(--fo-highlight-color);
+}
+.fomoria.sheet section.window-content input[type=number],
+.fomoria.sheet section.window-content input[type=text] {
+  color: var(--fo-foreground-color);
+  height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+.fomoria.sheet section.window-content input[type=number] {
+  font-family: "Pokoljaro";
+  font-size: 20px;
+}
+.fomoria.sheet section.window-content input[type=text] {
+  font-family: "Pokoljaro";
+  line-height: 20px;
+}
+.fomoria.sheet section.window-content textarea {
+  color: var(--fo-foreground-color);
+  font-family: "Noto Serif";
+  font-size: 15px;
+  line-height: 20px;
+  resize: none;
+}
+.fomoria.sheet section.window-content .editor {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  padding: 0 8px;
+}
+.fomoria.sheet section.window-content .editor .editor-menu {
+  border-bottom: 1px solid var(--fo-foreground-color);
+  border-top: 1px solid var(--fo-foreground-color);
+  background-color: var(--fo-background-color);
+  color: var(--fo-foreground-color);
+}
+.fomoria.sheet section.window-content .editor .editor-menu button {
+  background-color: var(--fo-background-color);
+  border: 1px solid var(--fo-foreground-color);
+  color: var(--fo-foreground-color);
+}
+.fomoria.sheet section.window-content .editor .editor-menu button ul {
+  background-color: var(--fo-background-color);
+  border: 1px solid var(--fo-foreground-color);
+  color: var(--fo-foreground-color);
+}
+.fomoria.sheet section.window-content .editor .editor-menu button ul li:hover {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
+.fomoria.sheet section.window-content .editor .editor-menu button:hover {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
+.fomoria.sheet section.window-content .editor,
+.fomoria.sheet section.window-content .editor-content {
+  height: 100%;
+  padding-top: 10px;
+}
+.fomoria.sheet section.window-content .widget {
+  border: 4px solid var(--fo-foreground-color);
+  border-radius: 5px;
+}
+.fomoria.sheet section.window-content .button-row {
+  display: flex;
+  justify-content: space-between;
+}
+.fomoria.sheet section.window-content .description-tab {
+  height: 100%;
+}
+.fomoria.sheet section.window-content .description-tab .description-wrapper {
+  height: 100%;
+}
+.fomoria.sheet section.window-content .sheet-button {
+  background-color: var(--fo-button-background-color);
+  border: 2px solid var(--fo-highlight-color);
+  border-radius: 0;
+  color: var(--fo-button-foreground-color);
+  font-family: "Amaranth";
+  font-size: 7px;
+  height: 20px;
+  line-height: 1.2;
+  margin-right: 4px;
+}
+.fomoria.sheet section.window-content .sheet-button:last-child {
+  margin-right: 0px;
+}
+.fomoria.sheet section.window-content .sheet-button:hover {
+  background-color: var(--fo-highlight-color);
+  box-shadow: none;
+  color: var(--fo-background-color);
+}
+.fomoria.sheet section.window-content .sheet-button.medium-button {
+  font-size: 8px;
+  height: 30px;
+}
+.fomoria.sheet section.window-content .sheet-button.big-button {
+  font-size: 8px;
+  height: 36px;
+}
+.fomoria.sheet section.window-content .field-row {
+  display: flex;
+  flex: 0 0 38px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet section.window-content .field-row .field-label {
+  align-items: center;
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: "Pangolin";
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+.fomoria.sheet section.window-content .field-row .field-value {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1.5;
+  justify-content: center;
+}
+.fomoria.sheet section.window-content .field-row .field-value input {
+  width: 100%;
+}
+.fomoria.sheet section.window-content .field-row textarea {
+  font-family: "Noto Serif";
+  line-height: 20px;
+}
+.fomoria.sheet section.window-content .sheet-body {
+  border-bottom: 4px solid var(--fo-foreground-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 4px solid var(--fo-foreground-color);
+  border-right: 4px solid var(--fo-foreground-color);
+  height: 100%;
+  overflow: auto;
+  padding: 8px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.fomoria.sheet.actor section.window-content .big-row {
+  display: flex;
+  height: 100%;
+}
+.fomoria.sheet.actor section.window-content .big-row .header-col {
+  flex: 0 0 395px;
+  padding-right: 8px;
+}
+.fomoria.sheet.actor section.window-content .big-row .tabs-col {
+  flex: 1;
+  height: 100%;
+}
+.fomoria.sheet.actor section.window-content .sheet-header {
+  display: flex;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .left-col {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 292px;
+  margin-right: 5px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .left-col .portrait {
+  display: flex;
+  flex: 0 0 292px;
+  height: 292px;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .left-col .portrait img {
+  height: 100%;
+  width: auto;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .left-col .name {
+  flex: 0 0 38px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .left-col .name input[type=text] {
+  font-family: "Pokoljaro";
+  height: 38px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col {
+  display: flex;
+  flex: 0 0 88px;
+  flex-direction: column;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .actor-type {
+  color: var(--fo-foreground-color);
+  align-items: center;
+  display: flex;
+  flex: 0 0 292px;
+  font-family: "Pokoljaro";
+  font-size: 40px;
+  margin-bottom: 5px;
+  justify-content: center;
+  writing-mode: vertical-rl;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .threads-row {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .threads-row .threads-label {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  flex: 0 0 24px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .threads-row .threads-input {
+  display: flex;
+  flex: 1;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .threads-row .threads-input .slash {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  justify-content: center;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .threads-row .threads-input input[type=number] {
+  border: none;
+  font-size: 24px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .right-col .hitpoints-widget {
+  flex: 0 0 88px;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row {
+  display: flex;
+  flex: 1;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .icon:hover {
+  cursor: pointer;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .icon {
+  flex: 0 0 50px;
+  margin-right: 5px;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .icon img {
+  border: 4px solid var(--fo-foreground-color);
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 14px;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-field-row {
+  display: flex;
+  line-height: 20px;
+  margin: 2px;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-field-row button {
+  min-width: 80px;
+  width: fit-content;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row {
+  display: flex;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-name {
+  flex: 1;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-controls {
+  padding-left: 5px;
+  text-align: right;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-controls .item-equip.unequipped {
+  opacity: 0.5;
+}
+
+.sheet-body .background-tab {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  height: 100%;
+}
+
+.boon-tab .cols {
+  height: 100%;
+}
+.boon-tab .cols .col {
+  height: 100%;
+  overflow: hidden;
+}
+.boon-tab .cols .col .item-list {
+  height: calc(100% - 44px);
+  overflow: auto;
+}
+.boon-tab .nested-item .nested-indent {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row: auto auto;
+  flex: 0 0 20px;
+}
+.boon-tab .nested-item.app-row .ur {
+  border-bottom: 2px solid var(--fo-highlight-color);
+  border-left: 2px solid var(--fo-highlight-color);
+}
+.boon-tab .nested-item.app-row .lr {
+  border-left: 2px solid var(--fo-highlight-color);
+}
+.boon-tab .nested-item.app-row:last-child .nested-indent .lr {
+  border-left: none;
+}
+.boon-tab .nested-item.infestation-row .ur {
+  border-bottom: 2px solid var(--fo-highlight-color);
+  border-left: 2px solid var(--fo-highlight-color);
+}
+
+.fomoria.sheet.actor.character section.window-content {
+  padding-right: 10px;
+  overflow: hidden;
+}
+.fomoria.sheet.actor.character section.window-content .widget-row {
+  display: flex;
+}
+.fomoria.sheet.actor.character section.window-content .widget-row .widget {
+  flex: 1;
+  margin-right: 4px;
+}
+.fomoria.sheet.actor.character section.window-content .widget-row .widget:last-child {
+  margin-right: 0px;
+}
+.fomoria.sheet.actor.character section.window-content .cols {
+  display: flex;
+}
+.fomoria.sheet.actor.character section.window-content .cols .col {
+  flex: 1;
+}
+.fomoria.sheet.actor.character section.window-content .cols .spacer-col {
+  flex: 0 0 20px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header {
+  margin-bottom: 4px;
+  flex-direction: column;
+  height: 450px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-cols {
+  display: flex;
+  flex: 1;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-button-row {
+  display: flex;
+  flex: 0 0 36px;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  width: 100%;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row {
+  align-items: center;
+  display: flex;
+  flex: 0 0 38px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row .class-name {
+  flex: 1;
+  margin-left: 5px;
+  text-align: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row .item-controls {
+  display: flex;
+  justify-content: space-around;
+  flex: 0 0 40px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col {
+  width: 90px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .abilities-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row {
+  display: flex;
+  flex: 0 0 37px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-icon {
+  align-items: center;
+  background-color: var(--fo-foreground-color);
+  border-right: 4px solid var(--fo-foreground-color);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-icon a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-icon a img {
+  border: none;
+  height: 28px;
+  width: 28px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-icon a .ability-label {
+  color: var(--fo-background-color);
+  font-family: "Amaranth";
+  font-size: 16px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-score {
+  flex: 1;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-score input[type=number] {
+  font-size: 20px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .threads-row {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .threads-row .threads-label {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  flex: 0 0 24px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .threads-row .threads-input {
+  display: flex;
+  flex: 1;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .threads-row .threads-input .slash {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  justify-content: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .threads-row .threads-input input[type=number] {
+  border: none;
+  font-size: 24px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .hitpoints-widget {
+  flex: 0 0 88px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .owed-to-row .field-label {
+  flex: 0 0 92px;
+  padding-right: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-body {
+  height: calc(100% - 33px);
+}
+
+.fomoria.sheet section.window-content .combat-tab {
+  width: 100%;
+}
+.fomoria.sheet section.window-content .combat-tab .combat-buttons {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.fomoria.sheet section.window-content .combat-tab .armor .tier-label {
+  float: left;
+  font-size: 20;
+  padding-top: 4px;
+  margin-right: 10px;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers li {
+  float: left;
+  height: 45px;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 32px;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio] {
+  display: none;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:checked + span.tier-num {
+  background: var(--fo-highlight-color);
+  color: var(--fo-background-color);
+  border: none;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:disabled + span.tier-num {
+  color: #444444;
+  border: 1px solid #444444;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
+  color: #444444;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers span.tier-num {
+  border: 1px solid #7a7971;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 100%;
+  font-family: "Pokoljaro";
+  left: 0;
+  top: 0;
+}
+.fomoria.sheet section.window-content .combat-tab .armor ul.tiers span.tier-dmg {
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  font-size: 10pt;
+  left: -5px;
+  top: 30px;
+}
+
+.equipment-tab .carrying-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.equipment-tab .carrying-row .carrying {
+  flex: 1;
+}
+.equipment-tab .carrying-row .carrying .carrying-value {
+  padding-bottom: 2px;
+  padding-top: 5px;
+}
+.equipment-tab .carrying-row .carrying .encumbered {
+  color: var(--fo-highlight-color);
+}
+.equipment-tab .carrying-row .add-item-row {
+  flex: 1;
+  padding-left: 5px;
+}
+.equipment-tab .equipment-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+  width: 100%;
+  overflow: hidden;
+}
+.equipment-tab .equipment.item-list, .equipment-tab .cybertech.item-list {
+  overflow: auto;
+  display: grid;
+  column-gap: 20px;
+  min-height: 60px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 50px);
+  row-gap: 8px;
+}
+.equipment-tab .equipment.item-list {
+  flex: 1;
+}
+.equipment-tab .cybertech-title {
+  background: repeating-linear-gradient(-45deg, var(--fo-foreground-color), var(--fo-foreground-color) 10px, var(--fo-background-color) 10px, var(--fo-background-color) 20px);
+  font-family: "Amaranth";
+  font-size: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+.equipment-tab .cybertech-title span {
+  background-color: var(--fo-background-color);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+.feats-tab .no-feats {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.fomoria.sheet.actor.npc section.window-content .sheet-header {
+  height: 388px;
+}
+
+.roll-card .card-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+.roll-card .item-row {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.roll-card .item-row span.item-name {
+  flex: 0 0 140px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.roll-card .item-row img {
+  border: none;
+  height: 64px;
+  margin-left: 30px;
+  width: 64px;
+}
+.roll-card .roll-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+.roll-card .roll-result {
+  border: 1px solid gray;
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+.roll-card .roll-result span {
+  font-size: 20px;
+}
+.roll-card .outcome-text {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.roll-card .outcome-text .attack-outcome,
+.roll-card .outcome-text .defend-outcome {
+  margin-left: 10px;
+}
+.roll-card .outcome-text .attack-outcome,
+.roll-card .outcome-text .defend-outcome,
+.roll-card .outcome-text .take-damage {
+  color: var(--fo-highlight-color);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.roll-card .reaction-text {
+  font-size: 28px;
+  text-align: center;
+}
+.roll-card .dr-modifier {
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.window-app.fomoria.dialog {
+  border: 4px solid var(--fo-foreground-color);
+}
+.window-app.fomoria.dialog .window-header {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
+.window-app.fomoria.dialog .window-content {
+  background-color: var(--fo-background-color);
+  background-image: none;
+  color: var(--fo-foreground-color);
+}
+.window-app.fomoria.dialog .window-content form.dialog button {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-group {
+  display: flex;
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-group label {
+  flex: 1;
+  padding-right: 10px;
+  text-align: right;
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-group .field-value {
+  flex: 1;
+  text-align: center;
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled {
+  color: var(--fo-disabled-color);
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled input[type=number],
+.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled input[type=text],
+.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled select {
+  color: var(--fo-disabled-color);
+}
+.window-app.fomoria.dialog .window-content form.dialog input[type=number],
+.window-app.fomoria.dialog .window-content form.dialog input[type=text],
+.window-app.fomoria.dialog .window-content form.dialog select {
+  color: var(--fo-foreground-color);
+}
+
+.allowed-scvm-classes-dialog .subtitle {
+  font-size: 125%;
+}
+.allowed-scvm-classes-dialog ul {
+  list-style-type: none;
+}
+.allowed-scvm-classes-dialog ul li {
+  margin: 0 0 10px 0;
+}
+.allowed-scvm-classes-dialog ul li input[type=checkbox] {
+  float: left;
+  height: 14px;
+  width: 14px;
+}
+.allowed-scvm-classes-dialog ul li .class-name {
+  display: block;
+  margin-left: 30px;
+  padding-top: 3px;
+  text-transform: capitalize;
+}
+.allowed-scvm-classes-dialog .button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.make-folk-dialog .section {
+  margin: 10px 10px 20px 10px;
+}
+.make-folk-dialog .subtitle {
+  font-size: 125%;
+}
+.make-folk-dialog ul {
+  list-style-type: none;
+}
+.make-folk-dialog ul li {
+  margin: 0 0 10px 0;
+}
+.make-folk-dialog ul li input[type=checkbox] {
+  float: left;
+  height: 14px;
+  width: 14px;
+}
+.make-folk-dialog ul li .class-name {
+  display: block;
+  margin-left: 30px;
+  padding-top: 3px;
+  text-transform: capitalize;
+}
+.make-folk-dialog .button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.rest-dialog ul {
+  list-style-type: none;
+}
+.rest-dialog li {
+  margin: 0 0 10px 0;
+}
+.rest-dialog li input[type=checkbox], .rest-dialog li input[type=radio] {
+  float: left;
+}
+.rest-dialog li input[type=checkbox] {
+  height: 14px;
+  width: 14px;
+}
+.rest-dialog li label div {
+  display: block;
+  margin-left: 30px;
+}
+
+:root {
+  --color-text-light-highlight: #f0f0e0;
+  --color-text-light-heading: #c9c7b8;
+  --color-text-light-primary: #b5b3a4;
+  --color-text-dark-primary: #191813;
+  --color-text-dark-secondary: #4b4a44;
+  --color-text-dark-header: #23221d;
+  --color-text-dark-inactive: #7a7971;
+  --color-text-hyperlink: var(--fo-highlight-color);
+  --color-text-light-0: #fff;
+  --color-text-light-1: #eee;
+  --color-text-light-2: #ddd;
+  --color-text-light-3: #ccc;
+  --color-text-light-4: #bbb;
+  --color-text-light-5: #aaa;
+  --color-text-light-6: #999;
+  --color-text-light-7: #888;
+  --color-text-dark-1: #111;
+  --color-text-dark-2: #222;
+  --color-text-dark-3: #444;
+  --color-text-dark-4: #555;
+  --color-text-dark-5: #666;
+  --color-text-dark-6: #777;
+  --color-border-light-1: #ddd;
+  --color-border-light-2: #999;
+  --color-border-dark-1: #111;
+  --color-border-dark-2: #222;
+  --color-border-dark-3: #333;
+  --color-border-dark-4: #444;
+  --color-border-dark-5: #666;
+  --color-shadow-primary: var(--fo-highlight-color);
+  --color-shadow-highlight: var(--fo-highlight-color);
+  --color-shadow-dark: #000;
+  --color-underline-inactive: #7a7971;
+  --color-underline-active: #44191A;
+  --color-underline-header: #782e22;
+  --color-border-light-highlight: #f0f0e0;
+  --color-border-light-primary: #b5b3a4;
+  --color-border-light-secondary: #c9c7b8;
+  --color-border-light-tertiary: #7a7971;
+  --color-border-dark: #000;
+  --color-border-dark-primary: #191813;
+  --color-border-dark-secondary: #23221d;
+  --color-border-dark-tertiary: #4b4a44;
+  --color-border-highlight: var(--fo-highlight-color);
+  --color-border-highlight-alt: var(--fo-highlight-color);
+  --color-bg-btn-minor-inactive: #c9c7b8;
+  --color-bg-btn-minor-active: #b5b3a4;
+  --color-bg-option: #dad8cc;
+  --z-index-canvas: 0;
+  --z-index-app: 30;
+  --z-index-ui: 60;
+  --z-index-window: 100;
+  --sidebar-width: 300px;
+  --sidebar-header-height: 32px;
+  --sidebar-item-height: 48px;
+  --hotbar-height: 52px;
+  --hotbar-width: 578px;
+  --macro-size: 50px;
+  --players-width: 200px;
+  --form-field-height: 26px;
+  --font-primary: "Nouveau IBM";
+  --font-mono: monospace;
+  --font-size-11: 0.75rem;
+  --font-size-12: 0.8125rem;
+  --font-size-13: 0.875rem;
+  --font-size-14: 1rem;
+  --font-size-16: 1.125rem;
+  --font-size-18: 1.25rem;
+  --font-size-20: 1.5rem;
+  --font-size-24: 1.75rem;
+  --font-size-28: 2.0rem;
+  --line-height-12: 0.75rem;
+  --line-height-16: 1rem;
+  --line-height-20: 1.25rem;
+  --line-height-30: 1.875rem;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: 0 0 1px #999 inset;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fo-highlight-color);
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+:root {
+  scrollbar-color: var(--fo-highlight-color);
+  scrollbar-width: thin;
+}
+
+a.content-link,
+a.inline-roll {
+  background-color: transparent;
+  color: var(--fo-highlight-color);
+}
+
+.notification-pip {
+  color: var(--color-text-hyperlink);
+  text-shadow: 1px 1px 3px var(--color-shadow-dark);
+  position: absolute;
+  top: -1px;
+  right: -2px;
+}
+
+.notification-pip.update {
+  position: relative;
+  padding-right: 2px;
+}
+
+#chat-notification {
+  display: none;
+}
+
+#chat-controls {
+  flex: 0 0 28px;
+  margin: 0 6px;
+  align-content: center;
+}
+
+#chat-controls .chat-control-icon {
+  flex: 0;
+}
+
+#chat-controls .roll-type-select {
+  width: 200px;
+  height: 24px;
+  margin: 0 6px;
+  background: rgba(255, 255, 245, 0.8);
+}
+
+#chat-controls i.fas {
+  font-size: var(--font-size-20);
+  line-height: 28px;
+}
+
+#chat-controls .control-buttons {
+  flex: 0 0 49px;
+}
+
+#chat-controls .control-buttons a {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+/* Chat Log Container */
+#chat-log {
+  flex: 1;
+  height: calc(100% - 130px);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style: none;
+}
+
+/* Single Chat Message */
+.chat-message {
+  margin: 3px;
+  padding: 5px;
+  font-size: var(--font-size-14);
+  color: var(--color-text-dark-primary);
+  background: none;
+  background-color: var(--fo-background-color);
+  color: var(--fo-foreground-color);
+  border: 4px solid var(--fo-foreground-color);
+  border-radius: 5px;
+}
+
+.chat-message .message-header {
+  line-height: 20px;
+  color: var(--fo-foreground-color);
+}
+
+.chat-message .message-header .message-sender {
+  flex: 3;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.chat-message .message-header .message-metadata {
+  flex: 2;
+  text-align: right;
+  font-size: var(--font-size-12);
+}
+
+.chat-message .message-header .flavor-text,
+.chat-message .message-header .whisper-to {
+  flex: 0 0 100%;
+  font-size: var(--font-size-12);
+}
+
+.chat-message .message-content {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  word-break: break-word;
+  /* change color for strong text */
+}
+.chat-message .message-content strong {
+  color: var(--fo-highlight-color);
+}
+.chat-message .message-content h2 {
+  border-bottom: 1px dashed var(--fo-foreground-color);
+}
+
+.chat-message.emote {
+  background: var(--fo-background-color);
+  border: 2px solid #887c5d;
+}
+
+.chat-message.whisper {
+  background: var(--fo-background-color);
+  border: 2px solid #545469;
+}
+
+.chat-message.blind {
+  background: var(--fo-background-color);
+  border: 2px solid #6b476b;
+}
+
+.chat-message .cards-notification {
+  align-items: center;
+}
+
+.chat-message .cards-notification > .icon {
+  flex: 0 0 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.chat-message .cards-notification > p {
+  margin: 0;
+}
+
+/* New Chat Message Form */
+#chat-form {
+  height: 100px;
+  flex: 0 0 100px;
+  margin: 0 6px 6px;
+}
+
+#chat-form textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background: url(/ui/parchment.jpg) repeat;
+}
+
+/* Roll Table Results */
+.chat-message .table-draw .table-description {
+  border-top: 1px solid var(--color-border-light-primary);
+  color: var(--color-text-dark-secondary);
+  font-size: var(--font-size-12);
+  padding: 5px 0;
+}
+
+.chat-message .table-draw .table-results {
+  list-style: none;
+  margin: 5px 0 0;
+  padding: 0;
+}
+
+.chat-message .table-draw .table-results .table-result {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border-light-primary);
+  padding: 3px 0;
+}
+
+.chat-message .table-draw .table-results .table-result img.result-image {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  object-fit: cover;
+}
+
+.chat-message .table-draw .table-results .table-result .result-text {
+  margin: 0;
+  padding: 0;
+  line-height: 16px;
+  /* change color for strong text */
+}
+.chat-message .table-draw .table-results .table-result .result-text strong {
+  color: var(--fo-highlight-color);
+}
+
+.chat-message .table-draw .table-results .table-result:last-child {
+  border-bottom: none;
+}
+
+/** Card Draws */
+.chat-message .card-draw {
+  align-items: center;
+}
+
+.chat-message .card-draw .card-face {
+  height: 48px;
+  flex: 0;
+  margin-right: 8px;
+}
+
+.chat-message .card-draw .card-name {
+  line-height: 48px;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Popped-out Message */
+.chat-popout .window-content {
+  padding: 1px;
+}
+
+.fomoria.sheet.item .cyber .sheet-header .portrait-row .item-type {
+  color: var(--fo-cybertext-color);
+}
+.fomoria.sheet.item .sheet-header {
+  display: flex;
+  flex-direction: column;
+  width: 385px;
+}
+.fomoria.sheet.item .sheet-header .portrait-row {
+  display: flex;
+  /* 292 */
+  flex: 0 0 292px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.item .sheet-header .portrait-row div.portrait {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 0 0 292px;
+}
+.fomoria.sheet.item .sheet-header .portrait-row div.portrait img.portrait {
+  border: none;
+  height: 292px;
+  width: 292px;
+}
+.fomoria.sheet.item .sheet-header .portrait-row .item-type {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  font-family: "Pokoljaro";
+  font-size: 48px;
+  justify-content: center;
+  writing-mode: vertical-rl;
+}
+.fomoria.sheet.item .sheet-header .name {
+  flex: 0 0 38px;
+  margin-bottom: 5px;
+}
+.fomoria.sheet.item .sheet-header .name input[type=text] {
+  height: 38px;
+}
+
+/*# sourceMappingURL=fomoria.css.map */

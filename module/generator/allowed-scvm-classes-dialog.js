@@ -1,0 +1,93 @@
+import { findClasses } from "./folkfactory.js";
+import { isScvmClassAllowed, setAllowedScvmClasses } from "../settings.js";
+
+export class AllowedScvmClassesDialog extends FormApplication {
+  constructor() {
+    super();
+  }
+
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      id: "allowed-scvm-classes-dialog",
+      title: game.i18n.localize("FO.AllowedScvmClassesEdit"),
+      template:
+        "systems/fomoria/templates/dialog/allowed-scvm-classes-dialog.html",
+      classes: ["form", "fomoria"],
+      popOut: true,
+      width: 420,
+    });
+  }
+
+  /** @override */
+  activateListeners(html) {
+    super.activateListeners(html);
+    html.find(".toggle-all").click((event) => this._onToggleAll(event));
+    html.find(".toggle-none").click((event) => this._onToggleNone(event));
+    html.find(".cancel-button").click((event) => this._onCancel(event));
+    html.find(".ok-button").click((event) => this._onOk(event));
+  }
+
+  async getData(options = {}) {
+    const superData = await super.getData(options);
+    const classes = await this._getClassData();
+    return foundry.utils.mergeObject(superData, {
+      classes,
+    });
+  }
+
+  async _getClassData() {
+    const classes = await findClasses();
+    const classData = classes.map((clazz) => {
+      return {
+        name: clazz.name,
+        uuid: clazz.uuid,
+        checked: isScvmClassAllowed(clazz.uuid),
+      };
+    });
+    classData.sort((a, b) => (a.name > b.name ? 1 : -1));
+    return classData;
+  }
+
+  _onToggleAll(event) {
+    event.preventDefault();
+    const form = $(event.currentTarget).parents(
+      ".allowed-scvm-classes-dialog"
+    )[0];
+    $(form).find(".class-checkbox").prop("checked", true);
+  }
+
+  _onToggleNone(event) {
+    event.preventDefault();
+    const form = $(event.currentTarget).parents(
+      ".allowed-scvm-classes-dialog"
+    )[0];
+    $(form).find(".class-checkbox").prop("checked", false);
+  }
+
+  _onCancel(event) {
+    event.preventDefault();
+    this.close();
+  }
+
+  _onOk(event) {
+    const form = $(event.currentTarget).parents(
+      ".allowed-scvm-classes-dialog"
+    )[0];
+    const selected = [];
+    $(form)
+      .find("input:checked")
+      .each(function () {
+        selected.push($(this).attr("name"));
+      });
+
+    if (selected.length === 0) {
+      event.preventDefault();
+      return;
+    }
+  }
+
+  /** @override */
+  async _updateObject(event, formData) {
+    setAllowedScvmClasses(formData);
+  }
+}

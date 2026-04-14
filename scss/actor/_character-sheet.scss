@@ -1,0 +1,152 @@
+
+
+
+.fomoria.sheet.actor.character {
+  section.window-content {
+    // TODO: clean up padding for the whole sheet and columns etc
+    // seems like it was already set for left/top, but not right? 
+    // maybe for scroll-bar futzing
+    padding-right: 10px;
+    overflow: hidden;
+    .widget-row {
+      display: flex;
+      // TODO: fix needing to have right padding, seems wrong/dumb
+      // padding-right: 10px;
+      .widget {
+        flex: 1;
+        margin-right: 4px;
+      }
+      .widget:last-child {
+        margin-right: 0px;
+      }
+    }
+    .cols {
+      display: flex;
+      .col {
+        flex: 1;
+      }
+      .spacer-col {
+        flex: 0 0 20px;
+      }
+    }
+    .sheet-header {
+      margin-bottom: 4px;
+      flex-direction: column;
+      height: 450px;
+      .header-cols {
+        display: flex;
+        flex: 1;
+      }
+      .header-button-row {
+        display: flex;
+        flex: 0 0 36px;
+        justify-content: space-between;
+        margin-bottom: $border-width;
+        width: 100%;
+      }
+      .left-col {
+        .class-row {
+          align-items: center;
+          display: flex;
+          flex: 0 0 $field-height;
+          margin-bottom: $widget-margin;
+          .class-name {
+            flex: 1;
+            margin-left: 5px;
+            text-align: center;
+          }
+          .item-controls {
+            display: flex;
+            justify-content: space-around;
+            flex: 0 0 40px;
+          }
+        }
+      }
+      .right-col {
+        width: 90px;
+        .abilities-wrapper {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+        }
+        .ability-row {
+          display: flex;
+          flex: 0 0 37px;
+          margin-bottom: $widget-margin;
+          .ability-icon {
+            align-items: center;
+            background-color: var(--fo-foreground-color);
+            border-right: 4px solid var(--fo-foreground-color);
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            a {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              img {
+                border: none;
+                height: 28px;
+                width: 28px;
+              }  
+              .ability-label {
+                color: var(--fo-background-color);
+                font-family: $pixel-font;
+                font-size: 16px;
+              }
+            }
+          }
+          .ability-score {
+            flex: 1;
+            input[type="number"] {
+              font-size: 20px;
+            }
+          }
+        }
+        .threads-row {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          .threads-label {
+            background-color: var(--fo-foreground-color);
+            color: var(--fo-background-color);
+            flex: 0 0 24px;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            text-transform: uppercase;
+          }
+          .threads-input {
+            display: flex;
+            flex: 1;
+            .slash {
+              align-items: center;
+              display: flex;
+              flex-direction: column;
+              font-size: 24px;
+              justify-content: center;
+            }
+            input[type="number"] {
+              border: none;
+              font-size: 24px;
+            }
+          }
+        }
+        .hitpoints-widget {
+          flex: 0 0 88px;
+        }
+      }  
+      .owed-to-row {
+        .field-label {
+          flex: 0 0 92px;
+          padding-right: 5px;
+        }
+      }
+    }
+    .sheet-body {
+      height: calc(100% - 33px);
+    }
+  }
+}

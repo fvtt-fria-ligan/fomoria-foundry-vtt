@@ -1,0 +1,31 @@
+<form
+  id="allowed-scvm-classes-form"
+  class="custom-dialog allowed-scvm-classes-dialog"
+>
+  <div class="section">
+    <div class="subtitle">{{localize "FO.AllowedScvmClassesSelect"}}</div>
+    <ul>
+      {{#each classes as |class|}}
+      <li>
+        <label>
+          <input name="{{class.uuid}}" type="checkbox" class="class-checkbox"
+          {{#if class.checked }}checked{{/if}} />
+          <div class="class-name">{{class.name}}</div>
+        </label>
+      </li>
+      {{/each}}
+    </ul>
+    <div>
+      <a class="toggle-none">{{localize "FO.ScvmfactoryToggleNone"}}</a>&nbsp; /
+      &nbsp;<a class="toggle-all">{{localize "FO.ScvmfactoryToggleAll"}}</a>
+    </div>
+  </div>
+  <div class="button-row">
+    <button type="submit" class="button cancel-button" name="cancel" value="1">
+      {{localize "FO.Cancel"}}
+    </button>
+    <button type="submit" class="button ok-button" name="ok" value="1">
+      {{localize "FO.Ok"}}
+    </button>
+  </div>
+</form>

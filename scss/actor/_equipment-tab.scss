@@ -1,0 +1,64 @@
+.equipment-tab {
+  .carrying-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+    .carrying {
+      flex: 1;
+      .carrying-value {
+        padding-bottom: 2px;
+        padding-top: 5px;
+      }  
+      .encumbered {
+        color: var(--fo-highlight-color);
+      }  
+    }
+    .add-item-row {
+      flex: 1;
+      padding-left: 5px;
+      // padding-right: 10px;
+    }
+  }
+  .equipment-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    width: 100%;
+    overflow: hidden;
+  }
+  .equipment.item-list, .cybertech.item-list {
+    overflow: auto;
+    display: grid;
+    column-gap: 20px;
+    min-height: 60px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 50px);
+    row-gap: calc($border-width * 2);
+  }
+  .equipment.item-list {
+    flex: 1;
+  }
+  .cybertech-title {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--fo-foreground-color),
+      var(--fo-foreground-color) 10px,
+      var(--fo-background-color) 10px,
+      var(--fo-background-color) 20px
+    );      
+    font-family: $pixel-font;
+    font-size: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    span {
+      background-color: var(--fo-background-color);
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 4px;
+      padding-top: 4px;
+    }
+  }
+}

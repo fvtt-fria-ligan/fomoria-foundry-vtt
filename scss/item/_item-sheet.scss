@@ -1,0 +1,45 @@
+.fomoria.sheet.item {
+  .cyber .sheet-header .portrait-row .item-type {
+    color: var(--fo-cybertext-color);
+  }
+  .sheet-header {
+    display: flex;
+    flex-direction: column;
+    width: 385px;
+
+    .portrait-row {
+      display: flex;
+      /* 292 */
+      flex: 0 0 292px;
+      margin-bottom: $widget-margin;
+      div.portrait {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 0 0 292px;
+        img.portrait {
+          border: none;
+          height: 292px;
+          width: 292px;
+        }
+      }  
+      .item-type {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        font-family: $name-font;
+        font-size: 48px;
+        justify-content: center;
+        writing-mode: vertical-rl;
+      }
+    }
+    .name {
+      flex: 0 0 $field-height;
+      margin-bottom: $widget-margin;
+      input[type="text"] {
+        height: $field-height;
+      }
+    }    
+  }
+}

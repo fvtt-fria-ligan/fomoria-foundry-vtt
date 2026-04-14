@@ -1,0 +1,32 @@
+<div class="widget field-row">
+  <div class="field-label">
+    {{ localize 'FO.Price'}}
+  </div>
+  <div class="field-value">
+    <input class="field-input" type="number" name="system.price" value="{{data.system.price}}"/>
+  </div>
+</div>
+<div class="widget field-row">
+  <div class="field-label">
+    {{ localize 'FO.Illegal'}}
+  </div>
+  <div class="field-value">
+    <input class="field-input" type="checkbox" name="system.illegal" {{checked data.system.illegal}} />
+  </div>
+</div>
+<div class="widget field-row">
+    <div class="field-label">
+    {{ localize 'FO.CarrySlots'}}
+  </div>
+  <div class="field-value">
+    <input class="field-input" type="number" name="system.carrySlots" value="{{data.system.carrySlots}}"/>
+  </div>
+</div>
+<div class="widget field-row">
+    <div class="field-label">
+    {{ localize 'FO.Quantity'}}
+  </div>
+  <div class="field-value">
+    <input class="field-input" type="number" name="system.quantity" value="{{data.system.quantity}}"/>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "common": {
+        "abilities": {
+          "agility": {
+            "value": 0
+          },
+          "occult": {
+            "value": 0
+          },
+          "presence": {
+            "value": 0
+          },
+          "strength": {
+            "value": 0
+          },
+          "toughness": {
+            "value": 0
+          }
+        },
+        "description": "",
+        "hitPoints": {
+          "max": 1,
+          "value": 1
+        },
+        "stabilityPoints": {
+          "max": 1,
+          "value": 1
+        }
+      }
+    },
+    "character": {
+      "templates": ["common"],
+      "appFumbleOn": 1,
+      "silver": 0,
+      "debt": {
+        "amount": 0,
+        "to": ""
+      },
+      "threads": {
+        "min": 0,
+        "max": 0,
+        "value": 0
+      },
+      "boonFumbleOn": 1
+    },
+    "npc": {
+      "armor": "",
+      "attack": "",
+      "description": "",
+      "hitPoints": {
+        "max": 1,
+        "value": 1
+      },
+      "morale": 7,
+      "special": ""
+    } 
+  },
+  "Item": {
+    "types": [
+      "armor",
+      "boon",
+      "class",
+      "equipment",
+      "feat",
+      "infestation",
+      "boonPower",
+      "weapon"
+    ],
+    "templates": {
+      "baseEquipment": {
+        "carrySlots": 1,
+        "description": "",
+        "equipped": false,
+        "price": 0,
+        "quantity": 1
+      }
+    },
+    "armor": {
+      "templates": ["baseEquipment"],
+      "tier": {
+        "min": 0,
+        "max": 1,
+        "value": 1
+      }
+    },
+    "class": {
+      "actorCreateMacro": "",
+      "agility": "3d6",
+      "armorTable": "1d3",
+      "silver": "2d6*10",
+      "debt": "3d6*1000",
+      "description": "",
+      "threads": "1d2",
+      "hitPoints": "1d8",
+      "items": null,
+      "occult": "3d6",
+      "presence": "3d6",
+      "rolls": null,
+      "strength": "3d6",
+      "toughness": "3d6",
+      "weaponTable": "1d12"
+    },
+    "equipment": {
+      "templates": ["baseEquipment"]
+    },
+    "feat": {
+      "description": "",
+      "rollMacro": "",
+      "rollLabel": ""
+    },
+    "boon": {
+      "description": ""
+    },
+    "weapon": {
+      "templates": ["baseEquipment"],
+      "autofire": false,
+      "critMultiplier": 2,
+      "critOn": 20,
+      "damage": "1d2",
+      "fumbleOn": 1,
+      "sound": "",
+      "special": "",
+      "targets": 1,
+      "usesAmmo": false,
+      "weaponType": "ranged"
+    }
+  }
+}

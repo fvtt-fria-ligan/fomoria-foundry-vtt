@@ -1,0 +1,122 @@
+<form class="{{cssClass}} {{cssCyberClass}}" autocomplete="off">
+  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='WEAPON'}}  
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
+  <div class="sheet-body">
+    {{> systems/fomoria/templates/item/item-description-tab.html }} 
+    <div class="tab data-tab" data-group="primary" data-tab="data">
+      {{> systems/fomoria/templates/item/item-base-fields.html }} 
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Cybertech'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="checkbox" name="system.cybertech" {{checked data.system.cybertech}} />
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.WeaponType'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.weaponType" value="{{data.system.weaponType}}" spellcheck="false"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Damage'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.damage" value="{{data.system.damage}}" spellcheck="false"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.VehicleDamage'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.vehicleDamage" value="{{data.system.vehicleDamage}}" spellcheck="false"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Special'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.special" value="{{data.system.special}}" spellcheck="false"/>
+        </div>
+      </div>          
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.UsesAmmo'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="checkbox" name="system.usesAmmo" {{checked data.system.usesAmmo}} />
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Autofire'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="checkbox" name="system.autofire" {{checked data.system.autofire}} />
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Targets'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.targets" value="{{data.system.targets}}"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.FumbleOn'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="number" name="system.fumbleOn" value="{{data.system.fumbleOn}}"/>
+        </div>
+      </div>        
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.CritOn'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="number" name="system.critOn" value="{{data.system.critOn}}"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.CritMultiplier'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="number" name="system.critMultiplier" value="{{data.system.critMultiplier}}"/>
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Sound'}}
+        </div>
+        <div class="field-value">
+          <button
+          type="button"
+          class="file-picker"
+          data-type="audio"
+          data-target="system.sound"
+          title="Browse Files"
+          tabindex="-1"
+        >
+          <i class="fas fa-file-import fa-fw"></i>
+        </button>
+        <input
+          class="sound"
+          type="text"
+          name="system.sound"
+          value="{{data.system.sound}}"
+          data-dtype="String"
+          placeholder="File Path"
+        />
+      </div>
+    </div>
+  </div>
+</form>

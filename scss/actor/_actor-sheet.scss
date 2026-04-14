@@ -1,0 +1,144 @@
+.fomoria.sheet.actor {
+  section.window-content {
+    .big-row {
+      display: flex;
+      height: 100%;
+      .header-col {
+        flex: 0 0 395px;
+        padding-right: 8px;
+      }
+      .tabs-col {
+        flex: 1;
+        height: 100%;
+      }
+    }    
+    .sheet-header {
+      display: flex;
+      .left-col {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 $portrait-size;
+        margin-right: $widget-margin;
+        .portrait {
+          display: flex;
+          flex: 0 0 $portrait-size;
+          height: $portrait-size;
+          justify-content: center;
+          margin-bottom: $widget-margin;
+          img {
+            height: 100%;
+            width: auto;
+          }
+        } 
+        .name {
+          flex: 0 0 $field-height;
+          margin-bottom: $widget-margin;
+          input[type="text"] {
+            font-family: $name-font;
+            height: $field-height;
+          }
+        } 
+      }
+      .right-col {
+        display: flex;
+        flex: 0 0 88px;
+        flex-direction: column;
+        .actor-type {
+          color: var(--fo-foreground-color);
+          align-items: center;
+          display: flex;
+          flex: 0 0 $portrait-size;
+          font-family: $name-font;
+          font-size: 40px;
+          margin-bottom: $widget-margin;
+          justify-content: center;
+          writing-mode: vertical-rl;
+        }        
+        .threads-row {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          .threads-label {
+            background-color: var(--fo-foreground-color);
+            color: var(--fo-background-color);
+            flex: 0 0 24px;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            text-transform: uppercase;
+          }
+          .threads-input {
+            display: flex;
+            flex: 1;
+            .slash {
+              align-items: center;
+              display: flex;
+              flex-direction: column;
+              font-size: 24px;
+              justify-content: center;
+            }
+            input[type="number"] {
+              border: none;
+              font-size: 24px;
+            }
+          }
+        }
+        .hitpoints-widget {
+          flex: 0 0 88px;
+        }          
+      }    
+    }
+
+    .sheet-body {
+      .item-row {
+        display: flex;
+        flex: 1;
+        &.cyber {        
+        }
+        .icon {
+          &:hover {
+            cursor: pointer;
+          }
+          flex: 0 0 50px;
+          margin-right: 5px;
+          img {
+            border: 4px solid var(--fo-foreground-color);
+            border-radius: 5px;
+            height: 50px;
+            width: 50px;
+          }  
+        }
+        .item-fields {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          font-size: 14px;
+          .item-field-row {
+            display: flex;
+            line-height: $textarea-line-height;
+            margin: 2px;
+            button {
+              min-width: 80px;
+              width: fit-content;
+            }
+          }
+          .item-name-row {
+            display: flex;
+            .item-name {
+              flex: 1;
+            }
+            .item-controls {
+              padding-left: 5px;
+              text-align: right;
+              .item-equip.unequipped {
+                opacity: 0.5;
+              }
+            }
+          }
+        }          
+      }
+    }
+  }
+}

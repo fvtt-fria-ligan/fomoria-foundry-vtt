@@ -1,0 +1,46 @@
+<form class="dialog defend-dialog">
+  <div class="form-group">
+    <label>{{localize 'FO.Defend'}} {{localize 'FO.DR'}}:</label>
+    <div class="field-value">
+      <input
+      type="number"
+      name="defense-base-dr"
+      value="{{defendDR}}"
+      placeholder="12"
+      data-dtype="Number"
+      />      
+    </div>
+  </div>
+  <div class="form-group disabled">
+    <label>{{localize 'FO.Modified'}} {{localize 'FO.DR'}}:</label>
+    <div class="field-value">
+      <input
+      type="number"
+      class="readonly"
+      name="defense-modified-dr"
+      value=""
+      readonly
+      />
+    </div>
+  </div>
+  {{# if drModifiers}}
+  <div class="dr-modifier">
+    ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label>{{localize 'FO.IncomingAttack'}}:</label>
+    <div class="field-value">
+      <input
+      type="text"
+      name="incoming-attack"
+      value="{{incomingAttack}}"
+      placeholder="1d6"
+      data-dtype="String"
+      />      
+    </div>
+  </div>
+  <div class="button-row">
+    <button class="dialog-button defend-button" type="button" name="Defend">{{ localize "FO.Defend" }}</button>
+  </div>
+</form>

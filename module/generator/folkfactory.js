@@ -1,0 +1,509 @@
+import { FOActor } from "../actor/actor.js";
+import { FO } from "../config.js";
+import { FOItem } from "../item/item.js";
+import { articalize, lowerCaseFirst, rollTotal, sample, upperCaseFirst } from "../utils.js";
+
+import {
+  documentFromResult,
+  documentsFromDraw,
+  drawFromTableUuid,
+  drawTextFromTableUuid,
+  simpleData,
+} from "../packutils.js";
+import { getAllowedScvmClasses } from "../settings.js";
+
+export async function createScvm(clazz) {
+  const scvm = await rollScvmForClass(clazz);
+  await createActorWithScvm(scvm);
+}
+
+export async function createScvmFromClassUuid(classUuid) {
+  const clazz = await fromUuid(classUuid);
+  if (!clazz) {
+    // couldn't find class item, so bail
+    const err = `No class item found with UUID ${classUuid}`;
+    console.error(err);
+    ui.notifications.error(err);
+    return;
+  }
+  await createScvm(clazz);
+}
+
+export async function scvmifyActor(actor, clazz) {
+  const scvm = await rollScvmForClass(clazz);
+  await updateActorWithScvm(actor, scvm);
+}
+
+export async function createNpc() {
+  const npc = await randomNpc();
+  const actor = await FOActor.create(npc);
+  actor.sheet.render(true);
+}
+
+function randomName() {
+  return drawTextFromTableUuid(FO.scvmFactory.namesTable);
+}
+
+async function randomNpc() {
+  const name = await randomName();
+  const description = await makeDescription(FO.scvmFactory.npcDescriptionTables);
+  const img = await randomNpcPortrait();
+  const hp = await rollTotal("1d8");
+  const morale = await rollTotal("1d8+4");
+  const attack = npcAttack();
+  const armor = npcArmor();
+  return {
+    name,
+    system: {
+      armor,
+      attack,
+      description,
+      hitPoints: {
+        max: hp,
+        value: hp,
+      },
+      morale,
+    },
+    img,
+    items: [],
+    prototypeToken: {
+      name,
+      texture: {
+        src: img,
+      },
+    },    
+    type: "npc",
+  };  
+}
+
+function npcAttack() {
+  return sample([
+    "Unarmed d2",
+    "Shiv d3",
+    "Machete d6",
+    "Throwing knives d4",
+    "Revolver d8",
+    "Smartgun d6a",
+    "Shotgun d8",
+  ]);
+}
+
+function npcArmor() {
+  return sample([
+    "No armor",
+    "Styleguard -d2",
+    "Rough -d4",
+  ]);
+}
+
+async function makeDescription(descriptionTables) {
+  let descriptionLine = "";
+  for (const dt of descriptionTables) {
+    const table = await fromUuid(dt.uuid);
+    if (table) {
+      const draw = await table.draw({ displayChat: false });
+      let text = lowerCaseFirst(draw.results[0].description);
+      if (dt.articalize) {
+        text = articalize(text);
+      }
+      const formatted = game.i18n.format(dt.formatKey, {text});
+      descriptionLine += upperCaseFirst(formatted) + " ";  
+    } else {
+      console.error(`Could not find table ${dt.uuid}`);
+    }
+  }
+  return descriptionLine;
+}
+
+export async function findClasses() {
+  const classes = [];
+  for (const uuid of FO.scvmFactory.classUuids) {
+    const clazz = await fromUuid(uuid);
+    if (clazz && clazz.type == FO.itemTypes.class) {
+      classes.push(clazz);
+    }
+  }
+  return classes;
+}
+
+export async function findAllowedClasses() {
+  const classes = await findClasses();
+  const allowedScvmClasses = getAllowedScvmClasses();
+  const filtered = classes.filter((c) => {
+    return !(c.uuid in allowedScvmClasses) || allowedScvmClasses[c.uuid];
+  });
+  return filtered;
+}
+
+async function abilityRoll(formula) {
+  const total = await rollTotal(formula);
+  return abilityBonus(total);
+}
+
+const classStartingArmor = async (clazz) => {
+  if (FO.scvmFactory.startingArmorTable && clazz.system.armorTable) {
+    const draw = await drawFromTableUuid(
+      FO.scvmFactory.startingArmorTable,
+      clazz.system.armorTable
+    );
+    const armor = await documentsFromDraw(draw);
+    return armor;
+  }
+}
+
+async function classStartingWeapons(clazz) {
+  if (FO.scvmFactory.startingWeaponTable && clazz.system.weaponTable) {
+    const draw = await drawFromTableUuid(FO.scvmFactory.startingWeaponTable, clazz.system.weaponTable);
+    const weapons = await documentsFromDraw(draw);
+    // add ammo mags if starting weapon uses ammo
+    const mags = [];
+    for (const weapon of weapons) {
+      if (weapon.system.usesAmmo) {
+        const mag = await fromUuid(FO.scvmFactory.ammoItem);
+        const magRoll = await new Roll("1d4").evaluate();
+        // TODO: need to mutate _data to get it to change for our owned item creation.
+        // Is there a better way to do this?
+        mag.name = `${weapon.name} ${mag.name}`;
+        // mag.system._source.system.quantity = magRoll.total;
+        mag.system.quantity = magRoll.total;
+        mags.push(mag);
+      }      
+    }
+    weapons.push(...mags);    
+    return weapons;
+  }
+}
+
+async function classStartingItems(clazz) {
+  if (clazz.system.items) {
+    const startingItems = [];
+    const lines = clazz.system.items.split("\n");
+    for (const line of lines) {
+      const [packName, itemName] = line.split(",");
+      const pack = game.packs.get(packName);
+      if (pack) {
+        const content = await pack.getDocuments();
+        const item = content.find((i) => i.name === itemName);
+        if (item) {
+          startingItems.push(item);
+        }
+      }
+    }
+    return startingItems;
+  }
+}
+
+async function classDescriptionLines(clazz) {
+  const descriptionLines = [];
+  descriptionLines.push(clazz.system.description);
+  descriptionLines.push("<p>&nbsp;</p>");
+  let descriptionLine = await makeDescription(FO.scvmFactory.descriptionTables);
+  if (descriptionLine) {
+    descriptionLines.push(descriptionLine);
+    descriptionLines.push("<p>&nbsp;</p>");
+  }
+  return descriptionLines;
+}
+
+function hasApp(items) {
+  return items.filter(x => x.type === FO.itemTypes.app).length > 0;
+}
+
+async function startingEquipment(clazz) {
+  const equipment = [];
+  if (FO.scvmFactory.startingItems) {
+    for (const uuid of FO.scvmFactory.startingItems) {
+      const item = await fromUuid(uuid);
+      if (item) {
+        equipment.push(item);
+      }
+    }
+  }
+
+  for (const uuid of FO.scvmFactory.startingEquipmentTables) {
+    const draw = await drawFromTableUuid(uuid);
+    let items = await documentsFromDraw(draw);
+    equipment.push(...items);  
+  }
+  return equipment;
+}
+
+async function randomCharacterPortrait() {
+  return await randomFile(FO.scvmFactory.characterPortraitPath);
+}
+
+async function randomNpcPortrait() {
+  return await randomFile(FO.scvmFactory.npcPortraitPath);
+}
+
+async function randomFile(fromPath) {
+  let folderInfo = await foundry.applications.apps.FilePicker.implementation.browse('data', fromPath);
+  return sample(folderInfo.files);  
+}
+
+async function rollScvmForClass(clazz) {
+  console.log(`Creating new ${clazz.name}`);
+  const allDocs = [clazz];
+
+  // all-character starting equipment tables
+  const equipment = await startingEquipment(clazz);
+  if (equipment) {
+    allDocs.push(...equipment);
+  }
+
+  // starting weapons
+  const weapons = await classStartingWeapons(clazz);
+  if (weapons) {
+    allDocs.push(...weapons);
+  }
+
+  // starting armor
+  const armor = await classStartingArmor(clazz);
+  if (armor) {
+    allDocs.push(...armor);
+  }
+
+  // class-specific starting items
+  const startingItems = await classStartingItems(clazz);
+  if (startingItems) {
+    allDocs.push(...startingItems);
+  }
+
+  // start accumulating character description, starting with the class description
+  const descriptionLines = await classDescriptionLines(clazz);
+
+  // class-specific starting rolls
+  // these may add items, actors, or description lines
+  const startingRollItems = [];
+  if (clazz.system.rolls) {
+    const lines = clazz.system.rolls.split("\n");
+    for (const line of lines) {
+      const [packName, tableName, rolls, formula] = line.split(",");
+      // assume 1 roll unless otherwise specified in the csv
+      const numRolls = rolls ? parseInt(rolls) : 1;
+      const pack = game.packs.get(packName);
+      if (pack) {
+        const content = await pack.getDocuments();
+        const table = content.find((i) => i.name === tableName);
+        if (table) {
+          const results = await compendiumTableDrawMany(table, numRolls, formula);
+          for (const result of results) {
+            // draw result type: text (0), entity (1), or compendium (2)
+            if (result.type === CONST.TABLE_RESULT_TYPES.TEXT) {
+              // text
+              descriptionLines.push(
+                `<p>${table.name}: ${result.description}</p>`
+              );
+            } else if (result.type === CONST.TABLE_RESULT_TYPES.DOCUMENT) {
+              // compendium / doc
+              const doc = await documentFromResult(result);
+              startingRollItems.push(doc);
+            }
+          }
+        } else {
+          console.log(`Could not find RollTable ${tableName}`);
+        }
+      } else {
+        console.log(`Could not find compendium ${packName}`);
+      }
+    }
+  }
+  allDocs.push(...startingRollItems);
+
+  // make simple data structure for embedded items
+  const items = allDocs.filter((e) => e instanceof FOItem);
+  const itemData = items.map(i => simpleData(i));
+
+  const name = await randomName();
+  const npcs = allDocs.filter(e => e instanceof FOActor);
+  const npcData = npcs.map(n => simpleData(n));
+
+  const strength = await abilityRoll(clazz.system.strength);
+  const agility = await abilityRoll(clazz.system.agility);
+  const presence = await abilityRoll(clazz.system.presence);
+  const toughness = await abilityRoll(clazz.system.toughness);
+  const occult = await abilityRoll(clazz.system.occult);
+  const hitPoints = Math.max(1,
+    await rollTotal(clazz.system.hitPoints) + toughness);
+  const silver = await rollTotal(clazz.system.silver);
+  const debtAmount = await rollTotal("3d6*1000");
+  const debtTo = await drawTextFromTableUuid(FO.scvmFactory.debtTable);
+  const threads = await rollTotal(clazz.system.threads);
+  descriptionLines.push("<p>&nbsp;</p>");
+  descriptionLines.push(`<p>You owe a debt of ${debtAmount} to ${debtTo}.</p>`);
+  const img = await randomCharacterPortrait();
+  return {
+    actorCreateMacro: clazz.system.actorCreateMacro,
+    actorImg: img,
+    agility,
+    silver,
+    debt: {
+      amount: debtAmount,
+      to: debtTo
+    },
+    description: descriptionLines.join(""),
+    threads,
+    hitPoints,
+    items: itemData,
+    occult,
+    name,
+    npcs: npcData,
+    presence,
+    strength,
+    tokenImg: img,
+    toughness,
+  };
+}
+
+function scvmToActorData(s) {
+  return {
+    name: s.name,
+    system: {
+      abilities: {
+        strength: { value: s.strength },
+        agility: { value: s.agility },
+        presence: { value: s.presence },
+        toughness: { value: s.toughness },
+        occult: { value: s.occult },
+      },
+      silver: s.silver,
+      debt: s.debt,
+      description: s.description,
+      threads: {
+        max: s.threads,
+        value: s.threads,
+      },
+      hitPoints: {
+        max: s.hitPoints,
+        value: s.hitPoints,
+      },
+    },
+    img: s.actorImg,
+    items: s.items,
+    flags: {},
+    prototypeToken: {
+      name: s.name,
+      texture: {
+        src: s.actorImg,
+      },
+    },
+    type: "character",
+  };
+}
+
+async function createActorWithScvm(s) {
+  const data = scvmToActorData(s);
+  // use FOActor.create() so we get default disposition, actor link, vision, etc
+  const actor = await FOActor.create(data);  
+  actor.sheet.render(true);
+
+  // create any npcs
+  for (const npcData of s.npcs) {
+    const lastWord = npcData.name.split(" ").pop();
+    npcData.name = `${actor.name}'s ${lastWord}`;
+    if (npcData.type === "vehicle") {
+      npcData.system.ownerId = actor.id;
+    }
+    const npcActor = await FOActor.create(npcData);
+    npcActor.sheet.render(true);
+  }
+
+  // run post-create macro, if any
+  if (s.actorCreateMacro) {
+    const [packName, macroName] = s.actorCreateMacro.split(",");
+    const pack = game.packs.get(packName);
+    if (pack) {
+      const content = await pack.getDocuments();
+      const macro = content.find(x => x.name === macroName);
+      if (macro) {
+        console.log(`Executing macro ${macroName} from pack ${packName}`);
+        macro.execute({actor});
+      } else {
+        console.error(`Could not find macro ${macroName}.`);
+      }
+    } else {
+      console.error(`Could not find pack ${packName}.`);
+    }
+  }
+}
+
+async function updateActorWithScvm(actor, s) {
+  const data = scvmToActorData(s);
+  // Explicitly nuke all items before updating.
+  await actor.deleteEmbeddedDocuments("Item", [], { deleteAll: true });
+  await actor.update(data);
+  await actor.linkNanos();
+
+  // update any actor tokens in the scene
+  for (const token of actor.getActiveTokens()) {
+    await token.document.update({
+      name: actor.name,
+      texture: {
+        src: actor.prototypeToken.texture.src,
+      },
+    });
+  }  
+
+  // create any npcs, if player has perms
+  for (const npcData of s.npcs) {
+    if (game.user.can("ACTOR_CREATE")) {
+      const lastWord = npcData.name.split(" ").pop();
+      npcData.name = `${actor.name}'s ${lastWord}`;
+      if (npcData.type === "vehicle") {
+        npcData.system.ownerId = actor.id;
+      }  
+      const npcActor = await FOActor.create(npcData);
+      npcActor.sheet.render(true);      
+    } else {
+      ui.notifications.info(`Ask the GM to create an NPC for you: ${npcData.name}`, {permanent: true});
+    }
+  }
+
+  // run post-create macro, if any
+  if (s.actorCreateMacro) {
+    const [packName, macroName] = s.actorCreateMacro.split(",");
+    const pack = game.packs.get(packName);
+    const content = await pack.getDocuments();
+    const macro = content.find(x => x.name === macroName);
+    if (macro) {
+      console.log("Executing macro ${macroName} from pack ${packName}...");
+      macro.execute({actor});
+    }
+  }  
+}
+
+function abilityBonus(rollTotal) {
+  if (rollTotal <= 4) {
+    return -3;
+  } else if (rollTotal <= 6) {
+    return -2;
+  } else if (rollTotal <= 8) {
+    return -1;
+  } else if (rollTotal <= 12) {
+    return 0;
+  } else if (rollTotal <= 14) {
+    return 1;
+  } else if (rollTotal <= 16) {
+    return 2;
+  } else {
+    // 17 - 20+
+    return 3;
+  }
+}
+
+/** Workaround for compendium RollTables not honoring replacement=false */
+async function compendiumTableDrawMany(rollTable, numDesired, formula) {
+  const rollTotals = [];
+  let results = [];
+  while (rollTotals.length < numDesired) {
+    const roll = formula ? new Roll(formula) : undefined;
+    const tableDraw = await rollTable.draw({ displayChat: false, roll });
+    if (rollTotals.includes(tableDraw.roll.total)) {
+      // already rolled this, so roll again
+      continue;
+    }
+    rollTotals.push(tableDraw.roll.total);
+    results = results.concat(tableDraw.results);
+  }
+  return results;
+}

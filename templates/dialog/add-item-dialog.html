@@ -1,0 +1,23 @@
+
+<form class="dialog add-item-dialog" action="">
+  <div class="form-group">
+    <label>{{ localize "FO.ItemName" }}</label>
+    <input type="text" name="itemname" value="" placeholder="{{ localize 'FO.Name' }}" data-dtype="String"/>
+  </div>
+  <div class="form-group">
+    <label>{{ localize "FO.ItemType" }}</label>
+    <select class="add-type" name="itemtype"> 
+      <option value="app">{{ localize "FO.App" }}</option>
+      <option value="armor">{{ localize "FO.Armor" }}</option>
+      <option value="cyberdeck">{{ localize "FO.Cyberdeck" }}</option>
+      <option value="equipment" selected="selected">{{ localize "FO.Equipment" }}</option>
+      <option value="feat">{{ localize "FO.Feat" }}</option>
+      <option value="infestation">{{ localize "FO.Infestation" }}</option>
+      <option value="boonPower">{{ localize "FO.NanoPower" }}</option>
+      <option value="weapon">{{ localize "FO.Weapon" }}</option>
+    </select>
+  </div>
+  <div class="button-row">
+    <button class="add-item-button" type="submit" name="add-item-button">{{ localize "FO.Add" }}</button>
+  </div>
+</form>

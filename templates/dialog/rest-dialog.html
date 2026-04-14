@@ -1,0 +1,37 @@
+<form id="rest-form" class="dialog rest-dialog">
+  <div class="section">
+    <div class="subtitle">{{localize 'FO.RestLength'}}</div>
+    <div>
+      <ul>
+        <li>
+          <label
+            ><input name="rest-length" type="radio" value="short" checked />
+            <div>{{localize 'FO.RestShort'}} - {{localize 'FO.RestShortHelp'}}</div></label>
+        </li>
+        <li>
+          <label
+            ><input name="rest-length" type="radio" value="long" />
+            <div>{{localize 'FO.RestLong'}} - {{localize 'FO.RestLongHelp'}}</div></label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <div class="subtitle">{{localize 'FO.Starving'}}</div>
+    <div>
+      <ul>
+        <li>
+          <label
+            ><input name="starving" type="checkbox" />
+            <div>{{localize 'FO.StarvingHelp'}}</div></label
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="button-row">
+    <button type="submit" class="dialog-button rest-button" name="rest" value="1">
+      {{localize 'FO.Rest'}}
+    </button>
+  </div>
+</form>

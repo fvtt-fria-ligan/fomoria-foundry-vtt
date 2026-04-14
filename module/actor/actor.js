@@ -1,0 +1,114 @@
+import { FO } from "../config.js";
+import { FOItem } from "../item/item.js";
+import { trackCarryingCapacity } from "../settings.js";
+import { documentFromPack, simpleData } from "../packutils.js";
+import { showMakeFolkDialog } from "../generator/make-folk-dialog.js";
+
+
+const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ? 1 : b.system.tier.value < a.system.tier.value ? -1 : 0);
+
+/**
+ * @extends {Actor}
+ */
+ export class FOActor extends Actor {
+
+  /** @override */
+  static async create(data, options = {}) {
+    data.prototypeToken = data.prototypeToken || {};
+    let defaults = {};
+    if (data.type === FO.actorTypes.character) {
+      defaults = {
+        actorLink: true,
+        disposition: 1,
+        vision: true,
+      };
+    } else if (data.type === FO.actorTypes.npc) {
+      defaults = {
+        actorLink: false,
+        disposition: -1,
+        vision: false,
+      };
+    } else if (data.type === FO.actorTypes.vehicle) {
+      defaults = {
+        actorLink: true,
+        disposition: 0,
+        vision: true,
+      };
+    } 
+    foundry.utils.mergeObject(data.prototypeToken, defaults, { overwrite: false });
+    return super.create(data, options);
+  }
+
+  /** @override */
+  async _onCreate(data, options, userId) {
+    if (data.type === FO.actorTypes.character) {
+      // give Characters a default class
+      this.addDefaultClass();
+    }
+    super._onCreate(data, options, userId);
+  }
+
+  /** @override */
+  async _onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
+    super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
+    if (this.type === FO.actorTypes.character) {
+      for (const doc of documents) {
+        if (doc instanceof FOItem && doc.type === FO.itemTypes.boonPower && !doc.system.infestionId) {
+          await doc.createLinkedInfestation();
+        }
+      }
+    }
+  }
+
+  async addDefaultClass() {
+    // add classless folk if a class doesn't already exist
+    if (!this._first(FO.itemTypes.class)) {
+      const clazz = await documentFromPack(FO.packs.items, "Classless Punk");
+      if (clazz) {
+        await this.createEmbeddedDocuments("Item", [simpleData(clazz)]);
+      }  
+    }
+  }
+
+  // ===== encumbrance =====
+  
+  get normalCarryingCapacity() {
+    return this.system.abilities.strength.value + 8;
+  }
+
+  get maxCarryingCapacity() {
+    return 2 * this.normalCarryingCapacity();
+  }
+
+  get carryingSlots() {
+    return this.items
+      .reduce((slots, item) => slots + item.totalCarrySlots, 0);
+  }
+
+  get isEncumbered() {
+    if (!trackCarryingCapacity()) {
+      return false;
+    }
+    return this.carryingSlots > this.normalCarryingCapacity;
+  }
+
+  _firstEquipped(itemType) {
+    return this.items.filter(x => x.type === itemType && x.system.equipped).shift();
+  }
+
+  _first(itemType) {
+    return this.items.filter(x => x.type === itemType).shift();
+  }
+
+  equippedArmor() {
+    return this.items.filter(x => x.type === FO.itemTypes.armor).sort(byCurrentTierDesc).shift();
+  }
+
+  findItem(itemType, itemName) {
+    return this.items.filter(x => x.type === itemType && x.name === itemName).shift();
+  }
+
+  async reboot() {
+    showMakeFolkDialog(this);
+  }  
+ }

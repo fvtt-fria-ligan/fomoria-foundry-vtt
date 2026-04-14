@@ -1,0 +1,49 @@
+// CY colors
+$aqua: #71C5C9;
+$cream: #F6EDDB;
+$magenta: #F800F8;
+$near-black: #1C1E23;
+$yellow: #F8F800;
+$disabled-color: gray;
+
+// Fomoria colors
+$off-white: #FFFBF3;
+$soft-gray: #575A3F;
+
+$border-radius: 5px;
+
+$widget-margin: 5px;
+$field-height: 38px;
+$tab-height: 30px;
+$tab-width: 50px;
+$sheet-padding: 11px;
+
+$tab-height: 30px;
+$border-width: 4px;
+
+$portrait-size: 292px;
+
+$primary-font: "Noto Serif";
+$name-font: "Pokoljaro";
+$label-font: "Pangolin";
+$sheet-font: "Noto Serif";
+$textarea-font: "Noto Serif";
+$textarea-line-height: 20px;
+$input-number-font: "Pokoljaro";
+$input-text-font: "Pokoljaro";
+$type-font: "Noto Serif";
+$pixel-font: "Amaranth";
+
+:root {
+  --fo-accent-color: #71C5C9;
+  --fo-background-color: #FFFBF3;
+  --fo-border-blur: 5px;
+  --fo-button-foreground-color: #F800F8;
+  --fo-button-background-color: #F800F833;
+  --fo-cybertext-color: #F8F800;
+  --fo-disabled-color: gray;
+  --fo-foreground-color: #575A3F;
+  --fo-highlight-color: #F800F8;
+  --fo-sheet-shadow: none;
+  --fo-window-background-color: #FFFBF3;;
+}

@@ -1,0 +1,27 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='FEAT'}}
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
+  <div class="sheet-body">
+    {{> systems/fomoria/templates/item/item-description-tab.html }}
+    <div class="tab data-tab" data-group="primary" data-tab="data">
+      <div class="fields">
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.RollLabel'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.rollLabel" value="{{data.system.rollLabel}}" spellcheck="false"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.RollMacro'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.rollMacro" value="{{data.system.rollMacro}}" spellcheck="false"/>
+          </div>
+        </div>                    
+      </div>
+    </div>      
+  </div>
+</form>

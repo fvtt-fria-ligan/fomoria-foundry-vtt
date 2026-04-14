@@ -1,0 +1,20 @@
+<form class="{{cssClass}} {{cssCyberClass}}" autocomplete="off">
+  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='EQUIP'}}
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
+  <div class="sheet-body">
+    {{> systems/fomoria/templates/item/item-description-tab.html }}
+    <div class="tab data-tab" data-group="primary" data-tab="data">
+      <div class="fields">
+        {{> systems/fomoria/templates/item/item-base-fields.html }} 
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Cybertech'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="checkbox" name="system.cybertech" {{checked data.system.cybertech}} />
+          </div>
+        </div>          
+      </div>
+    </div>      
+  </div>
+</form>

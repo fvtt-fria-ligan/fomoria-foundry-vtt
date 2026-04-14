@@ -1,0 +1,35 @@
+<form id="make-folk-form" class="dialog make-folk-dialog">
+  <div class="section">
+    <div class="subtitle">{{localize "FO.ScvmfactoryChooseFromClasses"}}</div>
+    <ul>
+      {{#each this.classes}}
+      <li>
+        <label
+          ><input name="{{this.uuid}}" type="checkbox" class="class-checkbox"
+          {{#if this.checked }}checked{{/if}} />
+          <div class="class-name">{{this.name}}</div></label
+        >
+      </li>
+      {{/each}}
+    </ul>
+    <div>
+      <a class="toggle-none">{{localize "FO.ScvmfactoryToggleNone"}}</a>&nbsp; /
+      &nbsp;<a class="toggle-all">{{localize "FO.ScvmfactoryToggleAll"}}</a>
+    </div>
+  </div>
+
+  {{#if forActor}}
+  <div class="section">
+    <p>{{localize "FO.ScvmfactoryWarning"}}</p>
+  </div>
+  {{/if}}
+
+  <div class="button-row">
+    <button type="submit" class="button cancel-button" name="cancel" value="1">
+      {{localize "FO.Cancel"}}
+    </button>
+    <button type="submit" class="button make-folk-button" name="make-folk" value="1">
+      {{localize "FO.ScvmfactoryMakeFolk"}}
+    </button>
+  </div>
+</form>

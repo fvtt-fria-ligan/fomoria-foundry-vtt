@@ -1,0 +1,139 @@
+<div class="tab boons-tab" data-group="primary" data-tab="boons">
+
+  <div class="cols">
+    <div class="col app-col">
+      <div class="widget field-row">
+        <div class="field-label">
+        {{ localize 'FO.AppFumbleOn'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="number" name="system.appFumbleOn" value="{{data.system.appFumbleOn}}"/>
+        </div>
+      </div>
+      <div class="cyberdecks item-list">
+        {{#each data.system.cyberdecks as |item id|}}
+          <div class="cyberdeck-row-wrapper" data-item-id="{{item._id}}">
+            <div class="item item-row cyberdeck-row" data-item-id="{{item._id}}">
+              <div class="icon">
+                <img src="{{item.img}}" />
+              </div>
+              <div class="item-fields">
+                <div class="item-field-row item-name-row">        
+                  <div class="item-name">{{item.name}}</div>
+                  <div class="item-controls">
+                    <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                  </div>
+                </div>          
+                <div class="item-field-row">
+                  {{localize 'FO.SlotsUsed'}}: {{item.system.slotsUsed}} / {{item.system.slots}}
+                </div>
+              </div>        
+            </div>
+            {{#each item.system.slottedAppsData as |item id|}}
+            <div class="item item-row app-row nested-item" data-item-id="{{item._id}}">
+              <div class="nested-indent">
+                <div class="ul"></div>
+                <div class="ur"></div>
+                <div class="ll"></div>
+                <div class="lr"></div>
+              </div>
+              <div class="icon">
+                <img src="{{item.img}}" />
+              </div>
+              <div class="item-fields">
+                <div class="item-field-row item-name-row">        
+                  <div class="item-name">{{item.name}}</div>
+                  <div class="item-controls">
+                    <a class="item-control item-eject" title="{{localize 'FO.Eject'}}"><i class="fas fa-eject"></i></a>
+                    <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                  </div>
+                </div>          
+                <div class="item-field-row">
+                  <button type="button" class="sheet-button use-app-button">{{localize 'FO.Use'}}</button>
+                </div>
+              </div>        
+            </div>
+            {{/each}}  
+          </div>
+        {{/each}}
+      </div>    
+      <div class="apps item-list">
+        {{#each data.system.unslottedApps as |item id|}}
+          <div class="item item-row app-row unslotted-app" data-item-id="{{item._id}}">
+            <div class="icon">
+              <img src="{{item.img}}" />
+            </div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name">{{item.name}}</div>
+                <div class="item-controls">
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>          
+              <div class="item-field-row">
+                {{localize 'FO.UnslottedAppHelp'}}
+              </div>
+            </div>        
+          </div>
+        {{/each}}
+      </div>          
+    </div>
+    <div class="spacer-col"></div>
+    <div class="col boon-col">
+      <div class="widget field-row">
+        <div class="field-label">
+        {{ localize 'FO.NanoFumbleOn'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="number" name="system.boonFumbleOn" value="{{data.system.boonFumbleOn}}"/>
+        </div>
+      </div>
+      <div class="boon-powers item-list">
+        {{#each data.system.boonPowers as |item id|}}
+          <div class="item item-row boon-power-row" data-item-id="{{item._id}}">
+            <div class="icon">
+              <img src="{{item.img}}" />
+            </div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name">{{item.name}}</div>
+                <div class="item-controls">
+                  <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>
+              <div class="item-field-row">
+                <button type="button" class="sheet-button use-boon-button">{{localize 'FO.Use'}}</button>
+              </div>
+            </div>
+          </div>
+          {{#if item.system.infestationData}}
+            <div class="item item-row infestation-row nested-item" data-item-id="{{item.system.infestationData._id}}">
+              <div class="nested-indent">  
+                <div class="ul"></div>
+                <div class="ur"></div>
+                <div class="ll"></div>
+                <div class="lr"></div>
+              </div>  
+              <div class="icon">
+                <img src="{{item.system.infestationData.img}}" />
+              </div>
+              <div class="item-fields">
+                <div class="item-field-row item-name-row">        
+                  <div class="item-name">{{item.system.infestationData.name}}</div>
+                  <div class="item-controls">
+                    <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                  </div>
+                </div>      
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="big-row">
+    <div class="header-col">
+      <div class="sheet-header">
+        <div class="header-cols">
+          <div class="left-col">
+            <div class="widget portrait">
+              <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
+            </div>
+            <div class="widget name">
+              <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
+            </div>
+            <div class="widget class-row item" data-item-id="{{data.system.class._id}}">
+              <div class="class-name">{{data.system.class.name}}</div>
+              <div class="item-controls">
+                <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+              </div>
+            </div>
+            <div class="header-button-row">
+              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
+              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
+            </div>                
+          </div>
+          <div class="right-col">
+            {{> systems/fomoria/templates/actor/abilities.html}}
+            {{> systems/fomoria/templates/actor/hit-points.html}}
+            <div class="widget ability-row threads-row">
+              <div class="threads-label">
+                {{localize 'FO.Threads'}}
+              </div>
+              <div class="threads-input">
+                <div class="col">
+                  <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
+                </div>
+                <div class="slash">/</div>
+                <div class="col">
+                  <input class="threads" type="number" name="system.threads.max" value="{{data.system.threads.max}}" />
+                </div>
+              </div>
+            </div>            
+          </div>
+        </div>
+
+        <div class="widget-row">
+          <div class="widget field-row">
+            <div class="field-label">
+              {{ localize 'FO.Debt'}}
+            </div>
+            <div class="field-value">
+              <input class="field-input" type="number" name="system.debt.amount" value="{{data.system.debt.amount}}" />
+            </div>
+          </div>          
+          <div class="widget field-row">
+            <div class="field-label">
+              {{ localize 'FO.Silver'}}
+            </div>
+            <div class="field-value">
+              <input class="field-input" type="number" name="system.silver" value="{{data.system.silver}}" />
+            </div>
+          </div> 
+        </div>
+        <div class="widget field-row owed-to-row">
+          <div class="field-label">
+            {{ localize 'FO.OwedTo'}}
+          </div>
+          <div class="field-value">
+            <textarea class="field-input owed-to" name="system.debt.to" rows="2">{{data.system.debt.to}}</textarea>
+          </div>
+        </div>        
+      </div>  
+    </div>
+    <div class="tabs-col">
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="background">
+          <div class="tab-label">{{localize 'FO.Background'}}</div>
+        </a>
+        <a class="item" data-tab="combat">
+          <div class="tab-label">{{localize 'FO.Combat'}}</div>
+        </a>
+        <a class="item" data-tab="feats">
+          <div class="tab-label">{{localize 'FO.Feats'}}</div>          
+        </a>
+        <a class="item" data-tab="boon">
+          <div class="tab-label">{{localize 'FO.Boons'}}</div>          
+        </a>
+        <a class="item" data-tab="equipment">
+          <div class="tab-label">{{localize 'FO.Equipment'}}</div>          
+        </a>
+      </nav>
+      
+      <div class="sheet-body">
+        {{> systems/fomoria/templates/actor/background-tab.html}}
+        {{> systems/fomoria/templates/actor/combat-tab.html}}
+        {{> systems/fomoria/templates/actor/feats-tab.html}}
+        {{> systems/fomoria/templates/actor/boons-tab.html}}
+        {{> systems/fomoria/templates/actor/equipment-tab.html}}
+      </div>      
+    </div>
+  </div>
+
+</form>
+
