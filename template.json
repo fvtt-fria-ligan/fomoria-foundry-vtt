@@ -33,18 +33,18 @@
     },
     "character": {
       "templates": ["common"],
-      "appFumbleOn": 1,
+      "clan": "",
       "silver": 0,
-      "debt": {
-        "amount": 0,
-        "to": ""
-      },
       "threads": {
         "min": 0,
         "max": 0,
         "value": 0
       },
-      "boonFumbleOn": 1
+      "wyrd": {
+        "min": 0,
+        "max": 0,
+        "value": 0
+      }
     },
     "npc": {
       "armor": "",
@@ -55,18 +55,20 @@
         "value": 1
       },
       "morale": 7,
-      "special": ""
+      "special": "",
+      "stabilityPoints": {
+        "max": 1,
+        "value": 1
+      },
     } 
   },
   "Item": {
     "types": [
       "armor",
       "boon",
-      "class",
       "equipment",
       "feat",
-      "infestation",
-      "boonPower",
+      "folk",
       "weapon"
     ],
     "templates": {
@@ -86,7 +88,7 @@
         "value": 1
       }
     },
-    "class": {
+    "folk": {
       "actorCreateMacro": "",
       "agility": "3d6",
       "armorTable": "1d3",

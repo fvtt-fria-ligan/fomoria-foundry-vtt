@@ -92,7 +92,7 @@
   display: flex;
   flex-direction: column;
   font-family: "Amaranth";
-  font-size: 8px;
+  font-size: 12px;
   justify-content: center;
   height: 30px;
   margin-right: 2px;
@@ -212,7 +212,7 @@
   border-radius: 0;
   color: var(--fo-button-foreground-color);
   font-family: "Amaranth";
-  font-size: 7px;
+  font-size: 12px;
   height: 20px;
   line-height: 1.2;
   margin-right: 4px;
@@ -226,11 +226,11 @@
   color: var(--fo-background-color);
 }
 .fomoria.sheet section.window-content .sheet-button.medium-button {
-  font-size: 8px;
+  font-size: 12px;
   height: 30px;
 }
 .fomoria.sheet section.window-content .sheet-button.big-button {
-  font-size: 8px;
+  font-size: 12px;
   height: 36px;
 }
 .fomoria.sheet section.window-content .field-row {
@@ -490,18 +490,23 @@
   margin-bottom: 4px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row {
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .folk-row {
   align-items: center;
   display: flex;
   flex: 0 0 38px;
   margin-bottom: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row .class-name {
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .folk-row .clan {
   flex: 1;
   margin-left: 5px;
   text-align: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .class-row .item-controls {
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .folk-row .folk-name {
+  flex: 1;
+  margin-left: 5px;
+  text-align: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .folk-row .item-controls {
   display: flex;
   justify-content: space-around;
   flex: 0 0 40px;
@@ -582,10 +587,6 @@
 .fomoria.sheet.actor.character section.window-content .sheet-header .right-col .hitpoints-widget {
   flex: 0 0 88px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .owed-to-row .field-label {
-  flex: 0 0 92px;
-  padding-right: 5px;
-}
 .fomoria.sheet.actor.character section.window-content .sheet-body {
   height: calc(100% - 33px);
 }
@@ -659,34 +660,34 @@
   top: 30px;
 }
 
-.equipment-tab .carrying-row {
+.gear-tab .carrying-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
   width: 100%;
 }
-.equipment-tab .carrying-row .carrying {
+.gear-tab .carrying-row .carrying {
   flex: 1;
 }
-.equipment-tab .carrying-row .carrying .carrying-value {
+.gear-tab .carrying-row .carrying .carrying-value {
   padding-bottom: 2px;
   padding-top: 5px;
 }
-.equipment-tab .carrying-row .carrying .encumbered {
+.gear-tab .carrying-row .carrying .encumbered {
   color: var(--fo-highlight-color);
 }
-.equipment-tab .carrying-row .add-item-row {
+.gear-tab .carrying-row .add-item-row {
   flex: 1;
   padding-left: 5px;
 }
-.equipment-tab .equipment-wrapper {
+.gear-tab .equipment-wrapper {
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
   width: 100%;
   overflow: hidden;
 }
-.equipment-tab .equipment.item-list, .equipment-tab .cybertech.item-list {
+.gear-tab .equipment.item-list, .gear-tab .cybertech.item-list {
   overflow: auto;
   display: grid;
   column-gap: 20px;
@@ -695,10 +696,10 @@
   grid-template-rows: repeat(auto-fill, 50px);
   row-gap: 8px;
 }
-.equipment-tab .equipment.item-list {
+.gear-tab .equipment.item-list {
   flex: 1;
 }
-.equipment-tab .cybertech-title {
+.gear-tab .cybertech-title {
   background: repeating-linear-gradient(-45deg, var(--fo-foreground-color), var(--fo-foreground-color) 10px, var(--fo-background-color) 10px, var(--fo-background-color) 20px);
   font-family: "Amaranth";
   font-size: 10px;
@@ -707,7 +708,7 @@
   text-align: center;
   width: 100%;
 }
-.equipment-tab .cybertech-title span {
+.gear-tab .cybertech-title span {
   background-color: var(--fo-background-color);
   padding-left: 10px;
   padding-right: 10px;
@@ -846,7 +847,7 @@
   height: 14px;
   width: 14px;
 }
-.allowed-scvm-classes-dialog ul li .class-name {
+.allowed-scvm-classes-dialog ul li .folk-name {
   display: block;
   margin-left: 30px;
   padding-top: 3px;
@@ -876,7 +877,7 @@
   height: 14px;
   width: 14px;
 }
-.make-folk-dialog ul li .class-name {
+.make-folk-dialog ul li .folk-name {
   display: block;
   margin-left: 30px;
   padding-top: 3px;

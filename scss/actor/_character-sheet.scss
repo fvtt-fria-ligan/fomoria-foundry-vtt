@@ -45,12 +45,17 @@
         width: 100%;
       }
       .left-col {
-        .class-row {
+        .folk-row {
           align-items: center;
           display: flex;
           flex: 0 0 $field-height;
           margin-bottom: $widget-margin;
-          .class-name {
+          .clan {
+            flex: 1;
+            margin-left: 5px;
+            text-align: center;
+          }
+          .folk-name {
             flex: 1;
             margin-left: 5px;
             text-align: center;
@@ -138,12 +143,6 @@
           flex: 0 0 88px;
         }
       }  
-      .owed-to-row {
-        .field-label {
-          flex: 0 0 92px;
-          padding-right: 5px;
-        }
-      }
     }
     .sheet-body {
       height: calc(100% - 33px);

@@ -50,8 +50,8 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.weapons = superData.data.items
       .filter((item) => item.type === CONFIG.FO.itemTypes.weapon && item.system.equipped)
       .sort(byName);
-    superData.data.system.class = superData.data.items
-      .filter(item => item.type === CONFIG.FO.itemTypes.class)
+    superData.data.system.folk = superData.data.items
+      .filter(item => item.type === CONFIG.FO.itemTypes.folk)
       .pop();
     superData.data.system.feats = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.feat)

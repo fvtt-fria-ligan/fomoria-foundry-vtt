@@ -4,13 +4,14 @@ export const registerHandlebarsPartials = async () => {
     "systems/fomoria/templates/actor/background-tab.html",
     "systems/fomoria/templates/actor/boons-tab.html",
     "systems/fomoria/templates/actor/combat-tab.html",
-    "systems/fomoria/templates/actor/equipment-tab.html",
+    "systems/fomoria/templates/actor/gear-tab.html",
     "systems/fomoria/templates/actor/feats-tab.html",
     "systems/fomoria/templates/actor/hit-points.html",
     "systems/fomoria/templates/item/item-base-fields.html",
     "systems/fomoria/templates/item/item-description-tab.html",
     "systems/fomoria/templates/item/item-sheet-header.html",
     "systems/fomoria/templates/item/item-sheet-tabs.html",
+    "systems/fomoria/templates/actor/stability-points.html",
   ]);
 }
 
