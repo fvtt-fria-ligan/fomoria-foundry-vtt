@@ -23,7 +23,7 @@ export const registerSystemSettings = () => {
     hint: "FO.SettingsColorSchemeHint",
     scope: "client",
     config: true,
-    default: "flintwyrm",
+    default: "fomoria",
     type: String,
     choices: colorChoices,
     onChange: () => {

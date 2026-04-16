@@ -32,7 +32,6 @@
     .sheet-header {
       margin-bottom: 4px;
       flex-direction: column;
-      height: 450px;
       .header-cols {
         display: flex;
         flex: 1;
@@ -45,11 +44,14 @@
         width: 100%;
       }
       .left-col {
+      }
+      .center-col {
         .folk-row {
-          align-items: center;
           display: flex;
           flex: 0 0 $field-height;
+          justify-content: space-between;
           margin-bottom: $widget-margin;
+          width: 100%;
           .clan {
             flex: 1;
             margin-left: 5px;
@@ -64,48 +66,6 @@
             display: flex;
             justify-content: space-around;
             flex: 0 0 40px;
-          }
-        }
-      }
-      .right-col {
-        width: 90px;
-        .abilities-wrapper {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-        }
-        .ability-row {
-          display: flex;
-          flex: 0 0 37px;
-          margin-bottom: $widget-margin;
-          .ability-icon {
-            align-items: center;
-            background-color: var(--fo-foreground-color);
-            border-right: 4px solid var(--fo-foreground-color);
-            display: flex;
-            flex: 1;
-            justify-content: center;
-            a {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              img {
-                border: none;
-                height: 28px;
-                width: 28px;
-              }  
-              .ability-label {
-                color: var(--fo-background-color);
-                font-family: $pixel-font;
-                font-size: 16px;
-              }
-            }
-          }
-          .ability-score {
-            flex: 1;
-            input[type="number"] {
-              font-size: 20px;
-            }
           }
         }
         .threads-row {
@@ -141,6 +101,49 @@
         }
         .hitpoints-widget {
           flex: 0 0 88px;
+          width: 88px;
+        }
+      }
+      .right-col {
+        width: 90px;
+        .abilities-wrapper {
+          display: flex;
+          flex: 0 0 100px;
+          flex-direction: column;
+        }
+        .ability-row {
+          display: flex;
+          flex: 0 0 37px;
+          margin-bottom: $widget-margin;
+          .ability-label{
+            align-items: center;
+            background-color: var(--fo-foreground-color);
+            border-right: 1px solid var(--fo-foreground-color);
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            a {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              img {
+                border: none;
+                height: 28px;
+                width: 28px;
+              }  
+              .ability-label {
+                color: var(--fo-background-color);
+                font-family: $pixel-font;
+                font-size: 16px;
+              }
+            }
+          }
+          .ability-score {
+            flex: 1;
+            input[type="number"] {
+              font-size: 20px;
+            }
+          }
         }
       }  
     }

@@ -1,19 +1,23 @@
 .fomoria.sheet.actor {
   section.window-content {
-    .big-row {
+    .big-col {
       display: flex;
-      height: 100%;
-      .header-col {
-        flex: 0 0 395px;
-        padding-right: 8px;
+      flex-direction: column;
+      width: 100%;
+      .header-row {
+        display: flex;
+        flex: 0 0 250px;
+        justify-content: space-between;
+        width: 100%;
       }
-      .tabs-col {
+      .tabs-row {
         flex: 1;
-        height: 100%;
+        width: 100%;
       }
     }    
     .sheet-header {
       display: flex;
+      width: 100%;
       .left-col {
         display: flex;
         flex-direction: column;
@@ -39,9 +43,9 @@
           }
         } 
       }
-      .right-col {
+      .center-col {
         display: flex;
-        flex: 0 0 88px;
+        flex: 1;
         flex-direction: column;
         .actor-type {
           color: var(--fo-foreground-color);
@@ -53,8 +57,14 @@
           margin-bottom: $widget-margin;
           justify-content: center;
           writing-mode: vertical-rl;
-        }        
+        } 
+        .header-widget-row {
+          display: flex;
+          height: 88px;
+          width: 100%;
+        }
         .threads-row {
+          // TODO: why is this called "threads-row" when it has flex-direction: column?
           display: flex;
           flex: 1;
           flex-direction: column;
@@ -87,8 +97,14 @@
         }
         .hitpoints-widget {
           flex: 0 0 88px;
+          height: 88px;
         }          
-      }    
+      }   
+      .right-col {
+        display: flex;
+        flex: 0 0 88px;
+        flex-direction: column;
+      }
     }
 
     .sheet-body {
@@ -104,8 +120,8 @@
           flex: 0 0 50px;
           margin-right: 5px;
           img {
-            border: 4px solid var(--fo-foreground-color);
-            border-radius: 5px;
+            border: 1px solid var(--fo-foreground-color);
+            border-radius: 0px;
             height: 50px;
             width: 50px;
           }  

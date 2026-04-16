@@ -33,10 +33,6 @@ import { FO } from "../config.js";
   }
   
   get totalCarrySlots() {
-    if (this.type === FO.itemTypes.app && this.system.cyberdeckId) {
-      // slotted apps don't count
-      return 0;
-    }
     if (this.system.equipped) {
       // equipped items don't count
       return 0;
