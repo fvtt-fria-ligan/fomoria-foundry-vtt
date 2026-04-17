@@ -3,8 +3,9 @@
     <button type="button" class="sheet-button big-button initiative-button">{{ localize 'FO.Initiative' }}</button>
     <button type="button" class="sheet-button big-button defend-button">{{ localize 'FO.Defend' }}</button>
     {{#ifEq data.type "character"}}
-      <button type="button" class="sheet-button big-button battered-button">{{ localize "FO.Battered" }}</button>
       <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }}</button>
+      <button type="button" class="sheet-button big-button dire-injury-button">{{ localize "FO.Injury" }}</button>
+      <button type="button" class="sheet-button big-button dire-breakdown-button">{{ localize "FO.Breakdown" }}</button>
     {{/ifEq}}
   </div>
   <div class="item-list weapons">

@@ -7,7 +7,8 @@ $yellow: #F8F800;
 $disabled-color: gray;
 
 // Fomoria colors
-$off-white: #FFFBF3;
+// $off-white: #FFFBF3; or F9F3E3
+$off-white: #F8F4E3;
 $soft-gray: #575A3F;
 
 $border-radius: 0px;
@@ -19,13 +20,13 @@ $tab-width: 50px;
 $sheet-padding: 11px;
 
 $tab-height: 30px;
-$border-width: 4px;
+$border-width: 1px;
 
 $portrait-size: 200px;
 
 $primary-font: "Noto Serif";
 $name-font: "Pokoljaro";
-$label-font: "Pangolin";
+$label-font: "Walter Turncoat";
 $sheet-font: "Noto Serif";
 $textarea-font: "Noto Serif";
 $textarea-line-height: 20px;
@@ -33,6 +34,9 @@ $input-number-font: "Pokoljaro";
 $input-text-font: "Pokoljaro";
 $type-font: "Noto Serif";
 $pixel-font: "Amaranth";
+$tab-font: "Pokoljaro";
+$button-font: "Amaranth";
+
 
 :root {
   --fo-accent-color: #71C5C9;

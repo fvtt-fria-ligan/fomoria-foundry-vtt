@@ -1,38 +1,52 @@
 <form class="{{cssClass}}" autocomplete="off">
   <div class="big-col">
-    <div class="header-row">
+    <div class="header-section">
       <div class="sheet-header">
         <div class="header-cols">
           <div class="left-col">
             <div class="widget portrait">
               <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
             </div>
+            <div class="header-button-row">
+              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
+              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
+            </div>
           </div>
           <div class="center-col">
-            <div class="widget name">
+            <div class="name">
               <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
             </div>
-            <div class="folk-row">
-              <div class="widget item" data-item-id="{{data.system.folk._id}}">
-                <div class="folk-name">{{data.system.folk.name}}</div>
-                <div class="item-controls">
-                  <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+            <div class="widget field-row">
+              <div class="field-label">
+                {{localize 'FO.Folk'}}
+              </div>
+              <div class="field-value">
+                <div class="widget item" data-item-id="{{data.system.folk._id}}">
+                  <div class="folk-name">{{data.system.folk.name}}</div>
+                  <div class="item-controls">
+                    <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+                  </div>
                 </div>
               </div>
-              <div>
-                {{localize 'FO.OfThe'}}
-                <input class="clan" type="text" name="clan" value="{{data.system.clan}}" placeholder="{{ localize 'FO.Clan' }}" spellcheck="false"/>
-                {{localize 'FO.Clain'}}
+            </div>            
+            <div class="widget field-row">
+              <div class="field-label">
+                  {{localize 'FO.Clan'}}
+              </div>
+              <div class="field-value">
+                <input class="clan-input" type="text" name="system.clan" value="{{data.system.clan}}" placeholder="" spellcheck="false"/>
               </div>
             </div>
             <div class="header-widget-row">
               {{> systems/fomoria/templates/actor/hit-points.html}}
               {{> systems/fomoria/templates/actor/stability-points.html}}
+            </div>
+            <div class="header-widget-row">
               <div class="widget field-row">
                 <div class="field-label">
                   {{localize 'FO.Threads'}}
                 </div>
-                <div class="field-value">
+                <div class="field-input">
                   <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
@@ -40,17 +54,10 @@
                 <div class="field-label">
                   {{localize 'FO.Wyrd'}}
                 </div>
-                <div class="field-value">
+                <div class="field-input">
                   <input class="threads" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
                 </div>
               </div>
-            </div>
-            <div class="header-button-row">
-              <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }}</button>
-              <button type="button" class="sheet-button big-button dire-injury-button">{{ localize "FO.Injury" }}</button>
-              <button type="button" class="sheet-button big-button dire-breakdown-button">{{ localize "FO.Breakdown" }}</button>
-              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
-              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
             </div>
           </div>
           <div class="right-col">
@@ -59,7 +66,7 @@
         </div>
       </div>  
     </div>
-    <div class="tabs-row">
+    <div class="body-section">
       <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="background">
           <div class="tab-label">{{localize 'FO.Background'}}</div>

@@ -60,6 +60,7 @@ export class FOCharacterSheet extends FOActorSheet {
       .filter(item => item.type === CONFIG.FO.itemTypes.boon)
       .sort(byName);
     superData.data.system.encumberedClass = this.actor.isEncumbered ? "encumbered": "";
+    console.log("returning", superData);
     return superData;
   }
 

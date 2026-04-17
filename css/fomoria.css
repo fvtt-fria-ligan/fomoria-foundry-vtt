@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Noto+Serif&family=Pangolin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Noto+Serif&family=Walter+Turncoat&display=swap");
 :root {
   --fo-accent-color: #71C5C9;
   --fo-background-color: #FFFBF3;
@@ -43,7 +43,7 @@
 }
 
 .fomoria.sheet {
-  border: 2px solid var(--fo-accent-color);
+  border: 1px solid var(--fo-foreground-color);
   border-radius: 0px;
   box-shadow: var(--fo-sheet-shadow);
 }
@@ -77,7 +77,7 @@
 }
 .fomoria.sheet section.window-content nav.sheet-tabs.tabs {
   background: none;
-  border-bottom: 4px solid var(--fo-foreground-color);
+  border-bottom: 1px solid var(--fo-foreground-color);
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   margin: 0px;
@@ -91,12 +91,13 @@
   border-bottom: none;
   display: flex;
   flex-direction: column;
-  font-family: "Amaranth";
-  font-size: 12px;
+  font-family: "Pokoljaro";
+  font-size: 16px;
   justify-content: center;
   height: 30px;
   margin-right: 2px;
   opacity: 0.5;
+  text-transform: uppercase;
 }
 .fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item:last-child {
   margin-right: 0px;
@@ -107,13 +108,13 @@
   text-shadow: none;
 }
 .fomoria.sheet section.window-content nav.sheet-tabs.tabs a.item.active {
-  background-color: var(--fo-window-background-color);
-  color: var(--fo-foreground-color);
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-window-background-color);
   border-bottom: none;
   opacity: 1;
   position: relative;
   text-shadow: none;
-  top: 4px;
+  top: 1px;
 }
 .fomoria.sheet section.window-content .sheet-tabs {
   background-color: var(--fo-foreground-color);
@@ -122,7 +123,7 @@
   padding: 0;
 }
 .fomoria.sheet section.window-content .sheet-tabs a.item {
-  border: 4px solid var(--fo-foreground-color);
+  border: 1px solid var(--fo-foreground-color);
   border-radius: 0px;
   height: 57;
   flex: 1;
@@ -137,6 +138,8 @@
 }
 .fomoria.sheet section.window-content input[type=number],
 .fomoria.sheet section.window-content input[type=text] {
+  border: 0px;
+  border-radius: 0px;
   color: var(--fo-foreground-color);
   height: 100%;
   text-align: center;
@@ -145,7 +148,8 @@
 }
 .fomoria.sheet section.window-content input[type=number] {
   font-family: "Pokoljaro";
-  font-size: 20px;
+  font-size: 28px;
+  padding-bottom: 10px;
 }
 .fomoria.sheet section.window-content input[type=text] {
   font-family: "Pokoljaro";
@@ -230,7 +234,7 @@
   height: 30px;
 }
 .fomoria.sheet section.window-content .sheet-button.big-button {
-  font-size: 12px;
+  font-size: 14px;
   height: 36px;
 }
 .fomoria.sheet section.window-content .field-row {
@@ -245,7 +249,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  font-family: "Pangolin";
+  font-family: "Walter Turncoat";
   justify-content: center;
   text-align: center;
   text-transform: uppercase;
@@ -265,14 +269,15 @@
   line-height: 20px;
 }
 .fomoria.sheet section.window-content .sheet-body {
-  border-bottom: 4px solid var(--fo-foreground-color);
+  border-bottom: 1px solid var(--fo-foreground-color);
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-left: 4px solid var(--fo-foreground-color);
-  border-right: 4px solid var(--fo-foreground-color);
+  border-left: 1px solid var(--fo-foreground-color);
+  border-right: 1px solid var(--fo-foreground-color);
   height: 100%;
+  height: 500px;
   overflow: auto;
-  padding: 8px;
+  padding: 2px;
   padding-top: 10px;
   width: 100%;
 }
@@ -280,21 +285,39 @@
 .fomoria.sheet.actor section.window-content .big-col {
   display: flex;
   flex-direction: column;
+  height: 100%;
   width: 100%;
 }
-.fomoria.sheet.actor section.window-content .big-col .header-row {
+.fomoria.sheet.actor section.window-content .big-col .header-section {
   display: flex;
   flex: 0 0 250px;
   justify-content: space-between;
   width: 100%;
 }
-.fomoria.sheet.actor section.window-content .big-col .tabs-row {
+.fomoria.sheet.actor section.window-content .big-col .body-section {
   flex: 1;
+  height: 500px;
   width: 100%;
 }
 .fomoria.sheet.actor section.window-content .sheet-header {
   display: flex;
   width: 100%;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  width: 100%;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .field-label {
+  flex: 0 0 80px;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .field-input {
+  display: flex;
+  flex: 1;
+}
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .field-input input[type=number] {
+  width: 50px;
 }
 .fomoria.sheet.actor section.window-content .sheet-header .left-col {
   display: flex;
@@ -313,14 +336,6 @@
   height: 100%;
   width: auto;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .left-col .name {
-  flex: 0 0 38px;
-  margin-bottom: 5px;
-}
-.fomoria.sheet.actor section.window-content .sheet-header .left-col .name input[type=text] {
-  font-family: "Pokoljaro";
-  height: 38px;
-}
 .fomoria.sheet.actor section.window-content .sheet-header .center-col {
   display: flex;
   flex: 1;
@@ -337,45 +352,26 @@
   justify-content: center;
   writing-mode: vertical-rl;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .header-widget-row {
-  display: flex;
-  height: 88px;
-  width: 100%;
+.fomoria.sheet.actor section.window-content .sheet-header .center-col .name {
+  margin-bottom: 5px;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .threads-row {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.fomoria.sheet.actor section.window-content .sheet-header .center-col .name input[type=text] {
+  font-family: "Pokoljaro";
+  font-size: 50px;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .threads-row .threads-label {
-  background-color: var(--fo-foreground-color);
-  color: var(--fo-background-color);
-  flex: 0 0 24px;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  text-transform: uppercase;
+.fomoria.sheet.actor section.window-content .sheet-header .center-col .points-widget {
+  flex: 0 0 120px;
+  justify-content: space-between;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .threads-row .threads-input {
-  display: flex;
-  flex: 1;
-}
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .threads-row .threads-input .slash {
+.fomoria.sheet.actor section.window-content .sheet-header .center-col .points-widget .slash {
   align-items: center;
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
   justify-content: center;
-}
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .threads-row .threads-input input[type=number] {
-  border: none;
-  font-size: 24px;
-}
-.fomoria.sheet.actor section.window-content .sheet-header .center-col .hitpoints-widget {
-  flex: 0 0 88px;
-  height: 88px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 .fomoria.sheet.actor section.window-content .sheet-header .right-col {
   display: flex;
@@ -501,23 +497,18 @@
   display: flex;
   flex: 0 0 36px;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: 1px;
   width: 100%;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row {
   display: flex;
   flex: 0 0 38px;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: space-around;
   margin-bottom: 5px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .clan {
-  flex: 1;
-  margin-left: 5px;
-  text-align: center;
-}
 .fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .folk-name {
-  flex: 1;
   margin-left: 5px;
   text-align: center;
 }
@@ -526,42 +517,14 @@
   justify-content: space-around;
   flex: 0 0 40px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .threads-row {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .clan {
+  margin-left: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .threads-row .threads-label {
-  background-color: var(--fo-foreground-color);
-  color: var(--fo-background-color);
-  flex: 0 0 24px;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .clan .clan-input {
   text-align: center;
-  text-transform: uppercase;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .threads-row .threads-input {
-  display: flex;
-  flex: 1;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .threads-row .threads-input .slash {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  font-size: 24px;
-  justify-content: center;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .threads-row .threads-input input[type=number] {
-  border: none;
-  font-size: 24px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .hitpoints-widget {
-  flex: 0 0 88px;
-  width: 88px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .right-col {
+  margin-left: 5px;
   width: 90px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .right-col .abilities-wrapper {
@@ -594,14 +557,11 @@
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-label a .ability-label {
   color: var(--fo-background-color);
-  font-family: "Amaranth";
+  font-family: "Walter Turncoat";
   font-size: 16px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-score {
   flex: 1;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-score input[type=number] {
-  font-size: 20px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-body {
   height: calc(100% - 33px);
@@ -710,7 +670,7 @@
   min-height: 60px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto-fill, 50px);
-  row-gap: 8px;
+  row-gap: 2px;
 }
 .gear-tab .equipment.item-list {
   flex: 1;

@@ -22,7 +22,7 @@ export const pluralize = (key1, key2, num) => {
 };
 
 export const showOutcomeRollCard = async (actor, rollResult) => {
-  const html = await renderTemplate(
+  const html = await foundry.applications.handlebars.renderTemplate(
     "systems/fomoria/templates/chat/outcome-roll-card.html",
     rollResult
   );

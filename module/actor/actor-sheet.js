@@ -68,7 +68,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   }  
   
   _onTabClick(event) {
-    uiClick();
+    // uiClick();
   }
 
   _onItemEdit(event) {

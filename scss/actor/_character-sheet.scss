@@ -10,8 +10,6 @@
     overflow: hidden;
     .widget-row {
       display: flex;
-      // TODO: fix needing to have right padding, seems wrong/dumb
-      // padding-right: 10px;
       .widget {
         flex: 1;
         margin-right: 4px;
@@ -43,22 +41,15 @@
         margin-bottom: $border-width;
         width: 100%;
       }
-      .left-col {
-      }
       .center-col {
         .folk-row {
           display: flex;
           flex: 0 0 $field-height;
-          justify-content: space-between;
+          gap: 10px;
+          justify-content: space-around;
           margin-bottom: $widget-margin;
           width: 100%;
-          .clan {
-            flex: 1;
-            margin-left: 5px;
-            text-align: center;
-          }
           .folk-name {
-            flex: 1;
             margin-left: 5px;
             text-align: center;
           }
@@ -67,44 +58,47 @@
             justify-content: space-around;
             flex: 0 0 40px;
           }
-        }
-        .threads-row {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          .threads-label {
-            background-color: var(--fo-foreground-color);
-            color: var(--fo-background-color);
-            flex: 0 0 24px;
-            font-size: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            text-transform: uppercase;
-          }
-          .threads-input {
-            display: flex;
-            flex: 1;
-            .slash {
-              align-items: center;
-              display: flex;
-              flex-direction: column;
-              font-size: 24px;
-              justify-content: center;
-            }
-            input[type="number"] {
-              border: none;
-              font-size: 24px;
+          .clan {
+            margin-left: 5px;
+            .clan-input {
+              text-align: center;
             }
           }
         }
-        .hitpoints-widget {
-          flex: 0 0 88px;
-          width: 88px;
-        }
+        // .threads-row {
+        //   display: flex;
+        //   flex: 1;
+        //   flex-direction: column;
+        //   .threads-label {
+        //     background-color: var(--fo-foreground-color);
+        //     color: var(--fo-background-color);
+        //     flex: 0 0 24px;
+        //     font-size: 16px;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     text-align: center;
+        //     text-transform: uppercase;
+        //   }
+        //   .threads-input {
+        //     display: flex;
+        //     flex: 1;
+        //     .slash {
+        //       align-items: center;
+        //       display: flex;
+        //       flex-direction: column;
+        //       font-size: 24px;
+        //       justify-content: center;
+        //     }
+        //     input[type="number"] {
+        //       border: none;
+        //       font-size: 24px;
+        //     }
+        //   }
+        // }
       }
       .right-col {
+        margin-left: 5px;
         width: 90px;
         .abilities-wrapper {
           display: flex;
@@ -133,16 +127,13 @@
               }  
               .ability-label {
                 color: var(--fo-background-color);
-                font-family: $pixel-font;
+                font-family: $label-font;
                 font-size: 16px;
               }
             }
           }
           .ability-score {
             flex: 1;
-            input[type="number"] {
-              font-size: 20px;
-            }
           }
         }
       }  

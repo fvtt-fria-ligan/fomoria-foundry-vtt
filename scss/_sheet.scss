@@ -1,5 +1,6 @@
 .fomoria.sheet {
-    border: 2px solid var(--fo-accent-color);
+    // border: 2px solid var(--fo-accent-color);
+    border: 1px solid var(--fo-foreground-color);
     border-radius: 0px;
     box-shadow: var(--fo-sheet-shadow);
 
@@ -50,12 +51,13 @@
                 border-bottom: none;
                 display: flex;
                 flex-direction: column;
-                font-family: $pixel-font;
-                font-size: 12px;
+                font-family: $tab-font;
+                font-size: 16px;
                 justify-content: center;
                 height: $tab-height;
                 margin-right: 2px;
                 opacity: 0.5;
+                text-transform: uppercase;
                 &:last-child {
                     margin-right: 0px;
                 }
@@ -65,8 +67,10 @@
                     text-shadow: none;
                 }
                 &.active {
-                    background-color: var(--fo-window-background-color);
-                    color: var(--fo-foreground-color);
+                    // background-color: var(--fo-window-background-color);
+                    // color: var(--fo-foreground-color);
+                    background-color: var(--fo-foreground-color);
+                    color: var(--fo-window-background-color);
                     border-bottom: none;
                     opacity: 1;
                     position: relative;
@@ -83,7 +87,7 @@
             flex: 0 0 $tab-height;
             padding: 0;
             a.item {
-                border: 4px solid var(--fo-foreground-color);
+                border: 1px solid var(--fo-foreground-color);
                 border-radius: $border-radius;
                 height: 57;
                 flex: 1;
@@ -100,6 +104,8 @@
 
         input[type="number"],
         input[type="text"] {
+            border: 0px;
+            border-radius: 0px;
             color: var(--fo-foreground-color);
             height: 100%;
             text-align: center;
@@ -108,7 +114,8 @@
         }
         input[type="number"] {
             font-family: $input-number-font;
-            font-size: 20px;
+            font-size: 28px;
+            padding-bottom: 10px;
         }
         input[type="text"] {
             font-family: $input-text-font;
@@ -198,7 +205,7 @@
             border: 2px solid var(--fo-highlight-color);
             border-radius: 0;
             color: var(--fo-button-foreground-color);
-            font-family: $pixel-font;
+            font-family: $button-font;
             font-size: 12px;
             height: 20px;
             line-height: 1.2;
@@ -216,7 +223,7 @@
                 height: 30px;
             }
             &.big-button {
-                font-size: 12px;
+                font-size: 14px;
                 height: 36px;
             }
         }
@@ -280,6 +287,7 @@
             border-right: $border-width solid var(--fo-foreground-color);
             // height: calc(100% - 33px);
             height: 100%;
+            height: 500px;
             // margin-bottom: 10px;
             overflow: auto;
             padding: calc($border-width * 2);
