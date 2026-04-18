@@ -1,9 +1,23 @@
 .gear-tab {
   .carrying-row {
+    border: 2px solid red;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     width: 100%;
+    .silver {
+      flex: 1;
+      // height: $field-height;
+      height: 28px;
+      .silver-value {
+        // padding-bottom: 2px;
+        // padding-top: 5px;
+        height: 28px;
+      }
+      margin-right: 5px;
+    }
     .carrying {
       flex: 1;
       .carrying-value {
@@ -38,27 +52,5 @@
   }
   .equipment.item-list {
     flex: 1;
-  }
-  .cybertech-title {
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--fo-foreground-color),
-      var(--fo-foreground-color) 10px,
-      var(--fo-background-color) 10px,
-      var(--fo-background-color) 20px
-    );      
-    font-family: $pixel-font;
-    font-size: 10px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    text-align: center;
-    width: 100%;
-    span {
-      background-color: var(--fo-background-color);
-      padding-left: 10px;
-      padding-right: 10px;
-      padding-bottom: 4px;
-      padding-top: 4px;
-    }
   }
 }

@@ -11,15 +11,17 @@ FO.packs = {
 
 FO.actorTypes = {
   character: "character",
-  npc: "npc",
+  creature: "creature",
 };
 
 FO.itemTypes = {
   armor: "armor",
   boon: "boon",
-  class: "class",
+  condition: "condition",
   equipment: "equipment",
   feat: "feat",
+  folk: "folk",
+  tradition: "tradition",
   weapon: "weapon",
 };
 
@@ -97,8 +99,8 @@ FO.flags = {
 FO.scvmFactory = {
   // Directory under Foundry data to pull character portraits from.
   characterPortraitPath: "systems/fomoria/assets/images/portraits/characters/",
-  // Directory under Foundry data to pull NPC portraits from.
-  npcPortraitPath: "systems/fomoria/assets/images/portraits/characters/",
+  // Directory under Foundry data to pull Creature portraits from.
+  creaturePortraitPath: "systems/fomoria/assets/images/portraits/characters/",
   // Character Names
   namesTable: "Compendium.fomoria.fomoria-tables.RollTable.lWQNFZ99gjXNuElZ",
   // Boons
@@ -148,7 +150,7 @@ FO.scvmFactory = {
       formatKey: "FO.ObsessionFormat"
     },
   ],
-  npcDescriptionTables: [
+  creatureDescriptionTables: [
     {
       // Roles
       uuid: "Compendium.fomoria.fomoria-tables.RollTable.wGLCXzoaFFYNy8Y4",
@@ -206,15 +208,6 @@ FO.scvmFactory = {
 };
 
 FO.colorSchemes = {
-  blackOnWhite: {
-    accent: "#656565",
-    background: "#ffffff",
-    cyberText: "#ffffff",
-    disabled: "gray",
-    foreground: "#000000",
-    highlight: "#656565",
-    windowBackground: "#ffffff",
-  },    
   fomoria: {
     accent: "#656565",
     background: "#2E2E2E",

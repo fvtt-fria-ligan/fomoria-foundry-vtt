@@ -28,8 +28,77 @@
       }
     }
     .sheet-header {
-      margin-bottom: 4px;
+      display: flex;
+      width: 100%;
+      .header-widget-row {
+        display: flex;        
+        height: 40px;
+        justify-content: space-between;
+        width: 100%;
+        .field-label {
+          flex: 0 0 80px;
+        }
+        .field-input {     
+          display: flex;
+          flex: 1;
+          input[type="number"] {
+            width: 50px;
+          }
+        }        
+      }
+      .left-col {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 $portrait-size;
+        margin-right: $widget-margin;
+        .portrait {
+          display: flex;
+          flex: 0 0 $portrait-size;
+          height: $portrait-size;
+          justify-content: center;
+          margin-bottom: $widget-margin;
+          img {
+            height: 100%;
+            width: auto;
+          }
+        } 
+      }
+      .center-col {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        .name {
+          height: 56px;
+          margin-bottom: $widget-margin;
+          input[type="text"] {
+            font-family: $name-font;
+            font-size: 40px;
+          }
+        }
+        .points-widget {
+          flex: 0 0 120px;
+          justify-content: space-between;
+          .slash {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            font-size: 28px;
+            font-weight: bold;
+            justify-content: center;
+            padding-left: 4px;
+            padding-right: 4px;
+          }
+        }          
+      }   
+      .right-col {
+        display: flex;
+        flex: 0 0 88px;
+        flex-direction: column;
+      }
+    }    
+    .sheet-header {
       flex-direction: column;
+      margin-bottom: 4px;
       .header-cols {
         display: flex;
         flex: 1;
@@ -43,6 +112,7 @@
       }
       .center-col {
         .folk-row {
+          align-items: center;
           display: flex;
           flex: 0 0 $field-height;
           gap: 10px;
@@ -50,7 +120,11 @@
           margin-bottom: $widget-margin;
           width: 100%;
           .folk-name {
-            margin-left: 5px;
+            flex: 1;
+            font-family: $name-font;
+            font-size: 24px;
+            padding-left: 40px;
+            padding-bottom: 5px;
             text-align: center;
           }
           .item-controls {
@@ -65,37 +139,6 @@
             }
           }
         }
-        // .threads-row {
-        //   display: flex;
-        //   flex: 1;
-        //   flex-direction: column;
-        //   .threads-label {
-        //     background-color: var(--fo-foreground-color);
-        //     color: var(--fo-background-color);
-        //     flex: 0 0 24px;
-        //     font-size: 16px;
-        //     display: flex;
-        //     flex-direction: column;
-        //     justify-content: center;
-        //     text-align: center;
-        //     text-transform: uppercase;
-        //   }
-        //   .threads-input {
-        //     display: flex;
-        //     flex: 1;
-        //     .slash {
-        //       align-items: center;
-        //       display: flex;
-        //       flex-direction: column;
-        //       font-size: 24px;
-        //       justify-content: center;
-        //     }
-        //     input[type="number"] {
-        //       border: none;
-        //       font-size: 24px;
-        //     }
-        //   }
-        // }
       }
       .right-col {
         margin-left: 5px;

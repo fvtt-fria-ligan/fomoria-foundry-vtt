@@ -10,6 +10,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
 /**
  * @extends {ActorSheet}
  */
+//  export class FOActorSheet extends foundry.applications.api.ApplicationV2.sheets.ActorSheet {
  export class FOActorSheet extends foundry.appv1.sheets.ActorSheet {
 
   /** @override */
@@ -98,7 +99,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   _onItemEquip(event) {
     const item = this._itemFromEvent(event);
     if (item) {
-      uiClick();
+      // uiClick();
       return item.update({ ["system.equipped"]: !item.system.equipped});
     }
   }
@@ -113,7 +114,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
    */
    async _onItemAddQuantity(event) {
     event.preventDefault();
-    uiClick();
+    // uiClick();
     const anchor = $(event.currentTarget);
     const li = anchor.parents(".item");
     const itemId = li.data("itemId");
@@ -128,7 +129,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
    */
   async _onItemSubtractQuantity(event) {
     event.preventDefault();
-    uiClick();
+    // uiClick();
     const anchor = $(event.currentTarget);
     const li = anchor.parents(".item");
     const itemId = li.data("itemId");
@@ -181,7 +182,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
    */
    async _onArmorTierRadio(event) {
     event.preventDefault();
-    uiClick();
+    // uiClick();
     const input = $(event.currentTarget);
     const newTier = parseInt(input[0].value);
     const parent = input.parents(".item");

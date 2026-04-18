@@ -1,0 +1,61 @@
+.fomoria.sheet.actor.creature {
+  section.window-content {
+    .sheet-header {
+      display: flex;
+      height: 210px; 
+      width: 100%;
+      .header-widget-row {
+        display: flex;        
+        height: 40px;
+        justify-content: space-between;
+        width: 100%;
+        .field-label {
+          flex: 0 0 80px;
+        }
+        .field-input {     
+          display: flex;
+          flex: 1;
+          input[type="number"] {
+            width: 50px;
+          }
+        }        
+      }
+      .left-col {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 $portrait-size;
+        margin-right: $widget-margin;
+        .portrait {
+          display: flex;
+          flex: 0 0 $portrait-size;
+          height: $portrait-size;
+          justify-content: center;
+          margin-bottom: $widget-margin;
+          img {
+            height: 100%;
+            width: auto;
+          }
+        } 
+      }
+      .center-col {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 200px;
+        padding-right: 5px;
+        .name {
+          height: 56px;
+          margin-bottom: $widget-margin;
+          input[type="text"] {
+            font-family: $name-font;
+            font-size: 40px;
+          }
+        }
+      }   
+    }
+    .sheet-body {
+      border-top: $border-width solid var(--fo-foreground-color);
+      padding-top: 0px;
+    }
+  }
+}

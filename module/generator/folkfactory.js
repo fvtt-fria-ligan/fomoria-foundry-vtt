@@ -34,66 +34,8 @@ export async function scvmifyActor(actor, clazz) {
   await updateActorWithScvm(actor, scvm);
 }
 
-export async function createNpc() {
-  const npc = await randomNpc();
-  const actor = await FOActor.create(npc);
-  actor.sheet.render(true);
-}
-
 function randomName() {
   return drawTextFromTableUuid(FO.scvmFactory.namesTable);
-}
-
-async function randomNpc() {
-  const name = await randomName();
-  const description = await makeDescription(FO.scvmFactory.npcDescriptionTables);
-  const img = await randomNpcPortrait();
-  const hp = await rollTotal("1d8");
-  const morale = await rollTotal("1d8+4");
-  const attack = npcAttack();
-  const armor = npcArmor();
-  return {
-    name,
-    system: {
-      armor,
-      attack,
-      description,
-      hitPoints: {
-        max: hp,
-        value: hp,
-      },
-      morale,
-    },
-    img,
-    items: [],
-    prototypeToken: {
-      name,
-      texture: {
-        src: img,
-      },
-    },    
-    type: "npc",
-  };  
-}
-
-function npcAttack() {
-  return sample([
-    "Unarmed d2",
-    "Shiv d3",
-    "Machete d6",
-    "Throwing knives d4",
-    "Revolver d8",
-    "Smartgun d6a",
-    "Shotgun d8",
-  ]);
-}
-
-function npcArmor() {
-  return sample([
-    "No armor",
-    "Styleguard -d2",
-    "Rough -d4",
-  ]);
 }
 
 async function makeDescription(descriptionTables) {
@@ -233,7 +175,7 @@ async function randomCharacterPortrait() {
 }
 
 async function randomNpcPortrait() {
-  return await randomFile(FO.scvmFactory.npcPortraitPath);
+  return await randomFile(FO.scvmFactory.creaturePortraitPath);
 }
 
 async function randomFile(fromPath) {
@@ -315,8 +257,8 @@ async function rollScvmForClass(clazz) {
   const itemData = items.map(i => simpleData(i));
 
   const name = await randomName();
-  const npcs = allDocs.filter(e => e instanceof FOActor);
-  const npcData = npcs.map(n => simpleData(n));
+  const creatures = allDocs.filter(e => e instanceof FOActor);
+  const creatureData = creatures.map(n => simpleData(n));
 
   const strength = await abilityRoll(clazz.system.strength);
   const agility = await abilityRoll(clazz.system.agility);
@@ -347,7 +289,7 @@ async function rollScvmForClass(clazz) {
     items: itemData,
     occult,
     name,
-    npcs: npcData,
+    creatures: creatureData,
     presence,
     strength,
     tokenImg: img,
@@ -397,15 +339,15 @@ async function createActorWithScvm(s) {
   const actor = await FOActor.create(data);  
   actor.sheet.render(true);
 
-  // create any npcs
-  for (const npcData of s.npcs) {
-    const lastWord = npcData.name.split(" ").pop();
-    npcData.name = `${actor.name}'s ${lastWord}`;
-    if (npcData.type === "vehicle") {
-      npcData.system.ownerId = actor.id;
+  // create any creatures
+  for (const creatureData of s.creatures) {
+    const lastWord = creatureData.name.split(" ").pop();
+    creatureData.name = `${actor.name}'s ${lastWord}`;
+    if (creatureData.type === "vehicle") {
+      creatureData.system.ownerId = actor.id;
     }
-    const npcActor = await FOActor.create(npcData);
-    npcActor.sheet.render(true);
+    const creatureActor = await FOActor.create(creatureData);
+    creatureActor.sheet.render(true);
   }
 
   // run post-create macro, if any
@@ -444,18 +386,18 @@ async function updateActorWithScvm(actor, s) {
     });
   }  
 
-  // create any npcs, if player has perms
-  for (const npcData of s.npcs) {
+  // create any creatures, if player has perms
+  for (const creatureData of s.creatures) {
     if (game.user.can("ACTOR_CREATE")) {
-      const lastWord = npcData.name.split(" ").pop();
-      npcData.name = `${actor.name}'s ${lastWord}`;
-      if (npcData.type === "vehicle") {
-        npcData.system.ownerId = actor.id;
+      const lastWord = creatureData.name.split(" ").pop();
+      creatureData.name = `${actor.name}'s ${lastWord}`;
+      if (creatureData.type === "vehicle") {
+        creatureData.system.ownerId = actor.id;
       }  
-      const npcActor = await FOActor.create(npcData);
-      npcActor.sheet.render(true);      
+      const creatureActor = await FOActor.create(creatureData);
+      creatureActor.sheet.render(true);      
     } else {
-      ui.notifications.info(`Ask the GM to create an NPC for you: ${npcData.name}`, {permanent: true});
+      ui.notifications.info(`Ask the GM to create an Creature for you: ${creatureData.name}`, {permanent: true});
     }
   }
 

@@ -1,18 +1,6 @@
 import { FO } from "./config.js";
 
 const colorSchemes = {
-  blackOnWhite: {
-    key: "FO.ColorSchemeBlackOnWhite",
-    accent: "#656565",
-    background: "#ffffff",
-    buttonBackground: "#000000",
-    buttonForeground: "#ffffff",    
-    disabled: "gray",
-    foreground: "#000000",
-    highlight: "#656565",
-    sheetShadow: "none",
-    windowBackground: "#ffffff",
-  },   
   fomoria: {
     key: "FO.ColorSchemeFomoria",
     accent: "#656565",

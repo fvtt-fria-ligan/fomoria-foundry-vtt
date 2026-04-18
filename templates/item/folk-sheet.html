@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
-  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='CLASS'}}
+  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='FOLK'}}
   {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
   <div class="sheet-body">
     {{> systems/fomoria/templates/item/item-description-tab.html }}
@@ -15,18 +15,18 @@
         </div>
         <div class="widget field-row">
           <div class="field-label">
-            {{ localize 'FO.Debt'}}
-          </div>
-          <div class="field-value">
-            <input class="field-input" type="text" name="system.debt" value="{{data.system.debt}}" spellcheck="false"/>
-          </div>
-        </div>
-        <div class="widget field-row">
-          <div class="field-label">
             {{ localize 'FO.HitPoints'}}
           </div>
           <div class="field-value">
             <input class="field-input" type="text" name="system.hitPoints" value="{{data.system.hitPoints}}" spellcheck="false"/>
+          </div>
+        </div>     
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.StabilityPoints'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.stabilityPoints" value="{{data.system.stabilityPoints}}" spellcheck="false"/>
           </div>
         </div>     
         <div class="widget field-row">

@@ -9,19 +9,18 @@
 
     .portrait-row {
       display: flex;
-      /* 292 */
-      flex: 0 0 292px;
+      flex: 0 0 200px;
       margin-bottom: $widget-margin;
       div.portrait {
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        flex: 0 0 292px;
+        flex: 0 0 200px;
         img.portrait {
           border: none;
-          height: 292px;
-          width: 292px;
+          height: 200px;
+          width: 200px;
         }
       }  
       .item-type {
@@ -31,7 +30,6 @@
         font-family: $name-font;
         font-size: 48px;
         justify-content: center;
-        writing-mode: vertical-rl;
       }
     }
     .name {

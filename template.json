@@ -1,31 +1,10 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "creature"],
     "templates": {
       "common": {
-        "abilities": {
-          "agility": {
-            "value": 0
-          },
-          "occult": {
-            "value": 0
-          },
-          "presence": {
-            "value": 0
-          },
-          "strength": {
-            "value": 0
-          },
-          "toughness": {
-            "value": 0
-          }
-        },
         "description": "",
         "hitPoints": {
-          "max": 1,
-          "value": 1
-        },
-        "stabilityPoints": {
           "max": 1,
           "value": 1
         }
@@ -33,8 +12,29 @@
     },
     "character": {
       "templates": ["common"],
+      "abilities": {
+        "agility": {
+          "value": 0
+        },
+        "occult": {
+          "value": 0
+        },
+        "presence": {
+          "value": 0
+        },
+        "strength": {
+          "value": 0
+        },
+        "toughness": {
+          "value": 0
+        }
+      },
       "clan": "",
       "silver": 0,
+      "stabilityPoints": {
+        "max": 1,
+        "value": 1
+      },
       "threads": {
         "min": 0,
         "max": 0,
@@ -46,29 +46,23 @@
         "value": 0
       }
     },
-    "npc": {
+    "creature": {
+      "templates": ["common"],
       "armor": "",
       "attack": "",
-      "description": "",
-      "hitPoints": {
-        "max": 1,
-        "value": 1
-      },
       "morale": 7,
-      "special": "",
-      "stabilityPoints": {
-        "max": 1,
-        "value": 1
-      }
+      "special": ""
     } 
   },
   "Item": {
     "types": [
       "armor",
       "boon",
+      "condition",
       "equipment",
       "feat",
       "folk",
+      "tradition",
       "weapon"
     ],
     "templates": {
@@ -88,12 +82,19 @@
         "value": 1
       }
     },
+    "boon": {
+      "description": "",
+      "rollMacro": "",
+      "rollLabel": ""
+    },
+    "condition": {
+      "description": ""
+    },
     "folk": {
       "actorCreateMacro": "",
       "agility": "3d6",
       "armorTable": "1d3",
       "silver": "2d6*10",
-      "debt": "3d6*1000",
       "description": "",
       "threads": "1d2",
       "hitPoints": "1d8",
@@ -101,6 +102,7 @@
       "occult": "3d6",
       "presence": "3d6",
       "rolls": null,
+      "stabilityPoints": "1d8",
       "strength": "3d6",
       "toughness": "3d6",
       "weaponTable": "1d12"
@@ -112,9 +114,6 @@
       "description": "",
       "rollMacro": "",
       "rollLabel": ""
-    },
-    "boon": {
-      "description": ""
     },
     "weapon": {
       "templates": ["baseEquipment"],

@@ -18,118 +18,21 @@
       }
     }    
     .sheet-header {
-      display: flex;
-      width: 100%;
-      .header-widget-row {
-        display: flex;        
-        height: 40px;
+      .points-widget {
+        flex: 0 0 120px;
         justify-content: space-between;
-        width: 100%;
-        .field-label {
-          flex: 0 0 80px;
-        }
-        .field-input {     
-          display: flex;
-          flex: 1;
-          input[type="number"] {
-            width: 50px;
-          }
-        }        
-      }
-      .left-col {
-        display: flex;
-        flex-direction: column;
-        flex: 0 0 $portrait-size;
-        margin-right: $widget-margin;
-        .portrait {
-          display: flex;
-          flex: 0 0 $portrait-size;
-          height: $portrait-size;
-          justify-content: center;
-          margin-bottom: $widget-margin;
-          img {
-            height: 100%;
-            width: auto;
-          }
-        } 
-      }
-      .center-col {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        .actor-type {
-          color: var(--fo-foreground-color);
+        .slash {
           align-items: center;
           display: flex;
-          flex: 0 0 $portrait-size;
-          font-family: $name-font;
-          font-size: 40px;
-          margin-bottom: $widget-margin;
+          flex-direction: column;
+          font-size: 28px;
+          font-weight: bold;
           justify-content: center;
-          writing-mode: vertical-rl;
-        } 
-        .name {
-          // flex: 0 0 200;
-          margin-bottom: $widget-margin;
-          input[type="text"] {
-            font-family: $name-font;
-            font-size: 50px;
-          }
+          padding-left: 4px;
+          padding-right: 4px;
         }
-        // .threads-row {
-        //   // TODO: why is this called "threads-row" when it has flex-direction: column?
-        //   display: flex;
-        //   flex: 1;
-        //   flex-direction: column;
-        //   .threads-label {
-        //     background-color: var(--fo-foreground-color);
-        //     color: var(--fo-background-color);
-        //     flex: 0 0 24px;
-        //     font-size: 16px;
-        //     display: flex;
-        //     flex-direction: column;
-        //     justify-content: center;
-        //     text-align: center;
-        //     text-transform: uppercase;
-        //   }
-        //   .threads-input {
-        //     display: flex;
-        //     flex: 1;
-        //     .slash {
-        //       align-items: center;
-        //       display: flex;
-        //       flex-direction: column;
-        //       font-size: 24px;
-        //       justify-content: center;
-        //     }
-        //     input[type="number"] {
-        //       border: none;
-        //       font-size: 24px;
-        //     }
-        //   }
-        // }
-        .points-widget {
-          flex: 0 0 120px;
-          justify-content: space-between;
-          .slash {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            font-size: 28px;
-            font-weight: bold;
-            justify-content: center;
-            padding-left: 4px;
-            padding-right: 4px;
-          }
-        }          
-      }   
-      .right-col {
-        display: flex;
-        flex: 0 0 88px;
-        flex-direction: column;
-      }
+      }          
     }
-
     .sheet-body {
       .item-row {
         display: flex;

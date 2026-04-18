@@ -1,4 +1,4 @@
-.boon-tab {
+.boons-tab {
   .cols {
     height: 100%;
     .col {
@@ -8,38 +8,6 @@
         height: calc(100% - 44px);
         overflow: auto;
       }    
-    }
-  }
-  .nested-item {
-    .nested-indent {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-row: auto auto;
-      flex: 0 0 20px;
-
-    }
-    &.app-row {
-      .ur {
-        border-bottom: 2px solid var(--fo-highlight-color);
-        border-left: 2px solid var(--fo-highlight-color);
-      }
-      .lr {
-        border-left: 2px solid var(--fo-highlight-color);
-      }      
-      &:last-child {
-        .nested-indent {
-          .lr {
-            border-left: none;
-          }  
-        }
-      }
-    }
-    &.infestation-row {
-      // only one infestation per boon
-      .ur {
-        border-bottom: 2px solid var(--fo-highlight-color);
-        border-left: 2px solid var(--fo-highlight-color);
-      }
     }
   }
 }

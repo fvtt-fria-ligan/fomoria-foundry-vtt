@@ -5,8 +5,8 @@ export class FOItemSheet extends foundry.appv1.sheets.ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fomoria", "sheet", "item"],
-      width: 411,
-      height: 900,
+      width: 600,
+      height: 600,
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -44,7 +44,7 @@ export class FOItemSheet extends foundry.appv1.sheets.ItemSheet {
   /** @override */
   async getData() {
     const superData = await super.getData();
-    superData.data.system.description = await TextEditor.enrichHTML(
+    superData.data.system.description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
       superData.data.system.description);
     return superData;
   }

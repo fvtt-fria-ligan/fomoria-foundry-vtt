@@ -22,19 +22,13 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
         disposition: 1,
         vision: true,
       };
-    } else if (data.type === FO.actorTypes.npc) {
+    } else if (data.type === FO.actorTypes.creature) {
       defaults = {
         actorLink: false,
         disposition: -1,
         vision: false,
       };
-    } else if (data.type === FO.actorTypes.vehicle) {
-      defaults = {
-        actorLink: true,
-        disposition: 0,
-        vision: true,
-      };
-    } 
+    }
     foundry.utils.mergeObject(data.prototypeToken, defaults, { overwrite: false });
     return super.create(data, options);
   }

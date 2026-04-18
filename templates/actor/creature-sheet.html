@@ -1,0 +1,43 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="sheet-header">
+    <div class="left-col">
+      <div class="widget portrait">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
+      </div>
+    </div>
+    <div class="center-col">
+      <div class="widget name">
+        <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
+      </div>
+      <div class="header-widget-row" style="flex: 0 0 50px; margin-bottom: 5px;">
+        <div style="display: flex; height: 100%; width: 100%; gap: 10px;">
+          <div style="flex: 1;">
+            {{> systems/fomoria/templates/actor/hit-points.html}}     
+          </div>
+          <div style="flex: 1;">
+            <div class="widget field-row">
+              <div class="field-label">
+                {{ localize 'FO.Morale'}}
+              </div>
+              <div class="field-value">
+                <input class="field-input" type="number" name="system.morale" value="{{ data.system.morale }}" />
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+      <div class="field-row button-row">
+        <button type="button" class="sheet-button big-button reaction-button">{{ localize "FO.Reaction" }} <i class="fas fa-dice-d20 fa-fw"></i></button>    
+        <button type="button" class="sheet-button big-button morale-button">{{ localize "FO.Morale" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-body">  
+    <div style="flex: 1; height:100%"">
+      {{editor data.system.description target="system.description"
+      button=true owner=owner editable=true engine="prosemirror"}}  
+    </div>
+  </div>  
+</form>
+
