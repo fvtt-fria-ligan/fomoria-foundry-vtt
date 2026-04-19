@@ -18,15 +18,6 @@
         margin-right: 0px;
       }
     }
-    .cols {
-      display: flex;
-      .col {
-        flex: 1;
-      }
-      .spacer-col {
-        flex: 0 0 20px;
-      }
-    }
     .sheet-header {
       display: flex;
       width: 100%;
@@ -74,21 +65,7 @@
             font-family: $name-font;
             font-size: 40px;
           }
-        }
-        .points-widget {
-          flex: 0 0 120px;
-          justify-content: space-between;
-          .slash {
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            font-size: 28px;
-            font-weight: bold;
-            justify-content: center;
-            padding-left: 4px;
-            padding-right: 4px;
-          }
-        }          
+        }        
       }   
       .right-col {
         display: flex;

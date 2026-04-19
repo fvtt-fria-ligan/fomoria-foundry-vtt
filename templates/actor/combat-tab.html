@@ -1,9 +1,9 @@
 <div class="tab combat-tab" data-group="primary" data-tab="combat">
   <div class="button-row combat-buttons">
-    <button type="button" class="sheet-button big-button initiative-button">{{ localize 'FO.Initiative' }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+    <button type="button" class="sheet-button big-button initiative-button">{{ localize 'FO.Initiative' }} <i class="fas fa-dice-six fa-fw"></i></button>
     <button type="button" class="sheet-button big-button defend-button">{{ localize 'FO.Defend' }} <i class="fas fa-dice-d20 fa-fw"></i></button>
     {{#ifEq data.type "character"}}
-      <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+      <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-moon fa-fw"></i></button>
       <button type="button" class="sheet-button big-button dire-injury-button">{{ localize "FO.Injury" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
       <button type="button" class="sheet-button big-button dire-breakdown-button">{{ localize "FO.Breakdown" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
     {{/ifEq}}
@@ -26,10 +26,7 @@
           <div class="item-field-row">
             {{item.system.damage}} {{item.system.weaponType}}
             &nbsp;
-            <button type="button" class="sheet-button attack-button">{{localize 'FO.Attack'}}</button>
-            {{#if item.system.usesAmmo}}
-              <button type="button" class="sheet-button count-bullets-button">{{localize 'FO.CountBullets'}}</i></a>
-            {{/if}}
+            <button type="button" class="sheet-button attack-button">{{localize 'FO.Attack'}} <i class="fas fa-dice-d20 fa-fw"></i></button>
           </div>
         </div>
       </div>

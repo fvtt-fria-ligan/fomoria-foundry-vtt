@@ -1,13 +1,6 @@
 .boons-tab {
-  .cols {
-    height: 100%;
-    .col {
-      height: 100%;
-      overflow: hidden;
-      .item-list {
-        height: calc(100% - 44px);
-        overflow: auto;
-      }    
-    }
+  .no-boons {
+    margin-left: 10px;
+    margin-top: 20px;
   }
 }

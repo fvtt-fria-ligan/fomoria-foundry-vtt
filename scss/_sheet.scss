@@ -15,10 +15,7 @@
         font-family: $sheet-font;
         font-size: 15px;
         overflow-y: scroll;
-        padding-bottom: $sheet-padding;
-        padding-left: $sheet-padding;
-        padding-right: 0;
-        padding-top: $sheet-padding;
+        padding: $sheet-padding;
         scrollbar-color: var(--fo-highlight-color)
             var(--fo-window-background-color);
         scrollbar-width: thin;
@@ -190,6 +187,13 @@
             }
         }
 
+        .cols {
+            display: flex;
+            .col {
+                flex: 1;
+            }
+        }
+    
         .sheet-button {
             background-color: var(--fo-button-background-color);
             border: 2px solid var(--fo-highlight-color);

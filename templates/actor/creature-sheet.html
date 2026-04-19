@@ -9,17 +9,17 @@
       <div class="widget name">
         <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
       </div>
-      <div class="header-widget-row" style="flex: 0 0 50px; margin-bottom: 5px;">
-        <div style="display: flex; height: 100%; width: 100%; gap: 10px;">
+      <div class="header-widget-row">
+        <div style="display: flex; height: 100%; width: 100%; gap: 5px;">
           <div style="flex: 1;">
             {{> systems/fomoria/templates/actor/hit-points.html}}     
           </div>
           <div style="flex: 1;">
-            <div class="widget field-row">
-              <div class="field-label">
+            <div class="widget header-widget">
+              <div class="header-widget-label">
                 {{ localize 'FO.Morale'}}
               </div>
-              <div class="field-value">
+              <div class="header-widget-value">
                 <input class="field-input" type="number" name="system.morale" value="{{ data.system.morale }}" />
               </div>
             </div>            

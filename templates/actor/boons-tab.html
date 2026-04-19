@@ -1,4 +1,4 @@
-<div class="tab boons-tab" data-group="primary" data-tab="feats">
+<div class="tab boons-tab" data-group="primary" data-tab="boons">
   <div class="boons item-list">
     {{#each data.system.boons as |item id|}}
       <div class="item item-row boon-row" data-item-id="{{item._id}}">
@@ -16,7 +16,7 @@
         </div>
       </div>
     {{else}}
-      <div class="no-feats">
+      <div class="no-boons">
         {{localize 'FO.YouHaveNoBoons'}}
       </div>
     {{/each}}    
