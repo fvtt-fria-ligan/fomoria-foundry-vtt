@@ -150,13 +150,13 @@
 }
 .fomoria.sheet section.window-content input[type=text] {
   font-family: "Pokoljaro";
-  line-height: 20px;
+  line-height: 16px;
 }
 .fomoria.sheet section.window-content textarea {
   color: var(--fo-foreground-color);
   font-family: "Noto Serif";
   font-size: 15px;
-  line-height: 20px;
+  line-height: 16px;
   resize: none;
 }
 .fomoria.sheet section.window-content .editor {
@@ -272,7 +272,7 @@
 }
 .fomoria.sheet section.window-content .field-row textarea {
   font-family: "Noto Serif";
-  line-height: 20px;
+  line-height: 16px;
 }
 .fomoria.sheet section.window-content .sheet-body {
   border-bottom: 1px solid var(--fo-foreground-color);
@@ -306,45 +306,47 @@
 }
 .fomoria.sheet.actor section.window-content .sheet-header .header-widget-row {
   display: flex;
-  flex: 0 0 50px;
+  flex: 0 0 30px;
   margin-bottom: 5px;
   width: 100%;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .header-widget {
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget {
   display: flex;
   flex: 1;
   width: 100%;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .header-widget .header-widget-label {
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-label {
   align-items: center;
   background-color: var(--fo-foreground-color);
   color: var(--fo-background-color);
   display: flex;
-  flex-direction: r;
-  flex: 1;
+  flex: 0 0 80px;
   font-family: "Walter Turncoat";
+  height: 30px;
   justify-content: center;
   text-align: center;
   text-transform: uppercase;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .header-widget .header-widget-value {
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-value {
   align-items: center;
   display: flex;
-  flex: 1.5;
+  flex: 1;
+  height: 30px;
   justify-content: center;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .header-widget .header-widget-value input[type=number] {
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-value input[type=number] {
+  height: 30px;
   width: 50px;
 }
-.fomoria.sheet.actor section.window-content .sheet-header .header-widget-row .header-widget .header-widget-value .slash {
+.fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-value .slash {
   align-items: center;
   display: flex;
   flex-direction: column;
   font-size: 28px;
   font-weight: bold;
   justify-content: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 .fomoria.sheet.actor section.window-content .sheet-body .item-row {
   display: flex;
@@ -371,7 +373,7 @@
 }
 .fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-field-row {
   display: flex;
-  line-height: 20px;
+  line-height: 16px;
   margin: 2px;
 }
 .fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-field-row button {
@@ -418,67 +420,82 @@
   margin-right: 0px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header {
-  display: flex;
-  width: 100%;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .header-widget-row {
-  display: flex;
-  height: 40px;
-  justify-content: space-between;
-  width: 100%;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .header-widget-row .field-label {
-  flex: 0 0 80px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .header-widget-row .field-input {
-  display: flex;
-  flex: 1;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .header-widget-row .field-input input[type=number] {
-  width: 50px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col {
-  display: flex;
   flex-direction: column;
-  flex: 0 0 200px;
-  margin-right: 5px;
+  height: 280px;
+  margin-bottom: 4px;
+  width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .portrait {
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 88px;
+  grid-template-rows: 200px 1ft;
+  width: 100%;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .portrait-cell {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .abilities-cell {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  padding-right: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .header-widget-row {
+  justify-content: space-between;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .hp-widget {
+  flex: 0 0 170px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .hp-widget .header-widget-label {
+  flex: 0 0 50px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .sp-widget {
+  flex: 0 0 170px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .sp-widget .header-widget-label {
+  flex: 0 0 50px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .threads-widget {
+  flex: 0 0 134px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .hp-fields-cell .wyrd-widget {
+  flex: 0 0 134px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .portrait {
   display: flex;
   flex: 0 0 200px;
   height: 200px;
   justify-content: center;
-  margin-bottom: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .left-col .portrait img {
+.fomoria.sheet.actor.character section.window-content .sheet-header .portrait img {
   height: 100%;
   width: auto;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .name {
+.fomoria.sheet.actor.character section.window-content .sheet-header .name {
   height: 56px;
   margin-bottom: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .name input[type=text] {
+.fomoria.sheet.actor.character section.window-content .sheet-header .name input[type=text] {
   font-family: "Pokoljaro";
   font-size: 40px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col {
-  display: flex;
-  flex: 0 0 88px;
-  flex-direction: column;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header {
-  flex-direction: column;
-  margin-bottom: 4px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .header-cols {
-  display: flex;
-  flex: 1;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .header-button-row {
   display: flex;
@@ -487,16 +504,16 @@
   margin-bottom: 1px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row {
+.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row {
   align-items: center;
   display: flex;
-  flex: 0 0 38px;
+  flex: 0 0 30px;
   gap: 10px;
   justify-content: space-around;
   margin-bottom: 5px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .folk-name {
+.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .folk-name {
   flex: 1;
   font-family: "Pokoljaro";
   font-size: 24px;
@@ -504,32 +521,28 @@
   padding-bottom: 5px;
   text-align: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .item-controls {
+.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .item-controls {
   display: flex;
   justify-content: space-around;
   flex: 0 0 40px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .clan {
+.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .clan {
   margin-left: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .center-col .folk-row .clan .clan-input {
+.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .clan .clan-input {
   text-align: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col {
-  margin-left: 5px;
-  width: 90px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .abilities-wrapper {
+.fomoria.sheet.actor.character section.window-content .sheet-header .abilities-wrapper {
   display: flex;
   flex: 0 0 100px;
   flex-direction: column;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row {
   display: flex;
   flex: 0 0 37px;
   margin-bottom: 5px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-label {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-label {
   align-items: center;
   background-color: var(--fo-foreground-color);
   border-right: 1px solid var(--fo-foreground-color);
@@ -537,22 +550,22 @@
   flex: 1;
   justify-content: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-label a {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-label a {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-label a img {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-label a img {
   border: none;
   height: 28px;
   width: 28px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-label a .ability-label {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-label a .ability-label {
   color: var(--fo-background-color);
   font-family: "Walter Turncoat";
   font-size: 16px;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .right-col .ability-row .ability-score {
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-score {
   flex: 1;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-body {

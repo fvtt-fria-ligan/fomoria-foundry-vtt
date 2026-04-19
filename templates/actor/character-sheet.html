@@ -2,17 +2,13 @@
   <div class="big-col">
     <div class="header-section">
       <div class="sheet-header">
-        <div class="header-cols">
-          <div class="left-col">
+        <div class="header-grid">
+          <div class="portrait-cell">
             <div class="widget portrait">
               <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
             </div>
-            <div class="header-button-row">
-              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
-              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
-            </div>
           </div>
-          <div class="center-col">
+          <div class="name-fields-cell">
             <div class="name">
               <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
             </div>
@@ -28,7 +24,7 @@
                   </div>
                 </div>
               </div>
-            </div>            
+            </div>
             <div class="widget field-row clan-row">
               <div class="field-label">
                   {{localize 'FO.Clan'}}
@@ -50,35 +46,40 @@
                 </div>
               </div>
             </div>            
+          </div>
+          <div class="hp-fields-cell">
             <div class="header-widget-row">
               {{> systems/fomoria/templates/actor/hit-points.html}}
               {{> systems/fomoria/templates/actor/stability-points.html}}
-            </div>
-            <div class="header-widget-row">
-              <div class="widget field-row">
-                <div class="field-label">
+              <div class="widget header-widget threads-widget">
+                <div class="header-widget-label">
                   {{localize 'FO.Threads'}}
                 </div>
-                <div class="field-input">
+                <div class="header-widget-value">
                   <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
-              <div class="widget field-row">
-                <div class="field-label">
+              <div class="widget header-widget wyrd-widget">
+                <div class="header-widget-label">
                   {{localize 'FO.Wyrd'}}
                 </div>
-                <div class="field-input">
+                <div class="header-widget-value">
                   <input class="threads" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
                 </div>
               </div>
+              <!-- <div class="header-button-row">
+                <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
+                <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
+              </div> -->
             </div>
           </div>
-          <div class="right-col">
+          <div class="abilities-cell">
             {{> systems/fomoria/templates/actor/abilities.html}}
           </div>
         </div>
-      </div>  
+      </div>
     </div>
+
     <div class="body-section">
       <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="background">
