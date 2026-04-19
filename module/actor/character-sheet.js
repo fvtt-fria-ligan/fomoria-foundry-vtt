@@ -43,6 +43,9 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.boons = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.boon)
       .sort(byName);
+    superData.data.system.clan = superData.data.items
+      .filter(item => item.type === CONFIG.FO.itemTypes.clan)
+      .pop();
     superData.data.system.equipment = superData.data.items
       .filter(item => {
         return (

@@ -1,0 +1,13 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+  {{> systems/fomoria/templates/item/item-sheet-header.html itemType='FOLK'}}
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
+
+  <section class="sheet-body">
+    {{> systems/fomoria/templates/common/description-tab.hbs }} 
+    
+    {{!-- Details Tab --}}
+    <div class="tab" data-group="primary" data-tab="details">
+      {{> systems/fomoria/templates/item/common/base-fields.hbs }}
+    </div>
+  </section>
+</form>

@@ -12,34 +12,39 @@
             <div class="name">
               <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
             </div>
-            <div class="widget field-row">
-              <div class="field-label">
+            <div class="widget linked-item-row">
+              <div class="linked-item-label">
                 {{localize 'FO.Folk'}}
               </div>
-              <div class="field-value">
-                <div class="widget item folk-row" data-item-id="{{data.system.folk._id}}">
-                  <div class="folk-name">{{data.system.folk.name}}</div>
+              <div class="linked-item-value">
+                <div class="widget item" data-item-id="{{data.system.folk._id}}">
+                  <div class="linked-item-name">{{data.system.folk.name}}</div>
                   <div class="item-controls">
                     <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="widget field-row clan-row">
-              <div class="field-label">
-                  {{localize 'FO.Clan'}}
+            <div class="widget linked-item-row">
+              <div class="linked-item-label">
+                {{localize 'FO.Clan'}}
               </div>
-              <div class="field-value">
-                <input class="clan-input" type="text" name="system.clan" value="{{data.system.clan}}" placeholder="" spellcheck="false"/>
+              <div class="linked-item-value">
+                <div class="widget item" data-item-id="{{data.system.clan._id}}">
+                  <div class="linked-item-name">{{data.system.clan.name}}</div>
+                  <div class="item-controls">
+                    <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="widget field-row">
-              <div class="field-label">
+            </div>              
+            <div class="widget linked-item-row">
+              <div class="linked-item-label">
                 {{localize 'FO.Tradition'}}
               </div>
-              <div class="field-value">
-                <div class="widget item folk-row" data-item-id="{{data.system.tradition._id}}">
-                  <div class="folk-name">{{data.system.tradition.name}}</div>
+              <div class="linked-item-value">
+                <div class="widget item" data-item-id="{{data.system.tradition._id}}">
+                  <div class="linked-item-name">{{data.system.tradition.name}}</div>
                   <div class="item-controls">
                     <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
                   </div>

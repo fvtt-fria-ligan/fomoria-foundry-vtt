@@ -438,6 +438,8 @@
   grid-row-end: 2;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell {
+  display: flex;
+  flex-direction: column;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -504,33 +506,47 @@
   margin-bottom: 1px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row {
-  align-items: center;
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row {
   display: flex;
   flex: 0 0 30px;
-  gap: 10px;
-  justify-content: space-around;
   margin-bottom: 5px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .folk-name {
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row .linked-item-label {
+  align-items: center;
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 90px;
+  font-family: "Walter Turncoat";
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row .linked-item-value {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row .linked-item-value .item {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 30px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row .linked-item-value .item .linked-item-name {
   flex: 1;
   font-family: "Pokoljaro";
   font-size: 24px;
-  padding-left: 40px;
-  padding-bottom: 5px;
   text-align: center;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .item-controls {
+.fomoria.sheet.actor.character section.window-content .sheet-header .linked-item-row .linked-item-value .item .item-controls {
   display: flex;
   justify-content: space-around;
   flex: 0 0 40px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .clan {
-  margin-left: 5px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .folk-row .clan .clan-input {
-  text-align: center;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .abilities-wrapper {
   display: flex;

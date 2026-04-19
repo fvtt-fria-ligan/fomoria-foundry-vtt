@@ -17,10 +17,12 @@ FO.actorTypes = {
 FO.itemTypes = {
   armor: "armor",
   boon: "boon",
+  clan: "clan",
   condition: "condition",
   equipment: "equipment",
   feat: "feat",
   folk: "folk",
+  shield: "shield",
   tradition: "tradition",
   weapon: "weapon",
 };
