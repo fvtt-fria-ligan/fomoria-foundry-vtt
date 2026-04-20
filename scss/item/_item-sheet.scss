@@ -37,12 +37,11 @@
           height: 100%;
           margin-left: 5px;
           .name {
-            margin-bottom: $widget-margin;
+            flex: 1;
             input[type="text"].item-name {
               font-family: $name-font;
-              // TODO: fix this
-              // font-size: 40;
-              // line-height: unset;
+              font-size: 30px;
+              height: 100%;
             }
           } 
           .item-type {

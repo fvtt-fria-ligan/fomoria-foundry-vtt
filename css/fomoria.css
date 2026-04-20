@@ -1294,10 +1294,12 @@ a.inline-roll {
   margin-left: 5px;
 }
 .fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .name {
-  margin-bottom: 5px;
+  flex: 1;
 }
 .fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .name input[type=text].item-name {
   font-family: "Pokoljaro";
+  font-size: 30px;
+  height: 100%;
 }
 .fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .item-type {
   align-items: center;

@@ -6,7 +6,7 @@ export class FOItemSheet extends foundry.appv1.sheets.ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fomoria", "sheet", "item"],
       width: 600,
-      height: 600,
+      height: 500,
       tabs: [
         {
           navSelector: ".sheet-tabs",
