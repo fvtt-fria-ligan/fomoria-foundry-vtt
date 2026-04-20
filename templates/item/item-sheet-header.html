@@ -3,11 +3,13 @@
     <div class="widget portrait">
       <img class="portrait" src="{{item.img}}" data-edit="img" title="{{item.name}}"/> 
     </div>
-    <div class="item-type">
-      {{ itemType }}
-    </div>  
+    <div class="header-field-col">
+      <div class="item-type">
+        {{ itemType }}
+      </div>  
+      <div class="widget name">
+        <input class="item-name" type="text" name="name" value="{{item.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
+      </div>    
+    </div>
   </div>
-  <div class="widget name">
-    <input class="item-name" type="text" name="name" value="{{item.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
-  </div>    
 </div>

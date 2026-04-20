@@ -104,7 +104,7 @@
             border: 0px;
             border-radius: 0px;
             color: var(--fo-foreground-color);
-            height: 100%;
+            // height: 100%;
             text-align: center;
             text-transform: uppercase;
             width: 100%;
@@ -131,7 +131,6 @@
         .editor {
             background-color: var(--fo-background-color);
             color: var(--fo-foreground-color);
-
             // font-size: var(--journal-font-size);
             padding: 0 8px;
         }
@@ -162,7 +161,7 @@
             }
             .editor-content {
                 font-family: "Amaranth";
-                font-size: 20px;
+                font-size: 16px;
             }
         }
         .editor,
@@ -232,7 +231,7 @@
                 color: var(--fo-background-color);
                 display: flex;
                 flex-direction: column;
-                flex: 1;
+                flex: 0 0 200px;
                 font-family: $label-font;
                 justify-content: center;
                 text-align: center;

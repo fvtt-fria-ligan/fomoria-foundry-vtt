@@ -138,7 +138,6 @@
   border: 0px;
   border-radius: 0px;
   color: var(--fo-foreground-color);
-  height: 100%;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
@@ -190,7 +189,7 @@
 }
 .fomoria.sheet section.window-content .editor .editor-content {
   font-family: "Amaranth";
-  font-size: 20px;
+  font-size: 16px;
 }
 .fomoria.sheet section.window-content .editor,
 .fomoria.sheet section.window-content .editor-content {
@@ -245,7 +244,7 @@
 }
 .fomoria.sheet section.window-content .field-row {
   display: flex;
-  flex: 0 0 38px;
+  flex: 0 0 30px;
   margin-bottom: 5px;
 }
 .fomoria.sheet section.window-content .field-row .field-label {
@@ -254,7 +253,7 @@
   color: var(--fo-background-color);
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 0 0 200px;
   font-family: "Walter Turncoat";
   justify-content: center;
   text-align: center;
@@ -1264,45 +1263,55 @@ a.inline-roll {
   padding: 1px;
 }
 
-.fomoria.sheet.item .cyber .sheet-header .portrait-row .item-type {
-  color: var(--fo-cybertext-color);
-}
-.fomoria.sheet.item .sheet-header {
+.fomoria.sheet.item section.window-content .sheet-header {
   display: flex;
   flex-direction: column;
-  width: 385px;
+  margin-bottom: 10px;
 }
-.fomoria.sheet.item .sheet-header .portrait-row {
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row {
   display: flex;
-  flex: 0 0 200px;
+  flex: 0 0 100px;
   margin-bottom: 5px;
+  width: 100%;
 }
-.fomoria.sheet.item .sheet-header .portrait-row div.portrait {
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row div.portrait {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 0 0 200px;
+  flex: 0 0 100px;
 }
-.fomoria.sheet.item .sheet-header .portrait-row div.portrait img.portrait {
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row div.portrait img.portrait {
   border: none;
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
 }
-.fomoria.sheet.item .sheet-header .portrait-row .item-type {
-  align-items: center;
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col {
   display: flex;
+  flex-direction: column;
   flex: 1;
-  font-family: "Pokoljaro";
-  font-size: 48px;
-  justify-content: center;
+  height: 100%;
+  margin-left: 5px;
 }
-.fomoria.sheet.item .sheet-header .name {
-  flex: 0 0 38px;
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .name {
   margin-bottom: 5px;
 }
-.fomoria.sheet.item .sheet-header .name input[type=text] {
-  height: 38px;
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .name input[type=text].item-name {
+  font-family: "Pokoljaro";
+}
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .item-type {
+  align-items: center;
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  display: flex;
+  font-family: "Walter Turncoat";
+  justify-content: center;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.fomoria.sheet.item section.window-content .sheet-header .portrait-row .header-field-col .description-wrapper {
+  flex: 1;
+  width: 100%;
 }
 
 /*# sourceMappingURL=fomoria.css.map */

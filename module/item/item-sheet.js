@@ -11,7 +11,7 @@ export class FOItemSheet extends foundry.appv1.sheets.ItemSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "data",
+          initial: "details",
         },
       ],
     });

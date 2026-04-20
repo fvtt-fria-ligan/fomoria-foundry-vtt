@@ -1,43 +1,66 @@
 .fomoria.sheet.item {
-  .cyber .sheet-header .portrait-row .item-type {
-    color: var(--fo-cybertext-color);
-  }
-  .sheet-header {
-    display: flex;
-    flex-direction: column;
-    width: 385px;
-
-    .portrait-row {
+  section.window-content {  
+    // .sheet-body {
+    //   border: none;
+    //   border-bottom-width: 0px;
+    //   border-top-width: 0px;
+    //   border-left-width: 0px;
+    //   border-right-width: 0px;
+    // }
+    .sheet-header {
       display: flex;
-      flex: 0 0 200px;
-      margin-bottom: $widget-margin;
-      div.portrait {
-        align-items: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+      // width: 385px;
+
+      .portrait-row {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex: 0 0 200px;
-        img.portrait {
-          border: none;
-          height: 200px;
-          width: 200px;
+        flex: 0 0 100px;
+        margin-bottom: $widget-margin;
+        width: 100%;
+        div.portrait {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 0 0 100px;
+          img.portrait {
+            border: none;
+            height: 100px;
+            width: 100px;
+          }
+        }  
+        .header-field-col {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          height: 100%;
+          margin-left: 5px;
+          .name {
+            margin-bottom: $widget-margin;
+            input[type="text"].item-name {
+              font-family: $name-font;
+              // TODO: fix this
+              // font-size: 40;
+              // line-height: unset;
+            }
+          } 
+          .item-type {
+            align-items: center;
+            background-color: var(--fo-foreground-color);
+            color: var(--fo-background-color);
+            display: flex;
+            font-family: $label-font;
+            justify-content: center;
+            margin-bottom: $widget-margin;
+            text-transform: uppercase;
+          }
+          .description-wrapper {          
+            flex: 1;
+            width: 100%;
+          }
         }
-      }  
-      .item-type {
-        align-items: center;
-        display: flex;
-        flex: 1;
-        font-family: $name-font;
-        font-size: 48px;
-        justify-content: center;
       }
     }
-    .name {
-      flex: 0 0 $field-height;
-      margin-bottom: $widget-margin;
-      input[type="text"] {
-        height: $field-height;
-      }
-    }    
   }
 }
