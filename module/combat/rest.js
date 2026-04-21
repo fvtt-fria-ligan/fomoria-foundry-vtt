@@ -2,18 +2,16 @@ import { FO } from "../config.js";
 import { pluralize } from "../utils.js";
 
 
-export const rollRest = async (actor, restLength, starving) => {
+export async function rollRest(actor, restLength, starving) {
   if (starving) {
     await rollStarvation(actor);      
   } else if (restLength === "short") {
-    await rollHealHitPoints(actor, "d4");
+    await rollHeal(actor, "d4");
   } else if (restLength === "long") {
-    await rollHealHitPoints(actor, "d6");
+    await rollHeal(actor, "d6");
     if (actor.system.threads.value === 0) {
       await rollThreads(actor);
     }
-    await resetFumbles(actor);
-    await unburnApps(actor);
   }
 };
 
@@ -30,23 +28,35 @@ async function rollStarvation(actor) {
   await actor.update({ ["system.hitPoints.value"]: newHP });
 };
 
-async function rollHealHitPoints(actor, dieRoll) {
-  const roll = new Roll(dieRoll);
-  await roll.evaluate();
-  const flavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${roll.total} ${pluralize("FO.HitPoint", "FO.HitPoints", roll.total)}`;
-  await roll.toMessage({
-    flavor,
+async function rollHeal(actor, dieRoll) {
+  const hp = new Roll(dieRoll);
+  await hp.evaluate();
+  const hpFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${hp.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hp.total)}`;
+  await hp.toMessage({
+    hpFlavor,
+    speaker: ChatMessage.getSpeaker({ actor: actor }),
+  });
+
+  const sp = new Roll(dieRoll);
+  await sp.evaluate();
+  const spFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${sp.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", sp.total)}`;
+  await sp.toMessage({
+    spFlavor,
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
 
   const newHP = Math.min(
     actor.system.hitPoints.max,
-    actor.system.hitPoints.value + roll.total
+    actor.system.hitPoints.value + hp.total
   );
-  await actor.update({ ["system.hitPoints.value"]: newHP });
+  const newSP = Math.min(
+    actor.system.stabilityPoints.max,
+    actor.system.stabilityPoints.value + sp.total
+  );
+  await actor.update({ ["system.hitPoints.value"]: newHP, ["system.stabilityPoints.value"]: newSP });
 };
 
-const rollThreads = async (actor) => {
+async function rollThreads(actor) {
   const classItem = actor.items.filter(x => x.type === FO.itemTypes.class).pop();
   if (!classItem || !classItem.system.threads) {
     return;
@@ -57,19 +67,4 @@ const rollThreads = async (actor) => {
     speaker: ChatMessage.getSpeaker({ actor }),
   })
   await actor.update({ ["system.threads"]: { max: roll.total, value: roll.total } });
-};
-
-const resetFumbles = async (actor) => {
-  await actor.update({ 
-    ["system.appFumbleOn"]: 1,
-    ["system.boonFumbleOn"]: 1,
-  });
-};
-
-const unburnApps = async (actor) => {
-  for (const item of actor.items) {
-    if (item.type === FO.itemTypes.app && item.system.burned) {
-      await item.update({ ["system.burned"]: false});
-    }
-  }
-};
+}
