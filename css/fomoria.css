@@ -347,6 +347,9 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+.fomoria.sheet.actor section.window-content .sheet-header input[type=text].character-name {
+  height: 100%;
+}
 .fomoria.sheet.actor section.window-content .sheet-body .item-row {
   display: flex;
   flex: 1;
@@ -443,6 +446,7 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  margin-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -582,6 +586,9 @@
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-score {
   flex: 1;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-score input {
+  height: 100%;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-body {
   height: calc(100% - 33px);

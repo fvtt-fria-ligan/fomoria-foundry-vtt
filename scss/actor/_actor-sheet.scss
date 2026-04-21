@@ -61,7 +61,10 @@
             padding-right: 2px;
           }
         }
-      }        
+      }  
+      input[type=text].character-name {
+        height: 100%;
+      }      
     }
     .sheet-body {
       .item-row {
