@@ -1,61 +1,19 @@
 <form class="{{cssClass}}" autocomplete="off">
   <div class="big-col">
-    <div class="header-section">
-      <div class="sheet-header">
-        <div class="header-grid">
-          <div class="portrait-cell">
-            <div class="widget portrait">
-              <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
-            </div>
+    <div class="sheet-header">
+      <div class="header-grid">
+        <div class="portrait-cell">
+          <div class="widget portrait">
+            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>          
           </div>
-          <div class="name-fields-cell">
-            <div class="name">
-              <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
-            </div>
-            <div class="widget linked-item-row">
-              <div class="linked-item-label">
-                {{localize 'FO.Folk'}}
-              </div>
-              <div class="linked-item-value">
-                <div class="widget item" data-item-id="{{data.system.folk._id}}">
-                  <div class="linked-item-name">{{data.system.folk.name}}</div>
-                  <div class="item-controls">
-                    <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget linked-item-row">
-              <div class="linked-item-label">
-                {{localize 'FO.Clan'}}
-              </div>
-              <div class="linked-item-value">
-                <div class="widget item" data-item-id="{{data.system.clan._id}}">
-                  <div class="linked-item-name">{{data.system.clan.name}}</div>
-                  <div class="item-controls">
-                    <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>              
-            <div class="widget linked-item-row">
-              <div class="linked-item-label">
-                {{localize 'FO.Tradition'}}
-              </div>
-              <div class="linked-item-value">
-                <div class="widget item" data-item-id="{{data.system.tradition._id}}">
-                  <div class="linked-item-name">{{data.system.tradition.name}}</div>
-                  <div class="item-controls">
-                    <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>            
+        </div>
+        <div class="name-fields-cell">
+          <div class="name">
+            <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
           </div>
-          <div class="hp-fields-cell">
-            <div class="header-widget-row">
+          <div class="cols">
+            <div class="col">
               {{> systems/fomoria/templates/actor/hit-points.html}}
-              {{> systems/fomoria/templates/actor/stability-points.html}}
               <div class="widget header-widget threads-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Threads'}}
@@ -64,6 +22,14 @@
                   <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
+            <!-- <div class="header-button-row">
+              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
+              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
+            </div> -->
+
+            </div>
+            <div class="col">
+              {{> systems/fomoria/templates/actor/stability-points.html}}
               <div class="widget header-widget wyrd-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Wyrd'}}
@@ -71,16 +37,30 @@
                 <div class="header-widget-value">
                   <input class="threads" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
                 </div>
-              </div>
-              <!-- <div class="header-button-row">
-                <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
-                <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
-              </div> -->
+              </div>                
             </div>
           </div>
-          <div class="abilities-cell">
-            {{> systems/fomoria/templates/actor/abilities.html}}
+          <div class="light-hours-row">
+            <div class="label">{{localize 'FO.HoursOfLight'}}</div>
+            <div class="light-bullets">
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+              <div class="light-bullet light-bullet-1">◇</div>
+            </div>
           </div>
+
+        </div>
+        <div class="abilities-cell">
+          {{> systems/fomoria/templates/actor/abilities.html}}
         </div>
       </div>
     </div>
@@ -93,14 +73,8 @@
         <a class="item" data-tab="combat">
           <div class="tab-label">{{localize 'FO.Combat'}}</div>
         </a>
-        <a class="item" data-tab="conditions">
-          <div class="tab-label">{{localize 'FO.Conditions'}}</div>
-        </a>
-        <a class="item" data-tab="feats">
-          <div class="tab-label">{{localize 'FO.Feats'}}</div>          
-        </a>
-        <a class="item" data-tab="boons">
-          <div class="tab-label">{{localize 'FO.Boons'}}</div>          
+        <a class="item" data-tab="special">
+          <div class="tab-label">{{localize 'FO.Special'}}</div>          
         </a>
         <a class="item" data-tab="gear">
           <div class="tab-label">{{localize 'FO.Gear'}}</div>          
@@ -110,9 +84,7 @@
       <div class="sheet-body">
         {{> systems/fomoria/templates/actor/background-tab.html}}
         {{> systems/fomoria/templates/actor/combat-tab.html}}
-        {{> systems/fomoria/templates/actor/conditions-tab.html}}
-        {{> systems/fomoria/templates/actor/feats-tab.html}}
-        {{> systems/fomoria/templates/actor/boons-tab.html}}
+        {{> systems/fomoria/templates/actor/special-tab.html}}
         {{> systems/fomoria/templates/actor/gear-tab.html}}
       </div>      
     </div>

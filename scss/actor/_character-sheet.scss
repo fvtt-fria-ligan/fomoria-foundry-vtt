@@ -8,6 +8,7 @@
     // maybe for scroll-bar futzing
     padding-right: 10px;
     overflow: hidden;
+
     .widget-row {
       display: flex;
       .widget {
@@ -20,14 +21,14 @@
     }
     .sheet-header {
       flex-direction: column;
-      height: 280px;
-      margin-bottom: 4px;
+      height: 210px;
+      margin-bottom: 10px;
       width: 100%;
 
       .header-grid {
         display: grid;
-        grid-template-columns: 200px 1fr 88px;
-        grid-template-rows: 200px 1ft;
+        grid-template-columns: 180px 1fr 88px;
+        grid-template-rows: 200px;
         width: 100%;
         .portrait-cell {
           grid-column-start: 1;
@@ -45,6 +46,35 @@
           margin-top: 5px;
           padding-left: 5px;
           padding-right: 5px;
+          .cols {
+            gap: 10px;
+            .col {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+            }
+          }
+          // .hp-widget {
+          //   flex: 0 0 170px;
+          //   .header-widget-label {
+          //     flex: 0 0 50px;
+          //   }
+          // }
+          
+          // .sp-widget {
+          //   flex: 0 0 170px;
+          //   .header-widget-label {
+          //     flex: 0 0 50px;
+          //   }
+          // }
+
+          // .threads-widget {
+          //   flex: 0 0 134px;
+          // }
+
+          // .wyrd-widget {
+          //   flex: 0 0 134px;
+          // }
         }
         .abilities-cell {
           grid-column-start: 3;
@@ -52,46 +82,12 @@
           grid-row-start: 1;
           grid-row-end: 3;
         }
-        .hp-fields-cell {
-          grid-column-start: 1;
-          grid-column-end: 3;
-          grid-row-start: 2;
-          grid-row-end: 3;
-          padding-right: 5px;
-
-          .header-widget-row {
-            justify-content: space-between;
-          }
-
-          .hp-widget {
-            flex: 0 0 170px;
-            .header-widget-label {
-              flex: 0 0 50px;
-            }
-          }
-          
-          .sp-widget {
-            flex: 0 0 170px;
-            .header-widget-label {
-              flex: 0 0 50px;
-            }
-          }
-
-          .threads-widget {
-            flex: 0 0 134px;
-          }
-
-          .wyrd-widget {
-            flex: 0 0 134px;
-          }
-
-        }
       }
 
       .portrait {
         display: flex;
-        flex: 0 0 $portrait-size;
-        height: $portrait-size;
+        flex: 0 0 180px;
+        height: 180px;
         justify-content: center;
         img {
           height: 100%;
@@ -116,59 +112,35 @@
         width: 100%;
       }
 
-      .linked-item-row {
-        display: flex;
-        flex: 0 0 30px;
-        margin-bottom: $widget-margin;
-        width: 100%;
-        .linked-item-label {
-          align-items: center;
-          background-color: var(--fo-foreground-color);
-          color: var(--fo-background-color);
-          display: flex;
-          flex-direction: column;
-          flex: 0 0 90px;
+      .light-hours-row {
+        display:flex;
+        margin-top: 5px;
+
+        .label {
           font-family: $label-font;
-          height: 100%;
-          justify-content: center;
-          text-align: center;
-          text-transform: uppercase;
+          font-size: 20px;
+          font-weight: bold;
+          margin-right: 10px;
         }
-        .linked-item-value {
+
+        .light-bullets {
           display: flex;
           flex: 1;
-          height: 100%;
-          align-items: center;
-          .item {
-            align-items: center;
-            display: flex;
-            flex: 1;
-            height: 30px;
-            .linked-item-name {
-              flex: 1;
-              font-family: $name-font;
-              font-size: 24px;
-              // padding-left: 40px;
-              text-align: center;
-            }
-            .item-controls {
-              display: flex;
-              justify-content: space-around;
-              flex: 0 0 40px;
-            }
-
+          .light-bullet {
+            font-size: 20px;
+            margin-left: 5px;
           }
         }
       }
-
       .abilities-wrapper {
         display: flex;
         flex: 0 0 100px;
         flex-direction: column;
       }
+
       .ability-row {
         display: flex;
-        flex: 0 0 37px;
+        flex: 0 0 30px;
         margin-bottom: $widget-margin;
         .ability-label{
           align-items: center;
@@ -195,8 +167,12 @@
         }
         .ability-score {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           input {
-            height: 100%;
+            height: 30px;
           }
         }
       }

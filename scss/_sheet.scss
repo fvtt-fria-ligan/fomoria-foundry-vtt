@@ -253,6 +253,23 @@
             }
         }
 
+        .item-list {
+            .item-name {
+                font-size: 16px;
+                // font-weight: bold;
+            }
+        }
+
+        .bullet {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            font-family: "Agathodaimon";
+            font-size: 20px;
+            justify-content: center;
+            padding: 2px;
+        }
+
         .sheet-body {
             border-bottom: $border-width solid var(--fo-foreground-color);
             border-bottom-left-radius: 0px;

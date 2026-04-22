@@ -1,4 +1,46 @@
 <div class="tab background-tab" data-group="primary" data-tab="background">
+  <div class="folk-row">
+    <div class="widget linked-item-widget">
+      <div class="linked-item-label">
+        {{localize 'FO.Folk'}}
+      </div>
+      <div class="linked-item-value">
+        <div class="widget item" data-item-id="{{data.system.folk._id}}">
+          <div class="linked-item-name">{{data.system.folk.name}}</div>
+          <div class="item-controls">
+            <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="widget linked-item-widget">
+      <div class="linked-item-label">
+        {{localize 'FO.Clan'}}
+      </div>
+      <div class="linked-item-value">
+        <div class="widget item" data-item-id="{{data.system.clan._id}}">
+          <div class="linked-item-name">{{data.system.clan.name}}</div>
+          <div class="item-controls">
+            <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>              
+    <div class="widget linked-item-widget">
+      <div class="linked-item-label">
+        {{localize 'FO.Tradition'}}
+      </div>
+      <div class="linked-item-value">
+        <div class="widget item" data-item-id="{{data.system.tradition._id}}">
+          <div class="linked-item-name">{{data.system.tradition.name}}</div>
+          <div class="item-controls">
+            <a class="item-control item-edit"><i class="fas fa-edit"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>            
+
+  </div>
   {{editor data.system.description target="system.description"
   button=true owner=owner editable=true engine="prosemirror"}}        
 </div>

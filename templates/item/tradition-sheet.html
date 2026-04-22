@@ -1,10 +1,147 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{> systems/fomoria/templates/item/item-sheet-header.html itemType='TRADITION'}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">{{localize 'FO.Description'}}</a>    
-  </nav>
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
   <div class="sheet-body">
     {{> systems/fomoria/templates/item/item-description-tab.html }}
+    <div class="tab data-tab" data-group="primary" data-tab="details">
+      <div class="fields">
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Silver'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.silver" value="{{data.system.silver}}" spellcheck="false"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.HitPoints'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.hitPoints" value="{{data.system.hitPoints}}" spellcheck="false"/>
+          </div>
+        </div>     
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.StabilityPoints'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.stabilityPoints" value="{{data.system.stabilityPoints}}" spellcheck="false"/>
+          </div>
+        </div>     
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Threads'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.threads" value="{{data.system.threads}}" spellcheck="false"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Strength'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.strength" value="{{data.system.strength}}" spellcheck="false"/>
+          </div>
+        </div>                   
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Agility'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.agility" value="{{data.system.agility}}" spellcheck="false"/>
+          </div>
+        </div>                   
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Presence'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.presence" value="{{data.system.presence}}" spellcheck="false"/>
+          </div>
+        </div>                   
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Toughness'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.toughness" value="{{data.system.toughness}}" spellcheck="false"/>
+          </div>
+        </div>                   
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Occult'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.occult" value="{{data.system.occult}}" spellcheck="false"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.WeaponTable'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.weaponTable" value="{{data.system.weaponTable}}" spellcheck="false"/>
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.ArmorTable'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.armorTable" value="{{data.system.armorTable}}" spellcheck="false"/>
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Rolls'}}
+          </div>
+          <div class="field-value">
+            <textarea class="field-input" name="system.rolls" rows="4">{{data.system.rolls}}</textarea>
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Items'}}
+          </div>
+          <div class="field-value">
+            <textarea class="field-input" name="system.items" rows="4">{{data.system.items}}</textarea>
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.OnlyApps'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="checkbox" name="system.onlyApps" {{checked data.system.onlyApps}} />
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.OnlyCybertech'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="checkbox" name="system.onlyCybertech" {{checked data.system.onlyCybertech}} />
+          </div>
+        </div>          
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.OnlyNano'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="checkbox" name="system.onlyNano" {{checked data.system.onlyNano}} />
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.ActorCreateMacro'}}
+          </div>
+          <div class="field-value">
+            <textarea name="system.actorCreateMacro" rows="4">{{data.system.actorCreateMacro}}</textarea> 
+          </div>
+        </div>
+      </div>
+    </div>      
   </div>
 </form>
-

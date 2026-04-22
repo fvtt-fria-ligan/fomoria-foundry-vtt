@@ -1,7 +1,58 @@
 .sheet-body {
   .background-tab {
-    background-color: var(--fo-foreground-color);
-    color: var(--fo-background-color);
+    // background-color: var(--fo-foreground-color);
+    // color: var(--fo-background-color);
     height: 100%;
+    .folk-row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px;
+      width: 100%;
+      .linked-item-widget {
+        display: flex;
+        .linked-item-label {
+          align-items: center;
+          background-color: var(--fo-foreground-color);
+          color: var(--fo-background-color);
+          display: flex;
+          flex-direction: column;
+          // flex: 0 0 90px;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: $label-font;
+          height: 100%;
+          justify-content: center;
+          text-align: center;
+          text-transform: uppercase;
+        }
+        .linked-item-value {
+          display: flex;
+          flex: 0 0 150px;
+          height: 100%;
+          align-items: center;
+          .item {
+            align-items: center;
+            display: flex;
+            flex: 1;
+            height: 30px;
+            .linked-item-name {
+              flex: 1;
+              font-family: $name-font;
+              font-size: 24px;
+              // padding-left: 40px;
+              text-align: center;
+            }
+            .item-controls {
+              display: flex;
+              justify-content: space-around;
+              flex: 0 0 20px;
+            }
+          }
+        }
+      }
+    }
+    .editor {
+      // border: 1px solid var(--fo-foreground-color);
+    }
   }
 }

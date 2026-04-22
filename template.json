@@ -29,6 +29,7 @@
           "value": 0
         }
       },
+      "hoursOfLight": 0,
       "silver": 0,
       "stabilityPoints": {
         "max": 1,
@@ -104,6 +105,20 @@
       }
     },
     "folk": {
+      "description": ""
+    },
+    "equipment": {
+      "templates": ["baseEquipment"]
+    },
+    "feat": {
+      "description": "",
+      "rollMacro": "",
+      "rollLabel": ""
+    },
+    "shield": {
+      "templates": ["baseEquipment"]
+    },
+    "tradition": {
       "actorCreateMacro": "",
       "agility": "3d6",
       "armorTable": "1d3",
@@ -119,17 +134,6 @@
       "strength": "3d6",
       "toughness": "3d6",
       "weaponTable": "1d12"
-    },
-    "equipment": {
-      "templates": ["baseEquipment"]
-    },
-    "feat": {
-      "description": "",
-      "rollMacro": "",
-      "rollLabel": ""
-    },
-    "shield": {
-      "templates": ["baseEquipment"]
     },
     "weapon": {
       "templates": ["baseEquipment"],
