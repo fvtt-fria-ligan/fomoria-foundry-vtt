@@ -1,6 +1,7 @@
 import { showAddItemDialog } from "./add-item-dialog.js";
 import { showAttackDialog } from "../combat/attack-dialog.js";
-import { rollBattered } from "../combat/battered.js";
+import { rollDismalBreakdown } from "../combat/breakdown.js";
+import { rollDireInjury } from "../combat/injury.js";
 import { showDefendDialog } from "../combat/defend-dialog.js";
 import { rollPartyInitiative } from "../combat/initiative.js";
 import { showRestDialog } from "../combat/rest-dialog.js";

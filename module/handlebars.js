@@ -4,6 +4,7 @@ export const registerHandlebarsPartials = async () => {
     "systems/fomoria/templates/actor/background-tab.html",
     "systems/fomoria/templates/actor/boons-tab.html",
     "systems/fomoria/templates/actor/combat-tab.html",
+    "systems/fomoria/templates/actor/conditions-tab.html",
     "systems/fomoria/templates/actor/gear-tab.html",
     "systems/fomoria/templates/actor/feats-tab.html",
     "systems/fomoria/templates/actor/hit-points.html",

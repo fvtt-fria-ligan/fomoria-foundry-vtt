@@ -1,13 +1,66 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{> systems/fomoria/templates/item/item-sheet-header.html itemType='CONDITION'}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="description">{{localize 'FO.Description'}}</a>    
-  </nav>
+  {{> systems/fomoria/templates/item/item-sheet-tabs.html }}
   <div class="sheet-body">
     {{> systems/fomoria/templates/item/item-description-tab.html }}
     <div class="tab data-tab" data-group="primary" data-tab="details">
       <div class="fields">
-        {{> systems/fomoria/templates/item/item-base-fields.html }} 
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.DailyHitPointDamage'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.dailyHitPointDamage" value="{{data.system.dailyHitPointDamage}}"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.DailyStabilityPointDamage'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.dailyStabilityPointDamage" value="{{data.system.dailyStabilityPointDamage}}"/>
+          </div>
+        </div>
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Strength'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="number" name="system.abilityModifiers.strength" value="{{data.system.abilityModifiers.strength}}"/>
+          </div>
+        </div>        
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Agility'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="number" name="system.abilityModifiers.agility" value="{{data.system.abilityModifiers.agility}}"/>
+          </div>
+        </div>        
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Presence'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="number" name="system.abilityModifiers.presence" value="{{data.system.abilityModifiers.presence}}"/>
+          </div>
+        </div>        
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Toughness'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="number" name="system.abilityModifiers.toughness" value="{{data.system.abilityModifiers.toughness}}"/>
+          </div>
+        </div>        
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.Occult'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="number" name="system.abilityModifiers.occult" value="{{data.system.abilityModifiers.occult}}"/>
+          </div>
+        </div>        
       </div>
     </div>      
   </div>

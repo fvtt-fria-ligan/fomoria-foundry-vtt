@@ -92,7 +92,16 @@
       "description": ""
     },
     "condition": {
-      "description": ""
+      "description": "",
+      "dailyHitPointDamage": "",
+      "dailyStabilityPointDamage": "",
+      "abilityModifiers": {
+        "strength": 0,
+        "agility": 0,
+        "presence": 0,
+        "toughness": 0,
+        "occult": 0
+      }
     },
     "folk": {
       "actorCreateMacro": "",
