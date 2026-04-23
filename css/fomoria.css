@@ -287,7 +287,9 @@
   font-family: "Agathodaimon";
   font-size: 20px;
   justify-content: center;
-  padding: 2px;
+  padding-left: 2px;
+  padding-right: 5px;
+  padding-top: 4px;
 }
 .fomoria.sheet section.window-content .sheet-body {
   border-bottom: 1px solid var(--fo-foreground-color);
@@ -327,25 +329,24 @@
 }
 .fomoria.sheet.actor section.window-content .sheet-header .header-widget {
   display: flex;
-  flex: 1;
-  width: 100%;
 }
 .fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-label {
   align-items: center;
   background-color: var(--fo-foreground-color);
   color: var(--fo-background-color);
   display: flex;
-  flex: 0 0 80px;
   font-family: "Walter Turncoat";
   height: 30px;
+  min-width: 60px;
   justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: center;
   text-transform: uppercase;
 }
 .fomoria.sheet.actor section.window-content .sheet-header .header-widget .header-widget-value {
   align-items: center;
   display: flex;
-  flex: 1;
   height: 30px;
   justify-content: center;
 }
@@ -558,6 +559,31 @@
   flex-direction: column;
   gap: 10px;
 }
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .cols .left {
+  align-items: end;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .hp-widget {
+  width: 174px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .sp-widget {
+  width: 174px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .threads-widget {
+  border-radius: 2px;
+  width: 134px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .threads-widget input {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .wyrd-widget {
+  border-radius: 2px;
+  width: 115px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .name-fields-cell .wyrd-widget input {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+}
 .fomoria.sheet.actor.character section.window-content .sheet-header .header-grid .abilities-cell {
   grid-column-start: 3;
   grid-column-end: 4;
@@ -634,6 +660,7 @@
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row {
   display: flex;
+  justify-content: center;
   margin-top: 5px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row .label {
@@ -796,17 +823,23 @@
   width: 100%;
   overflow: hidden;
 }
-.gear-tab .equipment.item-list, .gear-tab .cybertech.item-list {
-  overflow: auto;
-  display: grid;
+.gear-tab .equipment.item-list {
   column-gap: 20px;
-  min-height: 60px;
+  display: grid;
+  flex: 1;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto-fill, 50px);
-  row-gap: 2px;
+  row-gap: 5px;
+  overflow: auto;
 }
-.gear-tab .equipment.item-list {
-  flex: 1;
+.gear-tab .equipment.item-list .equipment-row {
+  align-items: center;
+  height: 30px;
+  border: 1px solid red;
+}
+.gear-tab .equipment.item-list .equipment-row .item .item-name {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .special-tab {
@@ -821,6 +854,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
   text-decoration: underline;
 }
 .special-tab .no-boons {

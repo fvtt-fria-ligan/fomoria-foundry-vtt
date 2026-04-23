@@ -30,7 +30,6 @@
     .add-item-row {
       flex: 1;
       padding-left: 5px;
-      // padding-right: 10px;
     }
   }
   .equipment-wrapper {
@@ -40,16 +39,28 @@
     width: 100%;
     overflow: hidden;
   }
-  .equipment.item-list, .cybertech.item-list {
-    overflow: auto;
-    display: grid;
+  .equipment.item-list {
     column-gap: 20px;
-    min-height: 60px;
+    display: grid;
+    flex: 1;
+    // grid-auto-flow: row;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(auto-fill, 50px);
-    row-gap: calc($border-width * 2);
-  }
-  .equipment.item-list {
-    flex: 1;
+    // min-height: 60px;
+    row-gap: 5px;
+    overflow: auto;
+
+    .equipment-row {
+      align-items: center;
+      height: 30px;
+      border: 1px solid red;
+      
+      .item {
+          .item-name {
+              font-size: 20px;
+              font-weight: bold;
+          }
+      }    
+    }
   }
 }

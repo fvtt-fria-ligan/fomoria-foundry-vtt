@@ -121,7 +121,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);
     const attr = "system.quantity";
-    const currQuantity = getProperty(item, attr);
+    const currQuantity = foundry.utils.getProperty(item, attr);
     return item.update({ [attr]: currQuantity + 1 });
   }
 
@@ -136,9 +136,9 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);
     const attr = "system.quantity";
-    const currQuantity = getProperty(item, attr);
-    // can't reduce quantity below one
-    if (currQuantity > 1) {
+    const currQuantity = foundry.utils.getProperty(item, attr);
+    // can't reduce quantity below zero
+    if (currQuantity > 0) {
       return item.update({ [attr]: currQuantity - 1 });
     }
   }

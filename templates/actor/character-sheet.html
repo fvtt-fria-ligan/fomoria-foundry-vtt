@@ -12,7 +12,7 @@
             <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
           </div>
           <div class="cols">
-            <div class="col">
+            <div class="col left">
               {{> systems/fomoria/templates/actor/hit-points.html}}
               <div class="widget header-widget threads-widget">
                 <div class="header-widget-label">
@@ -22,13 +22,8 @@
                   <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
-            <!-- <div class="header-button-row">
-              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
-              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
-            </div> -->
-
             </div>
-            <div class="col">
+            <div class="col right">
               {{> systems/fomoria/templates/actor/stability-points.html}}
               <div class="widget header-widget wyrd-widget">
                 <div class="header-widget-label">
@@ -37,9 +32,14 @@
                 <div class="header-widget-value">
                   <input class="threads" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
                 </div>
-              </div>                
+              </div>              
+
             </div>
           </div>
+            <!-- <div class="header-button-row">
+              <button type="button" class="sheet-button big-button level-up-button">{{ localize "FO.LevelUp" }}</button>
+              <button type="button" class="sheet-button big-button reboot-button">{{ localize "FO.Reroll" }}</button>
+            </div> -->
           {{> systems/fomoria/templates/actor/hours-of-light.hbs}}
         </div>
         <div class="abilities-cell">

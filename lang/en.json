@@ -86,6 +86,7 @@
   "FO.FumbleOn": "Fumble on",
   "FO.ThreadsHelpHtml":  "<ul><li>Deal maximum damage<li>Reroll a dice roll<li>Lower damage taken by d6<li>Neutralize a Crit or Fumble<li>Lower one test's DR by -4 (before rolling)</ul>",
   "FO.Gear": "Gear",
+  "FO.HasQuantity": "Has quantity",
   "FO.Heal": "Heal",
   "FO.Hit": "Hit",
   "FO.HitPoint": "Hit Point",
