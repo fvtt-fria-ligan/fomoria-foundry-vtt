@@ -6,6 +6,7 @@ export const registerHandlebarsPartials = async () => {
     "systems/fomoria/templates/actor/combat-tab.html",
     "systems/fomoria/templates/actor/conditions-tab.html",
     "systems/fomoria/templates/actor/gear-tab.html",
+    "systems/fomoria/templates/actor/hours-of-light.hbs",
     "systems/fomoria/templates/actor/feats-tab.html",
     "systems/fomoria/templates/actor/hit-points.html",
     "systems/fomoria/templates/actor/special-tab.html",
@@ -46,4 +47,13 @@ export const registerHandlebarsHelpers = () => {
   Handlebars.registerHelper("ceil", function (num) {
     return Math.ceil(num);
   });
+
+  Handlebars.registerHelper("times", function (n, block) {
+    let accum = "";
+    for (let i = 0; i < n; i++) {
+      accum += block.fn(i);
+    }
+    return accum;
+  });
+
 }

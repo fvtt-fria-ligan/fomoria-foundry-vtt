@@ -1,0 +1,16 @@
+<div class="light-hours-row">
+    <div class="label">{{localize 'FO.HoursOfLight'}}</div>
+    <ul class="light-bullets">
+        {{#times 13}}
+        <li>
+            <label>
+                <input type="radio" name="system.hoursOfLight" value="{{this}}"
+                    data-dtype="Number" {{#ifEq ../data.system.hoursOfLight
+                    this}}checked{{/ifEq}}/>
+                <span>{{this}}</span>
+            </label>
+        </li>
+        {{/times}}
+    </ul>              
+</div>
+

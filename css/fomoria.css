@@ -589,24 +589,6 @@
   margin-bottom: 1px;
   width: 100%;
 }
-.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row {
-  display: flex;
-  margin-top: 5px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row .label {
-  font-family: "Walter Turncoat";
-  font-size: 20px;
-  font-weight: bold;
-  margin-right: 10px;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row .light-bullets {
-  display: flex;
-  flex: 1;
-}
-.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row .light-bullets .light-bullet {
-  font-size: 20px;
-  margin-left: 5px;
-}
 .fomoria.sheet.actor.character section.window-content .sheet-header .abilities-wrapper {
   display: flex;
   flex: 0 0 100px;
@@ -649,6 +631,53 @@
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-score input {
   height: 30px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row {
+  display: flex;
+  margin-top: 5px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row .label {
+  font-family: "Walter Turncoat";
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+  float: left;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets li {
+  float: left;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 17px;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets label input[type=radio] {
+  display: none;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets input[type=radio]:checked + span {
+  background: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  border: none;
+}
+.fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row ul.light-bullets label span {
+  border: 1px solid var(--fo-foreground-color);
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 8pt;
+  left: 0;
+  top: 50%;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-body {
   height: calc(100% - 33px);
@@ -797,6 +826,9 @@
 .special-tab .no-boons {
   margin-left: 10px;
   margin-top: 20px;
+}
+.special-tab .item-row {
+  margin-bottom: 5px;
 }
 .special-tab .item .item-name {
   font-size: 20px;

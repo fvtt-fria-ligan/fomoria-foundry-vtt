@@ -112,26 +112,6 @@
         width: 100%;
       }
 
-      .light-hours-row {
-        display:flex;
-        margin-top: 5px;
-
-        .label {
-          font-family: $label-font;
-          font-size: 20px;
-          font-weight: bold;
-          margin-right: 10px;
-        }
-
-        .light-bullets {
-          display: flex;
-          flex: 1;
-          .light-bullet {
-            font-size: 20px;
-            margin-left: 5px;
-          }
-        }
-      }
       .abilities-wrapper {
         display: flex;
         flex: 0 0 100px;
@@ -174,6 +154,67 @@
           input {
             height: 30px;
           }
+        }
+      }
+
+      .light-hours-row {
+        display: flex;
+        margin-top: 5px;
+
+        .label {
+          font-family: $label-font;
+          font-size: 20px;
+          font-weight: bold;
+          margin-right: 15px;
+        }
+
+        ul.light-bullets {
+          list-style-type: none;
+          margin: 0;
+          margin-top: 3px;
+          padding: 0;
+          float: left;
+
+          li {
+            float: left;
+          }
+
+          label {
+            display: block;
+            padding: 4px;
+            position: relative;
+            padding-left: 17px;
+
+            input[type="radio"] {
+              display: none;
+            }
+          }
+
+          input[type="radio"]:checked + span {
+            background: var(--fo-foreground-color);
+            color: var(--fo-background-color);
+            border: none;
+          }
+
+          label span {
+            border: 1px solid var(--fo-foreground-color);
+            width: 17px;
+            height: 17px;
+            position: absolute;
+            overflow: hidden;
+            line-height: 1.5;
+            text-align: center;
+            border-radius: 100%;
+            font-size: 8pt;
+            // font-family: var(--item-font);
+            left: 0;
+            top: 50%;
+          }
+
+          // li:last-child label span {
+          //   background: var(--foreground-color);
+          //   color: var(--background-color);
+          // }
         }
       }
     }    
