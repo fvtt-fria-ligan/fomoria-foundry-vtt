@@ -55,8 +55,8 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   async addDefaultFolkAndTradition() {
-    const defaultFolk = await fromUuid("Compendium.world.fomoria-items.Item.yWL4ljE4bezK1kRh");
-    const defaultTradition = await fromUuid("Compendium.world.fomoria-items.Item.7Z7BhRgQE4bLDZJa");
+    const defaultFolk = await fromUuid("Compendium.fomoria.fomoria-items.Item.yWL4ljE4bezK1kRh");
+    const defaultTradition = await fromUuid("Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa");
     await this.createEmbeddedDocuments("Item", [simpleData(defaultFolk), simpleData(defaultTradition)]);
   }
 
