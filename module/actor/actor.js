@@ -36,8 +36,8 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   /** @override */
   async _onCreate(data, options, userId) {
     if (data.type === FO.actorTypes.character) {
-      // give Characters a default class
-      this.addDefaultClass();
+      // give Characters a default Folk and Tradition
+      this.addDefaultFolkAndTradition();
     }
     super._onCreate(data, options, userId);
   }
@@ -54,14 +54,10 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     }
   }
 
-  async addDefaultClass() {
-    // add classless folk if a class doesn't already exist
-    if (!this._first(FO.itemTypes.class)) {
-      const clazz = await documentFromPack(FO.packs.items, "Classless Punk");
-      if (clazz) {
-        await this.createEmbeddedDocuments("Item", [simpleData(clazz)]);
-      }  
-    }
+  async addDefaultFolkAndTradition() {
+    const defaultFolk = await fromUuid("Compendium.world.fomoria-items.Item.yWL4ljE4bezK1kRh");
+    const defaultTradition = await fromUuid("Compendium.world.fomoria-items.Item.7Z7BhRgQE4bLDZJa");
+    await this.createEmbeddedDocuments("Item", [simpleData(defaultFolk), simpleData(defaultTradition)]);
   }
 
   // ===== encumbrance =====

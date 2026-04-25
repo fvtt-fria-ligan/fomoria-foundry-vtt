@@ -62,11 +62,9 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     html.find(".add-item-button").on("click", this._addItem.bind(this));
     html.find(".initiative-button").on("click", this._initiative.bind(this));
     html.find(".defend-button").on("click", this._defend.bind(this));
-    html.find(".battered-button").on("click", this._battered.bind(this));
     html.find(".rest-button").on("click", this._rest.bind(this));
     html.find(".tier-radio").click(this._onArmorTierRadio.bind(this));
     html.find(".attack-button").on("click", this._attack.bind(this));
-    html.find(".count-bullets-button").click(this._countBullets.bind(this));
   }  
   
   _onTabClick(event) {
@@ -143,14 +141,6 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     }
   }
 
-  async _countBullets(event) {
-    event.preventDefault();
-    const anchor = $(event.currentTarget);
-    const parent = anchor.parents(".item");
-    const itemId = parent.data("itemId");
-    await countBullets(this.actor, itemId);
-  }
-
   _initiative(event) {
     event.preventDefault();
     rollPartyInitiative(this.actor);
@@ -164,11 +154,6 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   _rest(event) {
     event.preventDefault();
     showRestDialog(this.actor);
-  }
-
-  _battered(event) {
-    event.preventDefault();
-    rollBattered(this.actor);
   }
 
   _attack(event) {
