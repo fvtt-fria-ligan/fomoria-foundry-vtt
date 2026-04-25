@@ -190,31 +190,48 @@
             padding: 4px;
             position: relative;
             padding-left: 17px;
+            transform: rotate(-45deg);
 
             input[type="radio"] {
               display: none;
             }
+
+
+            span {
+              border: 1px solid var(--fo-foreground-color);
+              width: 17px;
+              height: 17px;
+              position: absolute;
+              overflow: hidden;
+              // line-height: 1.5;
+              text-align: center;
+              // border-radius: 100%;
+              font-size: 8pt;
+              left: 0;
+              top: 50%;
+              transform: rotate(45deg);
+            }
+          }
+
+          input.light + span {
+            background: var(--fo-background-color);
+            color: var(--fo-foreground-color);
+          }
+
+          input.dark + span {
+            background: var(--fo-foreground-color);
+            color: var(--fo-background-color);
           }
 
           input[type="radio"]:checked + span {
-            background: var(--fo-foreground-color);
-            color: var(--fo-background-color);
-            border: none;
+            background: var(--fo-background-color);
+            color: var(--fo-foreground-color);
+            // background: var(--fo-foreground-color);
+            // color: var(--fo-background-color);
+            border: 1px solid red;
+            // border-width: 2px;
           }
 
-          label span {
-            border: 1px solid var(--fo-foreground-color);
-            width: 17px;
-            height: 17px;
-            position: absolute;
-            overflow: hidden;
-            line-height: 1.5;
-            text-align: center;
-            border-radius: 100%;
-            font-size: 8pt;
-            left: 0;
-            top: 50%;
-          }
         }
       }
     }    

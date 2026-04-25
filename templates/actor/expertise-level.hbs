@@ -1,0 +1,20 @@
+<div class="expertise-level-row">
+    <ul class="expertise-level-bullets">
+        {{#times 10}}
+            {{#ifGt this 0}}
+                <li>
+                    <label>
+                        <input 
+                            class=""
+                            type="radio" 
+                            name="{{item._id}}.level" 
+                            value="{{this}}"
+                            data-dtype="Number" 
+                            {{#ifEq this item.system.level}}checked{{/ifEq}}/>
+                        <span>{{this}}</span>
+                    </label>
+                </li>            
+            {{/ifGt}}
+        {{/times}}
+    </ul>              
+</div>

@@ -4,9 +4,13 @@
         {{#times 13}}
         <li>
             <label>
-                <input type="radio" name="system.hoursOfLight" value="{{this}}"
-                    data-dtype="Number" {{#ifEq ../data.system.hoursOfLight
-                    this}}checked{{/ifEq}}/>
+                <input 
+                    class="{{#ifLt this ../data.system.hoursOfLight}}light{{/ifLt}} {{#ifGt this ../data.system.hoursOfLight}}dark{{/ifGt}}"
+                    type="radio" 
+                    name="system.hoursOfLight" 
+                    value="{{this}}"
+                    data-dtype="Number" 
+                    {{#ifEq this ../data.system.hoursOfLight}}checked{{/ifEq}}/>
                 <span>{{this}}</span>
             </label>
         </li>

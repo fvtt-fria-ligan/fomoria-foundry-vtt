@@ -61,11 +61,13 @@
       "clan",
       "condition",
       "equipment",
+      "expertise",
       "feat",
       "folk",
       "shield",
       "tradition",
-      "weapon"
+      "weapon",
+      "weaponfeat"
     ],
     "templates": {
       "baseEquipment": {
@@ -105,16 +107,21 @@
         "occult": 0
       }
     },
-    "folk": {
-      "description": ""
-    },
     "equipment": {
       "templates": ["baseEquipment"]
+    },
+    "expertise": {
+      "description": "",
+      "level": 1,
+      "weaponType": "battleaxes"
     },
     "feat": {
       "description": "",
       "rollMacro": "",
       "rollLabel": ""
+    },
+    "folk": {
+      "description": ""
     },
     "shield": {
       "templates": ["baseEquipment"]
@@ -138,15 +145,20 @@
     },
     "weapon": {
       "templates": ["baseEquipment"],
-      "autofire": false,
       "critMultiplier": 2,
       "critOn": 20,
       "damage": "1d2",
+      "isRanged": false,
       "fumbleOn": 1,
       "special": "",
-      "targets": 1,
       "usesAmmo": false,
-      "weaponType": "ranged"
+      "weaponType": ""
+    },
+    "weaponfeat": {
+      "description": "",
+      "rollMacro": "",
+      "rollLabel": "",
+      "weaponType": ""
     }
   }
 }

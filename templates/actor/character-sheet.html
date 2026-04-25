@@ -13,7 +13,7 @@
           </div>
           <div class="cols">
             <div class="col left">
-              {{> systems/fomoria/templates/actor/hit-points.html}}
+              {{> systems/fomoria/templates/actor/hit-points.hbs}}
               <div class="widget header-widget threads-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Threads'}}
@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="col right">
-              {{> systems/fomoria/templates/actor/stability-points.html}}
+              {{> systems/fomoria/templates/actor/stability-points.hbs}}
               <div class="widget header-widget wyrd-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Wyrd'}}
@@ -43,7 +43,7 @@
           {{> systems/fomoria/templates/actor/hours-of-light.hbs}}
         </div>
         <div class="abilities-cell">
-          {{> systems/fomoria/templates/actor/abilities.html}}
+          {{> systems/fomoria/templates/actor/abilities.hbs}}
         </div>
       </div>
     </div>
@@ -65,10 +65,10 @@
       </nav>
       
       <div class="sheet-body">
-        {{> systems/fomoria/templates/actor/background-tab.html}}
-        {{> systems/fomoria/templates/actor/combat-tab.html}}
-        {{> systems/fomoria/templates/actor/special-tab.html}}
-        {{> systems/fomoria/templates/actor/gear-tab.html}}
+        {{> systems/fomoria/templates/actor/background-tab.hbs}}
+        {{> systems/fomoria/templates/actor/combat-tab.hbs}}
+        {{> systems/fomoria/templates/actor/special-tab.hbs}}
+        {{> systems/fomoria/templates/actor/gear-tab.hbs}}
       </div>      
     </div>
   </div>

@@ -1,10 +1,18 @@
 <form class="{{cssClass}}" autocomplete="off">
-  {{> systems/fomoria/templates/item/item-sheet-header.hbs itemType='FEAT'}}
+  {{> systems/fomoria/templates/item/item-sheet-header.hbs itemType='WEAPON FEAT'}}
   {{> systems/fomoria/templates/item/item-sheet-tabs.hbs }}
   <div class="sheet-body">
     {{> systems/fomoria/templates/item/item-description-tab.hbs }}
     <div class="tab data-tab" data-group="primary" data-tab="details">
       <div class="fields">
+        <div class="widget field-row">
+          <div class="field-label">
+            {{ localize 'FO.WeaponType'}}
+          </div>
+          <div class="field-value">
+            <input class="field-input" type="text" name="system.weaponType" value="{{data.system.weaponType}}" spellcheck="false"/>
+          </div>
+        </div>
         <div class="widget field-row">
           <div class="field-label">
             {{ localize 'FO.RollLabel'}}

@@ -1,0 +1,178 @@
+<div class="tab combat-tab" data-group="primary" data-tab="combat">
+  <div class="button-row combat-buttons">
+    <button type="button" class="sheet-button big-button initiative-button">{{ localize 'FO.Initiative' }} <i class="fas fa-dice-six fa-fw"></i></button>
+    <button type="button" class="sheet-button big-button defend-button">{{ localize 'FO.Defend' }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+    {{#ifEq data.type "character"}}
+      <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-moon fa-fw"></i></button>
+      <button type="button" class="sheet-button big-button dire-injury-button">{{ localize "FO.Injury" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+      <button type="button" class="sheet-button big-button dire-breakdown-button">{{ localize "FO.Breakdown" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+    {{/ifEq}}
+  </div>
+
+  <div class="combat-grid">
+
+    <div class="weapon-cell">
+      <div class="col-title">{{localize 'FO.Weapons'}}</div>
+      <div class="item-list weapons">
+        {{#each data.system.weapons as |item id|}}
+          <div class="item item-row weapon-row" data-item-id="{{item._id}}">
+            <div class="bullet">g</div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name"><a class="item-control item-edit">{{item.name}}</a> 
+                  &nbsp;({{item.system.damage}})
+                </div>
+                <div class="item-controls">
+                  <button type="button" class="sheet-button attack-button">{{localize 'FO.Attack'}} <i class="fas fa-dice-d20 fa-fw"></i></button>                  
+                  <a class="item-control item-equip equipped" title="{{localize 'FO.ToggleEquipped'}}"><i class="fas fa-hand"></i></a>
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>          
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="armor-cell">
+      <div class="col-title">{{localize 'FO.Armor'}}</div>
+      <div class="item-list armor">
+        {{#each data.system.armor as |item id|}}
+          <div class="item item-row armor-row" data-item-id="{{item._id}}">
+            <div class="bullet">g</div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name"><a class="item-control item-edit">{{item.name}}</a></div>
+                <div class="item-controls">
+                  <a class="item-control item-equip equipped" title="{{localize 'FO.Equip'}}"><i class="fas fa-hand"></i></a>
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>           
+              <div class="item-field-row">
+                <label class="tier-label">{{ localize 'FO.Tier' }}</label>
+                <ul class="tiers">
+                  <li>
+                    <label
+                      ><input class="tier-radio" type="radio"
+                      name="{{item._id}}.tier.value" value="0" {{#ifEq
+                      item.system.tier.value
+                      0}}checked{{/ifEq}}/><span class="tier-num">0</span
+                      ><span class="tier-dmg">-0</span></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input class="tier-radio" type="radio"
+                      name="{{item._id}}.tier.value" value="1" {{#ifEq
+                      item.system.tier.value
+                      1}}checked{{/ifEq}}/><span class="tier-num">1</span
+                      ><span class="tier-dmg">-d2</span></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input class="tier-radio" type="radio"
+                      name="{{item._id}}.tier.value" value="2" {{#ifEq
+                      item.system.tier.value
+                      2}}checked{{/ifEq}} {{#ifLt
+                      item.system.tier.max
+                      2}}disabled="true"{{/ifLt}}/><span class="tier-num"
+                        >2</span
+                      ><span class="tier-dmg">-d4</span></label
+                    >
+                  </li>
+                  <li>
+                    <label
+                      ><input class="tier-radio" type="radio"
+                      name="{{item._id}}.tier.value" value="3" {{#ifEq
+                      item.system.tier.value
+                      3}}checked{{/ifEq}} {{#ifLt
+                      item.system.tier.max
+                      3}}disabled="true"{{/ifLt}}/><span class="tier-num"
+                        >3</span
+                      ><span class="tier-dmg">-d6</span></label
+                    >
+                  </li>              
+                  <li>
+                    <label
+                      ><input class="tier-radio" type="radio"
+                      name="{{item._id}}.tier.value" value="4" {{#ifEq
+                      item.system.tier.value
+                      4}}checked{{/ifEq}} {{#ifLt
+                      item.system.tier.max
+                      4}}disabled="true"{{/ifLt}}/><span class="tier-num"
+                        >4</span
+                      ><span class="tier-dmg">-d8</span></label
+                    >
+                  </li>              
+                </ul>
+              </div>
+            </div>
+          </div>      
+        {{/each}}
+        {{#if data.system.shield}}
+          <div class="item item-row shield-row" data-item-id="{{data.system.shield._id}}">
+            <div class="bullet">g</div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name"><a class="item-control item-edit">{{data.system.shield.name}}</a></div>
+                <div class="item-controls">
+                  <a class="item-control item-equip equipped" title="{{localize 'FO.Equip'}}"><i class="fas fa-hand"></i></a>
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="expertise-cell">
+      <div class="col-title">{{localize 'FO.Expertise'}}</div>
+      <div class="item-list weapons">
+        {{#each data.system.expertise as |item id|}}
+          <div class="item item-row weapon-row" data-item-id="{{item._id}}">
+            <div class="bullet">g</div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name">
+                  <a class="item-control item-edit">{{item.name}}</a> ({{item.system.level}})
+                </div>
+                <div class="item-controls">
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>          
+            </div>
+          </div>
+        {{/each}}      
+      </div>
+    </div>
+
+    <div class="weaponfeats-cell">
+      <div class="col-title">{{localize 'FO.WeaponFeats'}}</div>
+      <div class="item-list weaponfeats">
+        {{#each data.system.weaponfeats as |item id|}}
+          <div class="item item-row weapon-feat-row" data-item-id="{{item._id}}">
+            <div class="bullet">g</div>
+            <div class="item-fields">
+              <div class="item-field-row item-name-row">        
+                <div class="item-name">
+                  <a class="item-control item-edit">{{item.name}}</a>
+                </div>
+                <div class="item-controls">
+                  <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>          
+            </div>
+          </div>
+        {{/each}}      
+      </div>
+    </div>
+
+  </div>
+</div>

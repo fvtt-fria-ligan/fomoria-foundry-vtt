@@ -28,12 +28,11 @@ export class FOCharacterSheet extends FOActorSheet {
   /** @override */
   async getData() {
     const superData = await super.getData();
-    console.log("Actor ===>", this.actor);
-    console.log("superData ===>", superData);
     // TODO: move this to prepareItems?
     superData.data.items.forEach(item => {
       item.system.equippable = (
         item.type == CONFIG.FO.itemTypes.armor || 
+        item.type == CONFIG.FO.itemTypes.shield || 
         item.type == CONFIG.FO.itemTypes.weapon);
       item.system.equippedClass = item.system.equipped ? "equipped" : "unequipped";
       });
@@ -54,10 +53,14 @@ export class FOCharacterSheet extends FOActorSheet {
         return (
           (item.type === CONFIG.FO.itemTypes.equipment && !item.system.equipped) ||
           (item.type === CONFIG.FO.itemTypes.armor && !item.system.equipped) || 
+          (item.type === CONFIG.FO.itemTypes.shield && !item.system.equipped) || 
           (item.type === CONFIG.FO.itemTypes.weapon && !item.system.equipped)
           );
       })
       .sort(byName);      
+    superData.data.system.expertise = superData.data.items
+      .filter(item => item.type === CONFIG.FO.itemTypes.expertise)
+      .sort(byName);
     superData.data.system.folk = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.folk)
       .pop();
@@ -67,11 +70,17 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.tradition = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.tradition)
       .pop();
+    superData.data.system.shield = superData.data.items
+      .filter((item) => item.type === CONFIG.FO.itemTypes.shield && item.system.equipped)
+      .pop();
     superData.data.system.weapons = superData.data.items
       .filter((item) => item.type === CONFIG.FO.itemTypes.weapon && item.system.equipped)
       .sort(byName);
+    superData.data.system.weaponfeats = superData.data.items
+      .filter((item) => item.type === CONFIG.FO.itemTypes.weaponfeat)
+      .sort(byName);
+    console.log(superData.data.items);
     superData.data.system.encumberedClass = this.actor.isEncumbered ? "encumbered": "";
-    console.log("returning ===> ", superData);
     return superData;
   }
 

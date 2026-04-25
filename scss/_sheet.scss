@@ -192,6 +192,14 @@
                 flex: 1;
             }
         }
+        .col-title {
+            font-family: $button-font;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;;
+            text-decoration: underline;
+        }        
     
         .sheet-button {
             background-color: var(--fo-button-background-color);
@@ -260,7 +268,7 @@
         }
 
         .bullet {
-            align-items: center;
+            align-items: first;
             display: flex;
             flex-direction: column;
             font-family: "Agathodaimon";

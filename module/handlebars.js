@@ -1,20 +1,18 @@
 export const registerHandlebarsPartials = async () => {
   await foundry.applications.handlebars.loadTemplates([
-    "systems/fomoria/templates/actor/abilities.html",
-    "systems/fomoria/templates/actor/background-tab.html",
-    "systems/fomoria/templates/actor/boons-tab.html",
-    "systems/fomoria/templates/actor/combat-tab.html",
-    "systems/fomoria/templates/actor/conditions-tab.html",
-    "systems/fomoria/templates/actor/gear-tab.html",
+    "systems/fomoria/templates/actor/abilities.hbs",
+    "systems/fomoria/templates/actor/background-tab.hbs",
+    "systems/fomoria/templates/actor/combat-tab.hbs",
+    "systems/fomoria/templates/actor/expertise-level.hbs",
+    "systems/fomoria/templates/actor/gear-tab.hbs",
     "systems/fomoria/templates/actor/hours-of-light.hbs",
-    "systems/fomoria/templates/actor/feats-tab.html",
-    "systems/fomoria/templates/actor/hit-points.html",
-    "systems/fomoria/templates/actor/special-tab.html",
-    "systems/fomoria/templates/item/item-base-fields.html",
-    "systems/fomoria/templates/item/item-description-tab.html",
-    "systems/fomoria/templates/item/item-sheet-header.html",
-    "systems/fomoria/templates/item/item-sheet-tabs.html",
-    "systems/fomoria/templates/actor/stability-points.html",
+    "systems/fomoria/templates/actor/hit-points.hbs",
+    "systems/fomoria/templates/actor/special-tab.hbs",
+    "systems/fomoria/templates/item/item-base-fields.hbs",
+    "systems/fomoria/templates/item/item-description-tab.hbs",
+    "systems/fomoria/templates/item/item-sheet-header.hbs",
+    "systems/fomoria/templates/item/item-sheet-tabs.hbs",
+    "systems/fomoria/templates/actor/stability-points.hbs",
   ]);
 }
 
@@ -42,6 +40,14 @@ export const registerHandlebarsHelpers = () => {
 
   Handlebars.registerHelper("ifLt", function (arg1, arg2, options) {
     return arg1 < arg2 ? options.fn(this) : options.inverse(this);
+  });
+
+  Handlebars.registerHelper("ifGt", function (arg1, arg2, options) {
+    return arg1 > arg2 ? options.fn(this) : options.inverse(this);
+  });
+
+  Handlebars.registerHelper("ifMult", function (arg1, arg2, options) {
+    return (arg1 % arg2 == 0) ? options.fn(this) : options.inverse(this);
   });
 
   Handlebars.registerHelper("ceil", function (num) {

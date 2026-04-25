@@ -20,17 +20,27 @@ FO.itemTypes = {
   clan: "clan",
   condition: "condition",
   equipment: "equipment",
+  expertise: "expertise",
   feat: "feat",
   folk: "folk",
   shield: "shield",
   tradition: "tradition",
   weapon: "weapon",
+  weaponfeat: "weaponfeat",
 };
 
 FO.weaponTypes = {
-  melee: "melee",
-  ranged: "ranged",
+  battleaxes: "battleaxes",
+  maces: "maces",
+  shortswords: "shortswords",
+  daggers: "daggers",
+  bows: "bows",
 };
+
+FO.featTypes = {
+  expert: "expert",
+  folk: "folk",
+}
 
 FO.armorTiers = {
   0: {
