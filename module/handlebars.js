@@ -2,12 +2,12 @@ export const registerHandlebarsPartials = async () => {
   await foundry.applications.handlebars.loadTemplates([
     "systems/fomoria/templates/actor/abilities.hbs",
     "systems/fomoria/templates/actor/background-tab.hbs",
-    "systems/fomoria/templates/actor/combat-tab.hbs",
     "systems/fomoria/templates/actor/expertise-level.hbs",
     "systems/fomoria/templates/actor/gear-tab.hbs",
     "systems/fomoria/templates/actor/hours-of-light.hbs",
     "systems/fomoria/templates/actor/hit-points.hbs",
     "systems/fomoria/templates/actor/special-tab.hbs",
+    "systems/fomoria/templates/actor/violence-tab.hbs",
     "systems/fomoria/templates/item/item-base-fields.hbs",
     "systems/fomoria/templates/item/item-description-tab.hbs",
     "systems/fomoria/templates/item/item-sheet-header.hbs",
@@ -44,10 +44,6 @@ export const registerHandlebarsHelpers = () => {
 
   Handlebars.registerHelper("ifGt", function (arg1, arg2, options) {
     return arg1 > arg2 ? options.fn(this) : options.inverse(this);
-  });
-
-  Handlebars.registerHelper("ifMult", function (arg1, arg2, options) {
-    return (arg1 % arg2 == 0) ? options.fn(this) : options.inverse(this);
   });
 
   Handlebars.registerHelper("ceil", function (num) {

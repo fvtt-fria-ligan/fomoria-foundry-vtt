@@ -1,14 +1,14 @@
-.fomoria.sheet section.window-content .combat-tab {
+.fomoria.sheet section.window-content .violence-tab {
   padding-left: 10px;
   padding-right: 10px;
   width: 100%;
 
-  .combat-buttons {
+  .violence-buttons {
     margin-bottom: calc($widget-margin * 2);
     width: 100%;
   }
 
-  .combat-grid {
+  .violence-grid {
     display: grid;
     column-gap: 20px;
     grid-template-columns: 1fr 1fr;

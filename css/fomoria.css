@@ -726,155 +726,6 @@
   height: calc(100% - 33px);
 }
 
-.fomoria.sheet section.window-content .combat-tab {
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-buttons {
-  margin-bottom: 10px;
-  width: 100%;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-grid {
-  display: grid;
-  column-gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  height: 100%;
-  width: 100%;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-grid .weapon-cell {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-grid .armor-cell {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-grid .expertise-cell {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-.fomoria.sheet section.window-content .combat-tab .combat-grid .weaponfeats-cell {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-.fomoria.sheet section.window-content .combat-tab .item-list .item-row {
-  align-items: start;
-  margin-bottom: 10px;
-}
-.fomoria.sheet section.window-content .combat-tab .armor .tier-label {
-  float: left;
-  font-size: 20;
-  padding-top: 4px;
-  margin-right: 10px;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers {
-  float: left;
-  list-style-type: none;
-  margin: 0;
-  margin-top: 3px;
-  padding: 0;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers li {
-  float: left;
-  height: 45px;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers label {
-  display: block;
-  padding: 4px;
-  position: relative;
-  padding-left: 32px;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio] {
-  display: none;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:checked + span.tier-num {
-  background: var(--fo-highlight-color);
-  color: var(--fo-background-color);
-  border: none;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:disabled + span.tier-num {
-  color: #444444;
-  border: 1px solid #444444;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
-  color: #444444;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers span.tier-num {
-  border: 1px solid #7a7971;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  overflow: hidden;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 100%;
-  font-family: "Pokoljaro";
-  left: 0;
-  top: 0;
-}
-.fomoria.sheet section.window-content .combat-tab .armor ul.tiers span.tier-dmg {
-  width: 30px;
-  height: 15px;
-  position: absolute;
-  overflow: hidden;
-  text-align: center;
-  font-size: 10pt;
-  left: -5px;
-  top: 30px;
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row {
-  display: flex;
-  justify-content: center;
-  margin-right: 10px;
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  float: left;
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets li {
-  float: left;
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets label {
-  display: block;
-  padding: 4px;
-  position: relative;
-  padding-left: 12px;
-  transform: rotate(-45deg);
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets label input[type=radio] {
-  display: none;
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets label span {
-  border: 1px solid var(--fo-foreground-color);
-  width: 14px;
-  height: 14px;
-  position: absolute;
-  overflow: hidden;
-  line-height: 1.4;
-  text-align: center;
-  border-radius: 100%;
-  font-size: 7pt;
-  left: 0;
-  top: 50%;
-  transform: rotate(45deg);
-}
-.fomoria.sheet section.window-content .combat-tab .expertise-level-row ul.expertise-level-bullets input[type=radio]:checked + span {
-  background: var(--fo-foreground-color);
-  color: var(--fo-background-color);
-}
-
 .feats-tab .no-feats {
   margin-left: 10px;
   margin-top: 20px;
@@ -955,6 +806,155 @@
 .special-tab .item .item-name {
   font-size: 20px;
   font-weight: bold;
+}
+
+.fomoria.sheet section.window-content .violence-tab {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-buttons {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid .weapon-cell {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid .armor-cell {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid .expertise-cell {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid .weaponfeats-cell {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.fomoria.sheet section.window-content .violence-tab .item-list .item-row {
+  align-items: start;
+  margin-bottom: 10px;
+}
+.fomoria.sheet section.window-content .violence-tab .armor .tier-label {
+  float: left;
+  font-size: 20;
+  padding-top: 4px;
+  margin-right: 10px;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers li {
+  float: left;
+  height: 45px;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 32px;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio] {
+  display: none;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:checked + span.tier-num {
+  background: var(--fo-highlight-color);
+  color: var(--fo-background-color);
+  border: none;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:disabled + span.tier-num {
+  color: #444444;
+  border: 1px solid #444444;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
+  color: #444444;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers span.tier-num {
+  border: 1px solid #7a7971;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 100%;
+  font-family: "Pokoljaro";
+  left: 0;
+  top: 0;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers span.tier-dmg {
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  overflow: hidden;
+  text-align: center;
+  font-size: 10pt;
+  left: -5px;
+  top: 30px;
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets li {
+  float: left;
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 12px;
+  transform: rotate(-45deg);
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets label input[type=radio] {
+  display: none;
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets label span {
+  border: 1px solid var(--fo-foreground-color);
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.4;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 7pt;
+  left: 0;
+  top: 50%;
+  transform: rotate(45deg);
+}
+.fomoria.sheet section.window-content .violence-tab .expertise-level-row ul.expertise-level-bullets input[type=radio]:checked + span {
+  background: var(--fo-foreground-color);
+  color: var(--fo-background-color);
 }
 
 .roll-card .card-title {
