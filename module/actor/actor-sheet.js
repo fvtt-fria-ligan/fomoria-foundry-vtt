@@ -29,18 +29,6 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   }
 
   /** @override */
-  _getHeaderButtons() {
-    const buttons = super._getHeaderButtons();
-    // workaround for our sheet being too narrow and hiding the close button :P
-    buttons.forEach(b => {
-      if (b.label === "TOKEN.TitlePrototype") {
-        b.label = "Token";
-      }
-    });
-    return buttons;
-  }
-
-  /** @override */
   async getData() {
     const superData = await super.getData();
     superData.data.system.description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
@@ -52,19 +40,19 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    html.find(".tabs a.item").on("click", this._onTabClick.bind(this));
-    html.find(".item-edit").click(this._onItemEdit.bind(this));
-    html.find(".item-row .icon").click(this._onItemEdit.bind(this));
-    html.find(".item-delete").click(this._onItemDelete.bind(this));
-    html.find(".item-qty-plus").click(this._onItemAddQuantity.bind(this));
-    html.find(".item-qty-minus").click(this._onItemSubtractQuantity.bind(this));
-    html.find(".item-equip").click(this._onItemEquip.bind(this));
     html.find(".add-item-button").on("click", this._addItem.bind(this));
-    html.find(".initiative-button").on("click", this._initiative.bind(this));
-    html.find(".defend-button").on("click", this._defend.bind(this));
-    html.find(".rest-button").on("click", this._rest.bind(this));
-    html.find(".tier-radio").click(this._onArmorTierRadio.bind(this));
     html.find(".attack-button").on("click", this._attack.bind(this));
+    html.find(".defend-button").on("click", this._defend.bind(this));
+    html.find(".initiative-button").on("click", this._initiative.bind(this));
+    html.find(".item-create").on("click", this._onItemCreate.bind(this));
+    html.find(".item-delete").click(this._onItemDelete.bind(this));
+    html.find(".item-edit").click(this._onItemEdit.bind(this));
+    html.find(".item-equip").click(this._onItemEquip.bind(this));
+    html.find(".item-qty-minus").click(this._onItemSubtractQuantity.bind(this));
+    html.find(".item-qty-plus").click(this._onItemAddQuantity.bind(this));
+    html.find(".rest-button").on("click", this._rest.bind(this));
+    html.find(".tabs a.item").on("click", this._onTabClick.bind(this));
+    html.find(".tier-radio").click(this._onArmorTierRadio.bind(this));
   }  
   
   _onTabClick(event) {
@@ -93,6 +81,17 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);    
     return item;
+  }
+
+  _onItemCreate(event) {
+    const itemType = $(event.currentTarget).data("itemType");
+    event.preventDefault();
+    const itemData = {
+      name: `New ${itemType}`,
+      type: itemType,
+      data: {},
+    };
+    this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
   _onItemEquip(event) {

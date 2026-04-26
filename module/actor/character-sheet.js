@@ -1,10 +1,9 @@
 import { testAgility, testOccult, testPresence, testStrength, testToughness } from "./ability-tests.js";
 import { FOActorSheet } from "./actor-sheet.js";
+import { useBoon } from "./boons.js";
+import { useFeat } from "./feats.js";
 import { showThreadsHelp } from "./threads.js";
-import { rollLevelUp } from "./level-up.js";
-// import { rollUseBoon } from "./boons.js";
 import { byName } from "../utils.js";
-
 
 export class FOCharacterSheet extends FOActorSheet {
   /** @override */
@@ -79,7 +78,6 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.weaponfeats = superData.data.items
       .filter((item) => item.type === CONFIG.FO.itemTypes.weaponfeat)
       .sort(byName);
-    console.log(superData.data.items);
     superData.data.system.encumberedClass = this.actor.isEncumbered ? "encumbered": "";
     return superData;
   }
@@ -90,9 +88,7 @@ export class FOCharacterSheet extends FOActorSheet {
     html
       .find(".ability-link")
       .on("click", this._testAbility.bind(this));
-    html.find(".level-up-button").on("click", this._levelUp.bind(this));
-    html.find(".reroll-button").on("click", this._reroll.bind(this));
-    // html.find(".use-boon-button").on("click", this._useBoon.bind(this));
+    html.find(".use-boon-button").on("click", this._useBoon.bind(this));
     // html.find(".use-feat-button").on("click", this._useFeat.bind(this));
   }
 
@@ -126,36 +122,16 @@ export class FOCharacterSheet extends FOActorSheet {
     }
   }
 
-  _levelUp(event) {
-    event.preventDefault();
-    // confirm before leveling
-    const d = new Dialog({
-      title: game.i18n.localize("FO.LevelUp"),
-      content: `<p>${game.i18n.localize("FO.LevelUpHelp")}</p>`,
-      buttons: {
-        cancel: {
-          label: game.i18n.localize("FO.Cancel"),
-        },
-        getbetter: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize("FO.LevelUp"),
-          callback: () => rollLevelUp(this.actor),
-        },
-      },
-      default: "cancel",
-    });
-    d.render(true);
-  }
-
-  _reroll(event) {
-    event.preventDefault();
-    this.actor.reroll();
-  }
-
   _useBoon(event) {
     event.preventDefault();
-    const item = $(event.currentTarget).parents(".item");
-    const itemId = item.data("itemId");
-    //rollUseBoon(this.actor, itemId);
+    useBoon(this.actor, itemId);
+  }
+
+  _onFeatRoll(event) {
+    event.preventDefault();
+    const button = $(event.currentTarget);
+    const li = button.parents(".item");
+    const itemId = li.data("itemId");
+    useFeat(this.actor, itemId);
   }
  }

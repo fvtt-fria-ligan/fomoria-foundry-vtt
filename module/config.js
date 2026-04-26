@@ -230,3 +230,6 @@ FO.colorSchemes = {
     windowBackground: "#2E2E2E",
   },  
 }
+
+FO.useBoonFumbleOn = 1;
+FO.useBoonCritOn = 20;

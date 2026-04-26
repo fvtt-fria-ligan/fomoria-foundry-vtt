@@ -15,10 +15,6 @@ export async function rollAttack(
   const item = actor.items.get(itemId);
   const itemRollData = item.getRollData();
 
-  if (item.system.sound) {
-    playSound(item.system.sound);
-  }
-
   // decide relevant attack ability
   let ability;
   let abilityAbbrevKey;
@@ -68,12 +64,9 @@ export async function rollAttack(
     const baseDamage = item.system.damage;
     let damageFormula = baseDamage;
     if (damageFormula.includes("+") || damageFormula.includes("-")) {
-      // wrap formula in parentheses in case of weak points / crit multiplying
+      // wrap formula in parentheses in case of crit multiplying
       // e.g., chainsaw 1d6+1
       damageFormula = `(${damageFormula})`;
-    }
-    if (weakPoints) {
-      damageFormula = `${damageFormula} * 2`;
     }
     if (isCrit) {
       const critMultiplier = item.system.critMultiplier ?? 2;
@@ -139,7 +132,7 @@ async function missText(isFumble) {
  * Show attack rolls/result in a chat roll card.
  */
 async function renderAttackRollCard(actor, rollResult) {
-  const html = await renderTemplate(ATTACK_ROLL_CARD_TEMPLATE, rollResult);
+  const html = await foundry.applications.handlebars.renderTemplate(ATTACK_ROLL_CARD_TEMPLATE, rollResult);
   ChatMessage.create({
     content: html,
     sound: diceSound(),

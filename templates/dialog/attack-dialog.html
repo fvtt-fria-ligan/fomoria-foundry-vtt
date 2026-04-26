@@ -1,50 +1,40 @@
-<form class="dialog attack-dialog">
+<form class="custom-dialog">
   <input type="hidden" name="itemid" value="{{itemId}}" />
   <div class="form-group">
-    <label>{{localize 'FO.Attack'}} {{localize 'FO.DR'}}</label>
-    <div class="field-value">
-      <input
-        type="number"
-        name="attack-dr"
-        value="{{attackDR}}"
-        placeholder="12"
-        data-dtype="Number"
-      />
-    </div>
-  </div>
-  <div class="form-group {{autofireClass}}"> 
-    <label>{{ localize "FO.Autofire" }}</label>
-    <div class="field-value">
-      {{#if autofireEnabled}}
-        <input name="autofire" type="checkbox" value="1" {{checked autofire}} />
-      {{else}}
-        <input name="autofire" type="checkbox" value="1" disabled="disabled"" />
-      {{/if}}
-    </div>
+    <label>{{localize 'FO.Attack'}} {{localize 'FO.DR'}}:</label>
+    <input
+      type="text"
+      name="attackbasedr"
+      value="{{attackDR}}"
+      placeholder="12"
+      data-dtype="Number"
+    />
   </div>
   <div class="form-group">
-    <label>{{localize 'FO.TargetArmor'}}</label>
-    <div class="field-value">
-      <input
+    <label>{{localize 'FO.Modified'}} {{localize 'FO.DR'}}:</label>
+    <input
       type="text"
-      name="target-armor"
+      class="readonly"
+      name="attackmodifieddr"
+      value=""
+      placeholder="12"
+      readonly
+    />
+  </div>  
+  {{# if drModifiers}}
+  <div class="dr-modifier">
+    ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
+  </div>
+  {{/if}}  
+  <div class="form-group">
+    <label>{{localize 'FO.TargetArmor'}}:</label>
+    <input
+      type="text"
+      name="targetarmor"
       value="{{targetArmor}}"
       placeholder="1d2"
       data-dtype="String"
-      />
-    </div>
-  </div>
-  <div class="form-group"> 
-    <label>{{ localize "FO.TargetIsVehicle" }}</label>
-    <div class="field-value">
-      <input name="targetIsVehicle" type="checkbox" value="1"/>
-    </div>
-  </div>
-  <div class="form-group"> 
-    <label>{{ localize "FO.WeakPoints" }}</label>
-    <div class="field-value">
-      <input name="weakPoints" type="checkbox" value="1"/>
-    </div>
+    />
   </div>
   <div class="button-row">
     <button class="dialog-button attack-button" type="submit" name="Attack">{{ localize "FO.Attack" }}</button>

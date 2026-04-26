@@ -131,7 +131,12 @@
     </div>
 
     <div class="expertise-cell">
-      <div class="col-title">{{localize 'FO.Expertise'}}</div>
+      <div class="col-title">
+        {{localize 'FO.Expertise'}}
+        <a class="item-control item-create" data-item-type="expertise" title='{{localize "FO.CreateNewFeat"}}'>
+            <i class="fas fa-plus"></i>
+        </a>
+      </div>
       <div class="item-list weapons">
         {{#each data.system.expertise as |item id|}}
           <div class="item item-row weapon-row" data-item-id="{{item._id}}">
@@ -153,7 +158,12 @@
     </div>
 
     <div class="weaponfeats-cell">
-      <div class="col-title">{{localize 'FO.WeaponFeats'}}</div>
+      <div class="col-title">
+        {{localize 'FO.WeaponFeats'}}
+        <a class="item-control item-create" data-item-type="weaponfeat" title='{{localize "FO.CreateNewFeat"}}'>
+            <i class="fas fa-plus"></i>
+        </a>
+      </div>
       <div class="item-list weaponfeats">
         {{#each data.system.weaponfeats as |item id|}}
           <div class="item item-row weapon-feat-row" data-item-id="{{item._id}}">

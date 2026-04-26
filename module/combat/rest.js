@@ -9,6 +9,7 @@ export async function rollRest(actor, restLength, starving) {
     await rollHeal(actor, "d4");
   } else if (restLength === "long") {
     await rollHeal(actor, "d6");
+    await rollWyrd(actor);
     if (actor.system.threads.value === 0) {
       await rollThreads(actor);
     }
@@ -56,12 +57,24 @@ async function rollHeal(actor, dieRoll) {
   await actor.update({ ["system.hitPoints.value"]: newHP, ["system.stabilityPoints.value"]: newSP });
 };
 
+async function rollWyrd(actor) {
+  const roll = new Roll("1d4");
+  await roll.evaluate();
+  await roll.toMessage({
+    flavor: game.i18n.localize("FO.Wyrd"),
+    speaker: ChatMessage.getSpeaker({ actor }),
+  })
+  const newWyrd = Math.min(
+    actor.system.wyrd.max,
+    actor.system.wyrd.value + roll.total + actor.system.abilities.occult.value
+  );
+  await actor.update({ ["system.wyrd"]: { value: newWyrd } });
+}
+
 async function rollThreads(actor) {
-  const classItem = actor.items.filter(x => x.type === FO.itemTypes.class).pop();
-  if (!classItem || !classItem.system.threads) {
-    return;
-  }
-  const roll = new Roll(classItem.system.threads);
+  const tradition = actor.items.filter(x => x.type === FO.itemTypes.tradition).pop();
+  const threadDie = tradition ? tradition.threadDie : "1d2";
+  const roll = new Roll(threadDie);
   await roll.toMessage({
     flavor: game.i18n.localize("FO.Threads"),
     speaker: ChatMessage.getSpeaker({ actor }),

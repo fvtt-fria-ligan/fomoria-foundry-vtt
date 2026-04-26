@@ -2,55 +2,121 @@ import { showDice } from "../dice.js";
 import { d20Formula, showOutcomeRollCard } from "../utils.js";
 
 
-/**
- * Roll for actor to use a boon.
- */
-export async function rollUseBoon(actor, itemId) {
-  const boon = actor.items.get(itemId);
-  if (!boon) {
+export async function learnBoon(actor) {
+  const roll = new Roll(
+    "d20+@abilities.occult.value",
+    actor.getRollData()
+  );
+  await roll.evaluate();
+  await showDice(roll);
+
+  const outcome = game.i18n.localize(roll.total > 12 ? "FO.SUCCESS" : "FO.FAILURE");
+  const formula = `1d20 + ${game.i18n.localize(
+    "FO.AbilityOccultAbbrev"
+  )}`;
+  const rollTitle = `${formula} ${game.i18n.localize(
+    "FO.Vs"
+  )} ${game.i18n.localize("FO.DR")} 12`;
+
+  const rollResults = [{
+      rollTitle,
+      roll: roll,
+      outcomeLines: [outcome],
+    }];
+  const data = {
+    cardTitle: game.i18n.localize("FO.LearnBoon"),
+    rollResults,
+  };
+  const html = await foundry.applications.handlebars.renderTemplate(
+    "systems/fomoria/templates/chat/roll-result-card.hbs",
+    data
+  );
+  ChatMessage.create({
+    content: html,
+    sound: diceSound(),
+    speaker: ChatMessage.getSpeaker({ actor: actor }),
+  });
+}
+
+export async function useBoon(actor) {
+  if (actor.system.wyrd.value < 1) {
+    ui.notifications.warn(`${game.i18n.localize("FO.NoWyrdsRemaining")}!`);
     return;
   }
 
-  const useFormula = d20Formula(actor.system.abilities.presence.value);
-  const useRoll = new Roll(useFormula);
+  const useRoll = new Roll(
+    "d20+@abilities.occult.value",
+    actor.getRollData()
+  );
   await useRoll.evaluate();
   await showDice(useRoll);
 
-  const d20Result = useRoll.terms[0].results[0].result;
-  const isFumble = d20Result <= actor.system.boonFumbleOn;
-  const useDR = 12;
+  const d20Result = useRoll.total;
+  const isFumble = d20Result <= FO.useBoonFumbleOn;
+  const isCrit = d20Result >= FO.useBoonCritOn;
+  const useDR = 12; // TODO: sometimes 14
 
   let useOutcome = null;
-  let damageRoll;
-  let takeDamage;    
-
-  if (isFumble) {    
-    useOutcome = game.i18n.localize("FO.UseBoonFumble");
-  } else if (useRoll.total < useDR) {
-    // failure
-    useOutcome = game.i18n.localize("FO.Failure");
+  let damageRoll = null;
+  let takeDamage = null;
+  if (isCrit || useRoll.total >= useDR) {
+    // SUCCESS!!!
+    useOutcome = game.i18n.localize(
+      isCrit ? "FO.CriticalSuccess" : "FO.Success"
+    );
   } else {
-    // success
-    useOutcome = game.i18n.localize("FO.Success");
-  }
-
-  if (isFumble || useRoll.total < useDR) {
-    // take 1d2 damage
-    damageRoll = new Roll("1d2", actor.getRollData());
-    damageRoll.evaluate({ async: false });
+    // FAILURE
+    useOutcome = game.i18n.localize(
+      isFumble ? "FO.UseBoonFumble" : "FO.Failure"
+    );
+    damageRoll = new Roll("1d2");
+    await damageRoll.evaluate();
     await showDice(damageRoll);
-    takeDamage = `${game.i18n.localize("FO.Take")} ${damageRoll.total} ${game.i18n.localize("FO.Damage")}`;
+    takeDamage = `${game.i18n.localize("FO.Take")} ${
+      damageRoll.total
+    } ${game.i18n.localize("FO.Damage")}, ${game.i18n.localize(
+      "MB.UseBoonDizzy"
+    )}`;
   }
 
-  const rollResult = {
-    cardCssClass: "use-boon-roll-card",
+  const useFormula = `1d20 + ${game.i18n.localize(
+    "FO.AbilityOccultAbbrev"
+  )}`;
+  const rollTitle = `${useFormula} ${game.i18n.localize(
+    "FO.Vs"
+  )} ${game.i18n.localize("FO.DR")} ${useDR}`;
+  const outcomeLines = [useOutcome];
+  if (takeDamage) {
+    outcomeLines.push(takeDamage);
+  }
+  const rollResults = [
+    {
+      rollTitle,
+      roll: useRoll,
+      outcomeLines: [useOutcome],
+    },
+  ];
+  if (damageRoll) {
+    rollResults.push({
+      rollTitle: `${game.i18n.localize("FO.Damage")}: ${damageRoll.formula}`,
+      roll: damageRoll,
+      outcomeLines: [takeDamage],
+    });
+  }
+  const data = {
     cardTitle: game.i18n.localize("FO.UseBoon"),
-    damageRoll,
-    dr: useDR,
-    formula: `1d20 + ${game.i18n.localize("FO.PresenceAbbrev")}`,
-    outcome: useOutcome,
-    roll: useRoll,
-    takeDamage,
+    rollResults,
   };
-  await showOutcomeRollCard(actor, rollResult);
-};
+  const html = await foundry.applications.handlebars.renderTemplate(
+    "systems/fomoria/templates/chat/roll-result-card.hbs",
+    data
+  );
+  ChatMessage.create({
+    content: html,
+    sound: diceSound(),
+    speaker: ChatMessage.getSpeaker({ actor: actor }),
+  });
+
+  const newWyrd = Math.max(0, actor.system.wyrd.value - 1);
+  await actor.update({ ["system.wyrd.value"]: newWyrd });
+}

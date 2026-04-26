@@ -33,6 +33,44 @@ export const showOutcomeRollCard = async (actor, rollResult) => {
   });  
 };
 
+// TODO: dedupe with showOutcomeRollCard()
+export async function showRollResult(
+  actor,
+  dieRoll,
+  rollData,
+  cardTitle,
+  outcomeTextFn,
+  rollFormula = null
+) {
+  const roll = new Roll(dieRoll, rollData);
+  await roll.evaluate();
+  await showDice(roll);
+  const data = {
+    cardTitle,
+    rollResults: [
+      {
+        rollTitle: rollFormula ?? roll.formula,
+        roll,
+        outcomeLines: [outcomeTextFn(roll)],
+      },
+    ],
+  };
+  await showRollResultCard(actor, data);
+  return roll;
+}
+
+export async function showRollResultCard(actor, data) {
+  const html = await foundry.applications.handlebars.renderTemplate(
+    "systems/morkborg/templates/chat/roll-result-card.hbs",
+    data
+  );
+  ChatMessage.create({
+    content: html,
+    sound: diceSound(),
+    speaker: ChatMessage.getSpeaker({ actor }),
+  });
+}
+
 export const sample = (array) => {
   if (!array) {
     return;
