@@ -1,36 +1,38 @@
-<form class="custom-dialog">
-  <input type="hidden" name="itemid" value="{{itemId}}" />
+<form class="dialog attack-dialog">
+  <input type="hidden" name="item-id" value="{{itemId}}" />
   <div class="form-group">
-    <label>{{localize 'FO.Attack'}} {{localize 'FO.DR'}}:</label>
-    <input
-      type="text"
-      name="attackbasedr"
-      value="{{attackDR}}"
-      placeholder="12"
-      data-dtype="Number"
-    />
+    <label>{{localize 'FO.Attack'}} {{localize 'FO.DR'}}</label>
+    <div class="field-value">
+      <input
+        type="number"
+        name="attack-base-dr"
+        value="{{attackDR}}"
+        placeholder="12"
+        data-dtype="Number"
+      />
+    </div>
   </div>
-  <div class="form-group">
-    <label>{{localize 'FO.Modified'}} {{localize 'FO.DR'}}:</label>
-    <input
-      type="text"
-      class="readonly"
-      name="attackmodifieddr"
-      value=""
-      placeholder="12"
-      readonly
-    />
-  </div>  
   {{# if drModifiers}}
   <div class="dr-modifier">
     ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
   </div>
   {{/if}}  
   <div class="form-group">
+    <label>{{localize 'FO.Modified'}} {{localize 'FO.DR'}}:</label>
+    <input
+      type="text"
+      class="readonly"
+      name="attack-modified-dr"
+      value=""
+      placeholder="12"
+      readonly
+    />
+  </div>  
+  <div class="form-group">
     <label>{{localize 'FO.TargetArmor'}}:</label>
     <input
       type="text"
-      name="targetarmor"
+      name="target-armor"
       value="{{targetArmor}}"
       placeholder="1d2"
       data-dtype="String"

@@ -30,6 +30,10 @@ export class AttackDialog extends FOApplication {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    html
+      .find("input[name='attack-base-dr']")
+      .on("change", this._onAttackBaseDRChange.bind(this));
+    html.find("input[name='attack-base-dr']").trigger("change");
     html.find(".attack-button").click(this._onAttack.bind(this));
   }
 
@@ -48,14 +52,32 @@ export class AttackDialog extends FOApplication {
     );
     return {
       attackDR,
+      itemId: this.item._id,
       targetArmor,
     };
+  }
+
+  _onAttackBaseDRChange(event) {
+    event.preventDefault();
+    const baseInput = $(event.currentTarget);
+    const form = $(event.currentTarget.form);
+
+    let drModifier = 0;
+    const itemId = form.find("input[name='item-id']")[0].value;
+    const item = this.actor.items.get(itemId);
+    if (item.system.weaponType === "melee" && this.actor.isEncumbered) {
+      drModifier += 2;
+    }
+
+    const modifiedDr = parseInt(baseInput[0].value) + drModifier;
+    const modifiedInput = form.find("input[name='attack-modified-dr']");
+    modifiedInput.val(modifiedDr.toString());
   }
 
   async _onAttack(event) {
     event.preventDefault();
     const form = $(event.currentTarget).parents(".attack-dialog")[0];
-    const attackDRStr = $(form).find("input[name=attack-dr]").val();
+    const attackDRStr = $(form).find("input[name=attack-modified-dr]").val();
     const attackDR = parseInt(attackDRStr);
     const targetArmor = $(form).find("input[name=target-armor]").val();
     this.close();

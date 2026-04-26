@@ -148,10 +148,10 @@
       "critMultiplier": 2,
       "critOn": 20,
       "damage": "1d2",
-      "isRanged": false,
       "fumbleOn": 1,
       "special": "",
       "usesAmmo": false,
+      "usesAbility": "strength",
       "weaponType": ""
     },
     "weaponfeat": {

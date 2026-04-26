@@ -1,7 +1,6 @@
 import { FO } from "../config.js";
 import { addShowDicePromise, diceSound, showDice } from "../dice.js";
 import { d20Formula } from "../utils.js";
-import { playSound } from "../sound.js";
 
 
 const ATTACK_ROLL_CARD_TEMPLATE =
@@ -19,16 +18,11 @@ export async function rollAttack(
   let ability;
   let abilityAbbrevKey;
   let attackTypeKey;
-  if (itemRollData.weaponType?.toLowerCase() === FO.weaponTypes.ranged) {
+  if (itemRollData.usesAbility?.toLowerCase() === "presence") {
     // ranged
     ability = "presence";
     abilityAbbrevKey = "FO.PresenceAbbrev";
     attackTypeKey = "FO.Ranged";
-  } else if (itemRollData.weaponType?.toLowerCase() === FO.weaponTypes.thrown) {
-    // thrown
-    ability = "strength";
-    abilityAbbrevKey = "FO.StrengthAbbrev";
-    attackTypeKey = "FO.Thrown";
   } else {
     // melee
     ability = "strength";

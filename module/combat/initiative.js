@@ -7,9 +7,9 @@ export async function rollPartyInitiative(actor) {
   await showDice(initiativeRoll);
   let outcomeText = "";
   if (initiativeRoll.total <= 3) {
-    outcomeText = game.i18n.localize("FO.InitiativeEnemiesActFirst");
+    outcomeText = game.i18n.localize("FO.InitiativeEnemiesGoFirst");
   } else {
-    outcomeText = game.i18n.localize("FO.InitiativePCsActFirst");
+    outcomeText = game.i18n.localize("FO.InitiativeCabalGoesFirst");
   }
   const rollResult = {
     cardTitle: game.i18n.localize("FO.PartyInitiative"),
