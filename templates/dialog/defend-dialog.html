@@ -24,10 +24,13 @@
     </div>
   </div>
   {{# if drModifiers}}
-  <div class="dr-modifier">
-    ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
+  <div class="form-row">
+    <label>&nbsp;</label>
+    <div class="field-value">
+      ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
+    </div>
   </div>
-  {{/if}}
+  {{/if}}  
   <div class="form-row">
     <label>{{localize 'FO.IncomingAttack'}}:</label>
     <div class="field-value">

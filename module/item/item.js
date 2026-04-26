@@ -5,6 +5,17 @@ import { FO } from "../config.js";
  */
  export class FOItem extends Item {
 
+  get totalCarrySlots() {
+    if (this.type === FO.itemTypes.armor && this.system.equipped) {
+      // equipped armor doesn't count
+      return 0;
+    }
+    if (this.system.carrySlots) {
+      return this.system.carrySlots * this.system.quantity;
+    }
+    return 0;
+  }
+
   get isMelee() {
     return this.type == FO.itemTypes.weapon && this.system.usesAbility === "strength";
   }
@@ -40,18 +51,6 @@ import { FO } from "../config.js";
     super._onDelete(options, userId);
   }
   
-  get totalCarrySlots() {
-    if (this.system.equipped) {
-      // equipped items don't count
-      return 0;
-    }
-    if (this.system.carrySlots) {
-      return this.system.carrySlots * this.system.quantity;
-    }
-    return 0;
-  }
-
-
   /** @override */
   prepareDerivedData() {
     super.prepareDerivedData();

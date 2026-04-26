@@ -56,7 +56,6 @@ export class AttackDialog extends FOApplication {
         )} +2`
       );
     }
-    console.log(drModifiers, item.isMelee, this.actor.isEncumbered);
     const targetArmor = await this.actor.getFlag(
       CONFIG.FO.flagScope,
       CONFIG.FO.flags.TARGET_ARMOR

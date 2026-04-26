@@ -62,12 +62,8 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
 
   // ===== encumbrance =====
   
-  get normalCarryingCapacity() {
-    return this.system.abilities.strength.value + 8;
-  }
-
-  get maxCarryingCapacity() {
-    return 2 * this.normalCarryingCapacity();
+  get carryingCapacity() {
+    return this.system.abilities.strength.value + 12;
   }
 
   get carryingSlots() {
@@ -79,7 +75,7 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     if (!trackCarryingCapacity()) {
       return false;
     }
-    return this.carryingSlots > this.normalCarryingCapacity;
+    return this.carryingSlots > this.carryingCapacity;
   }
 
   _firstEquipped(itemType) {
