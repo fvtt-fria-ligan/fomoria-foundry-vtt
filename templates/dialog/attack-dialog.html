@@ -1,23 +1,16 @@
 <form class="dialog attack-dialog">
   <input type="hidden" name="item-id" value="{{itemId}}" />
-  <div class="form-group">
+  <div class="form-row">
     <label>{{localize 'FO.Attack'}} {{localize 'FO.DR'}}</label>
-    <div class="field-value">
-      <input
-        type="number"
-        name="attack-base-dr"
-        value="{{attackDR}}"
-        placeholder="12"
-        data-dtype="Number"
-      />
-    </div>
+    <input
+      type="number"
+      name="attack-base-dr"
+      value="{{attackDR}}"
+      placeholder="12"
+      data-dtype="Number"
+    />
   </div>
-  {{# if drModifiers}}
-  <div class="dr-modifier">
-    ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
-  </div>
-  {{/if}}  
-  <div class="form-group">
+  <div class="form-row">
     <label>{{localize 'FO.Modified'}} {{localize 'FO.DR'}}:</label>
     <input
       type="text"
@@ -28,7 +21,15 @@
       readonly
     />
   </div>  
-  <div class="form-group">
+  {{# if drModifiers}}
+  <div class="form-row">
+    <label>&nbsp;</label>
+    <div class="field-value">
+      ( {{#each drModifiers}} {{this}} {{#unless @last}},{{/unless}} {{/each}} )
+    </div>
+  </div>
+  {{/if}}  
+  <div class="form-row">
     <label>{{localize 'FO.TargetArmor'}}:</label>
     <input
       type="text"

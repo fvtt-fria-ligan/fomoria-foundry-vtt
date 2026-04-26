@@ -74,9 +74,9 @@
         "carrySlots": 1,
         "description": "",
         "equipped": false,
-        "hasQuantity": false,
         "price": 0,
-        "quantity": 1
+        "quantity": 1,
+        "usesQuantity": false
       }
     },
     "armor": {

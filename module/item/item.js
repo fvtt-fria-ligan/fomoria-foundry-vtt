@@ -5,6 +5,14 @@ import { FO } from "../config.js";
  */
  export class FOItem extends Item {
 
+  get isMelee() {
+    return this.type == FO.itemTypes.weapon && this.system.usesAbility === "strength";
+  }
+
+  get isRanged() {
+    return this.type == FO.itemTypes.weapon && this.system.usesAbility === "presence";
+  }
+
   /** @override */
   async _onCreate(data, options, userId) {
     super._onCreate(data, options, userId);

@@ -46,12 +46,24 @@ export class AttackDialog extends FOApplication {
     if (!attackDR) {
       attackDR = 12; // default
     }
+    const drModifiers = [];
+    const item = this.actor.items.get(this.item._id);
+    if (item.isMelee && this.actor.isEncumbered) {
+      // encumbrance affects strength tests, and thus melee but not ranged attacks
+      drModifiers.push(
+        `${game.i18n.localize("FO.Encumbered")}: ${game.i18n.localize(
+          "FO.DR"
+        )} +2`
+      );
+    }
+    console.log(drModifiers, item.isMelee, this.actor.isEncumbered);
     const targetArmor = await this.actor.getFlag(
       CONFIG.FO.flagScope,
       CONFIG.FO.flags.TARGET_ARMOR
     );
     return {
       attackDR,
+      drModifiers,
       itemId: this.item._id,
       targetArmor,
     };

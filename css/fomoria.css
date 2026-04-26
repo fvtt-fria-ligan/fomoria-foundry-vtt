@@ -1035,24 +1035,30 @@
   background-color: var(--fo-foreground-color);
   color: var(--fo-background-color);
 }
-.window-app.fomoria.dialog .window-content form.dialog .form-group {
+.window-app.fomoria.dialog .window-content form.dialog .form-row {
+  align-items: center;
   display: flex;
+  margin-bottom: 5px;
 }
-.window-app.fomoria.dialog .window-content form.dialog .form-group label {
+.window-app.fomoria.dialog .window-content form.dialog .form-row label {
   flex: 1;
   padding-right: 10px;
   text-align: right;
 }
-.window-app.fomoria.dialog .window-content form.dialog .form-group .field-value {
+.window-app.fomoria.dialog .window-content form.dialog .form-row .field-value {
   flex: 1;
   text-align: center;
 }
-.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled {
+.window-app.fomoria.dialog .window-content form.dialog .form-row input {
+  flex: 1;
+  text-align: center;
+}
+.window-app.fomoria.dialog .window-content form.dialog .form-row.disabled {
   color: var(--fo-disabled-color);
 }
-.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled input[type=number],
-.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled input[type=text],
-.window-app.fomoria.dialog .window-content form.dialog .form-group.disabled select {
+.window-app.fomoria.dialog .window-content form.dialog .form-row.disabled input[type=number],
+.window-app.fomoria.dialog .window-content form.dialog .form-row.disabled input[type=text],
+.window-app.fomoria.dialog .window-content form.dialog .form-row.disabled select {
   color: var(--fo-disabled-color);
 }
 .window-app.fomoria.dialog .window-content form.dialog input[type=number],

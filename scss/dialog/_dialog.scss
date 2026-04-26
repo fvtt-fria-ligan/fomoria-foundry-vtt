@@ -16,19 +16,49 @@
         background-color: var(--fo-foreground-color);
         color: var(--fo-background-color);
       }
-      .form-group {
+      // .form-group {
+      //   display: flex;
+      //   label {
+      //     flex: 1;
+      //     padding-right: 10px;
+      //     text-align: right;
+      //   }
+      //   .field-value {
+      //     // TODO: override or don't overlap with foundry css for
+      //     // body.game .app form .form-group > * { flex: 3
+      //     flex: 1;
+      //     text-align: center;
+      //   }
+      // }
+      // .form-group.disabled {
+      //   color: var(--fo-disabled-color);
+      //   input[type="number"],
+      //   input[type="text"],
+      //   select {
+      //     color: var(--fo-disabled-color);
+      //   }
+      // }
+      .form-row {
+        align-items: center;
         display: flex;
+        margin-bottom: 5px;
         label {
           flex: 1;
           padding-right: 10px;
           text-align: right;
         }
         .field-value {
+          // TODO: override or don't overlap with foundry css for
+          // body.game .app form .form-group > * { flex: 3
+          flex: 1;
+          text-align: center;
+        }
+        input {
           flex: 1;
           text-align: center;
         }
       }
-      .form-group.disabled {
+      .form-row.disabled {
         color: var(--fo-disabled-color);
         input[type="number"],
         input[type="text"],
