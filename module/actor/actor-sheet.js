@@ -47,7 +47,9 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     html.find(".item-create").on("click", this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
-    html.find(".item-equip").click(this._onItemEquip.bind(this));
+    html.find(".item-equip-armor").click(this._equipArmor.bind(this));
+    html.find(".item-equip-main-hand").click(this._equipMainHand.bind(this));
+    html.find(".item-equip-off-hand").click(this._equipOffHand.bind(this));
     html.find(".item-qty-minus").click(this._onItemSubtractQuantity.bind(this));
     html.find(".item-qty-plus").click(this._onItemAddQuantity.bind(this));
     html.find(".rest-button").on("click", this._rest.bind(this));
@@ -69,9 +71,9 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     }
   }
 
-  _onItemDelete(event) {
+  async _onItemDelete(event) {
     const row = $(event.currentTarget).parents(".item");
-    this.actor.deleteEmbeddedDocuments("Item", [row.data("itemId")]);
+    await this.actor.deleteEmbeddedDocuments("Item", [row.data("itemId")]);
     row.slideUp(200, () => this.render(false));
   }
 
@@ -83,7 +85,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     return item;
   }
 
-  _onItemCreate(event) {
+  async _onItemCreate(event) {
     const itemType = $(event.currentTarget).data("itemType");
     event.preventDefault();
     const itemData = {
@@ -91,14 +93,36 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
       type: itemType,
       data: {},
     };
-    this.actor.createEmbeddedDocuments("Item", [itemData]);
+    await this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
-  _onItemEquip(event) {
+  async _equipMainHand(event) {
+    await this._toggleEquipped(event, "equippedMainHand");
+  }
+
+  async _equipOffHand(event) {
+    await this._toggleEquipped(event, "equippedOffHand");
+  }    
+
+  async _equipArmor(event) {
+    await this._toggleEquipped(event, "equippedArmor");
+  }
+
+  async _toggleEquipped(event, attrib) {
     const item = this._itemFromEvent(event);
-    if (item) {
-      // uiClick();
-      return item.update({ ["system.equipped"]: !item.system.equipped});
+    if (!item) {
+      return;
+    }
+
+    const oldItem = this.actor.items.filter((item) => item.system[attrib]).pop();
+    const systemAttrib = "system." + attrib;
+    if (!oldItem || item._id === oldItem._id) {
+      // toggle      
+      await item.update({ [systemAttrib]: !item.system[attrib]});
+    } else {
+      // swap
+      await oldItem.update({ [systemAttrib]: false});
+      await item.update({ [systemAttrib]: true});
     }
   }
 

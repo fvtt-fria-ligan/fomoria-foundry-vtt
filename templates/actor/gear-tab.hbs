@@ -14,8 +14,14 @@
         {{/if}}
       </div>
       <div class="item-controls">
-        {{#if item.system.equippable}}
-          <a class="item-control item-equip {{item.system.equippedClass}}" title="{{localize 'FO.ToggleEquipped'}}"><i class="fas fa-shield"></i></a>
+        {{#if item.system.equippableMainHand}}
+          <a class="item-control item-equip-main-hand {{item.system.equippedClass}}" title="{{localize 'FO.ToggleMainHand'}}"><i class="fas fa-hand"></i></a>
+        {{/if}}
+        {{#if item.system.equippableOffHand}}
+          <a class="item-control item-equip-off-hand {{item.system.equippedClass}}" title="{{localize 'FO.ToggleOffHand'}}"><i class="fas fa-shield"></i></a>
+        {{/if}}
+        {{#if item.system.equippableArmor}}
+          <a class="item-control item-equip-armor {{item.system.equippedClass}}" title="{{localize 'FO.ToggleArmor'}}"><i class="fas fa-shirt"></i></a>
         {{/if}}
         <a class="item-control item-delete" title="{{localize 'FO.Delete'}}"><i class="fas fa-trash"></i></a>
       </div>

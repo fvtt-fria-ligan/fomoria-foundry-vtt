@@ -814,36 +814,24 @@
   width: 100%;
 }
 .fomoria.sheet section.window-content .violence-tab .violence-grid {
-  display: grid;
-  column-gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  gap: 20px;
   height: 100%;
   width: 100%;
 }
-.fomoria.sheet section.window-content .violence-tab .violence-grid .weapon-cell {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
+.fomoria.sheet section.window-content .violence-tab .violence-grid .main-hand-cell {
+  height: 80px;
+}
+.fomoria.sheet section.window-content .violence-tab .violence-grid .off-hand-cell {
+  height: 80px;
 }
 .fomoria.sheet section.window-content .violence-tab .violence-grid .armor-cell {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  height: 80px;
 }
 .fomoria.sheet section.window-content .violence-tab .violence-grid .expertise-cell {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  min-height: 80px;
 }
 .fomoria.sheet section.window-content .violence-tab .violence-grid .weaponfeats-cell {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  min-height: 80px;
 }
 .fomoria.sheet section.window-content .violence-tab .item-list .item-row {
   align-items: start;

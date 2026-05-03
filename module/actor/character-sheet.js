@@ -27,17 +27,14 @@ export class FOCharacterSheet extends FOActorSheet {
   /** @override */
   async getData() {
     const superData = await super.getData();
-    // TODO: move this to prepareItems?
     superData.data.items.forEach(item => {
-      item.system.equippable = (
-        item.type == CONFIG.FO.itemTypes.armor || 
-        item.type == CONFIG.FO.itemTypes.shield || 
-        item.type == CONFIG.FO.itemTypes.weapon);
-      item.system.equippedClass = item.system.equipped ? "equipped" : "unequipped";
+      // TODO: think through
+      // item.system.equippedClass = item.system.equippedArmor ? "equippedArmor" : "unequipped";
+      item.system.equippableArmor = item.type == CONFIG.FO.itemTypes.armor;
+      item.system.equippableMainHand = item.type == CONFIG.FO.itemTypes.weapon;
+      item.system.equippableOffHand = (item.type == CONFIG.FO.itemTypes.weapon ||
+        item.type == CONFIG.FO.itemTypes.shield);
       });
-    superData.data.system.armor = superData.data.items
-      .filter(item => item.type === CONFIG.FO.itemTypes.armor && item.system.equipped)
-      .sort(byName);
     superData.data.system.boons = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.boon)
       .sort(byName);
@@ -50,13 +47,24 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.equipment = superData.data.items
       .filter(item => {
         return (
-          (item.type === CONFIG.FO.itemTypes.equipment && !item.system.equipped) ||
-          (item.type === CONFIG.FO.itemTypes.armor && !item.system.equipped) || 
-          (item.type === CONFIG.FO.itemTypes.shield && !item.system.equipped) || 
-          (item.type === CONFIG.FO.itemTypes.weapon && !item.system.equipped)
+          (item.type === CONFIG.FO.itemTypes.armor && !item.system.equippedArmor) || 
+          (item.type === CONFIG.FO.itemTypes.shield && !item.system.equippedOffHand) || 
+          (item.type === CONFIG.FO.itemTypes.weapon && !item.system.equippedMainHand && !item.system.equippedOffHand)
           );
       })
-      .sort(byName);      
+      .sort(byName);
+    // superData.data.system.equippedArmor = this.actor.equippedArmor;
+    // superData.data.system.equippedMainHand = this.actor.equippedMainHand;
+    // superData.data.system.equippedOffHand = this.actor.equippedOffHand;
+    superData.data.system.equippedArmor = superData.data.items
+      .filter(item => item.system.equippedArmor)
+      .pop();
+    superData.data.system.equippedMainHand = superData.data.items
+      .filter(item => item.system.equippedMainHand)
+      .pop();
+    superData.data.system.equippedOffHand = superData.data.items
+      .filter(item => item.system.equippedOffHand)
+      .pop();
     superData.data.system.expertise = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.expertise)
       .sort(byName);
@@ -69,16 +77,11 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.tradition = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.tradition)
       .pop();
-    superData.data.system.shield = superData.data.items
-      .filter((item) => item.type === CONFIG.FO.itemTypes.shield && item.system.equipped)
-      .pop();
-    superData.data.system.weapons = superData.data.items
-      .filter((item) => item.type === CONFIG.FO.itemTypes.weapon && item.system.equipped)
-      .sort(byName);
     superData.data.system.weaponfeats = superData.data.items
       .filter((item) => item.type === CONFIG.FO.itemTypes.weaponfeat)
       .sort(byName);
     superData.data.system.encumberedClass = this.actor.isEncumbered ? "encumbered": "";
+    console.log(this.actor, this.actor.items, superData);
     return superData;
   }
 
