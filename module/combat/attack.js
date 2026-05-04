@@ -31,6 +31,12 @@ export async function rollAttack(
   }
   const value = actor.system.abilities[ability].value;
 
+  // TODO: check for off-hand weapon
+  const offHandWeapon = actor.offHandWeapon();
+  if (offHandWeapon) {
+
+  }
+
   // roll 1: attack
   const attackRoll = new Roll(d20Formula(value));
   await attackRoll.evaluate();

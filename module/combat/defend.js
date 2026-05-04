@@ -52,13 +52,16 @@ export async function rollDefend(actor, defendDR, incomingAttack) {
     addShowDicePromise(dicePromises, damageRoll);
     damage = damageRoll.total;
 
-    // roll 3: damage reduction from equipped armor, if any
+    // roll 3: damage reduction from equipped armor abd shield, if any
     let damageReductionDie = "";
     const armor = actor.equippedArmor();
     if (armor) {
       damageReductionDie =
         CONFIG.FO.armorTiers[armor.system.tier.value].damageReductionDie;
       items.push(armor);
+    }
+    if (actor.offHandShield()) {
+      damageReductionDie += "+1";
     }
     if (damageReductionDie) {
       armorRoll = new Roll("@die", { die: damageReductionDie });

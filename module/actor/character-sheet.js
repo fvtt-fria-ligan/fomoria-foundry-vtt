@@ -32,7 +32,7 @@ export class FOCharacterSheet extends FOActorSheet {
       // item.system.equippedClass = item.system.equippedArmor ? "equippedArmor" : "unequipped";
       item.system.equippableArmor = item.type == CONFIG.FO.itemTypes.armor;
       item.system.equippableMainHand = item.type == CONFIG.FO.itemTypes.weapon;
-      item.system.equippableOffHand = (item.type == CONFIG.FO.itemTypes.weapon ||
+      item.system.equippableOffHand = (item.type == (CONFIG.FO.itemTypes.weapon && ! item.system.twoHanded) ||
         item.type == CONFIG.FO.itemTypes.shield);
       });
     superData.data.system.boons = superData.data.items

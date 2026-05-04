@@ -78,25 +78,17 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     return this.carryingSlots > this.carryingCapacity;
   }
 
-  // get equippedMainHand() {
-  //   this.items.filter((item) => item.system.equippedMainHand).pop();
-  // }
+  offHandWeapon() {
+    this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.weapon).pop();
+  }
 
-  // get equippedOffHand() {
-  //   this.items.filter((item) => item.system.equippedOffHand).pop();
-  // }
-
-  // get equippedArmor() {
-  //   this.items.filter((item) => item.system.equippedArmor).pop();
-  // }  
+  offHandShield() {
+    this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.shield).pop();    
+  }
 
   _first(itemType) {
     return this.items.filter(x => x.type === itemType).shift();
   }
-
-  // equippedArmor() {
-  //   return this.items.filter(x => x.type === FO.itemTypes.armor).sort(byCurrentTierDesc).shift();
-  // }
 
   findItem(itemType, itemName) {
     return this.items.filter(x => x.type === itemType && x.name === itemName).shift();

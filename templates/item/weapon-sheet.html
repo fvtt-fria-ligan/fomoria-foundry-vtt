@@ -7,14 +7,6 @@
       {{> systems/fomoria/templates/item/item-base-fields.hbs }} 
       <div class="widget field-row">
         <div class="field-label">
-          {{ localize 'FO.WeaponType'}}
-        </div>
-        <div class="field-value">
-          <input class="field-input" type="text" name="system.weaponType" value="{{data.system.weaponType}}" spellcheck="false"/>
-        </div>
-      </div>
-      <div class="widget field-row">
-        <div class="field-label">
           {{ localize 'FO.Damage'}}
         </div>
         <div class="field-value">
@@ -23,10 +15,10 @@
       </div>
       <div class="widget field-row">
         <div class="field-label">
-          {{ localize 'FO.Special'}}
+          {{ localize 'FO.TwoHanded'}}
         </div>
         <div class="field-value">
-          <input class="field-input" type="text" name="system.special" value="{{data.system.special}}" spellcheck="false"/>
+          <input class="field-input" type="checkbox" name="system.twoHanded" {{checked data.system.twoHanded}} />
         </div>
       </div>
       <div class="widget field-row">
@@ -43,6 +35,14 @@
         </div>
         <div class="field-value">
           <input class="field-input" type="checkbox" name="system.usesAmmo" {{checked data.system.usesAmmo}} />
+        </div>
+      </div>
+      <div class="widget field-row">
+        <div class="field-label">
+          {{ localize 'FO.Special'}}
+        </div>
+        <div class="field-value">
+          <input class="field-input" type="text" name="system.special" value="{{data.system.special}}" spellcheck="false"/>
         </div>
       </div>
       <div class="widget field-row">

@@ -97,11 +97,51 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   }
 
   async _equipMainHand(event) {
-    await this._toggleEquipped(event, "equippedMainHand");
+    const item = this._itemFromEvent(event);
+    if (!item) {
+      return;
+    }
+
+    const oldMainHand = this.actor.items.filter((item) => item.system.equippedMainHand).pop();
+    if (!oldMainHand || item._id === oldMainHand._id) {
+      // toggle      
+      await item.update({ ["system.equippedMainHand"]: !item.system.equippedMainHand});
+    } else {
+      // swap
+      await oldMainHand.update({ ["system.equippedMainHand"]: false});
+      await item.update({ ["system.equippedMainHand"]: true});
+    }
+
+    if (item.system.twoHanded) {
+      // make sure off hand is cleared
+      const oldOffHand = this.actor.items.filter((item) => item.system.equippedOffHand).pop();
+      if (oldOffHand) {
+        await oldOffHand.update({ ["system.equippedOffHand"]: false});
+      }      
+    }
   }
 
   async _equipOffHand(event) {
-    await this._toggleEquipped(event, "equippedOffHand");
+    const item = this._itemFromEvent(event);
+    if (!item) {
+      return;
+    }
+
+    const oldOffHand = this.actor.items.filter((item) => item.system.equippedOffHand).pop();
+    if (!oldOffHand || item._id === oldOffHand._id) {
+      // toggle      
+      await item.update({ ["system.equippedOffHand"]: !item.system.equippedOffHand});
+    } else {
+      // swap
+      await oldOffHand.update({ ["system.equippedOffHand"]: false});
+      await item.update({ ["system.equippedOffHand"]: true});
+    }
+
+    // make sure a two-handed is cleared
+    const oldMainHand = this.actor.items.filter((item) => item.system.equippedMainHand).pop();
+    if (oldMainHand && oldMainHand.system.twoHanded) {
+      await oldMainHand.update({ ["system.equippedMainHand"]: false});
+    }
   }    
 
   async _equipArmor(event) {
