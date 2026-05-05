@@ -48,9 +48,9 @@ export class FOCharacterSheet extends FOActorSheet {
       .filter(item => {
         return (
           item.type === CONFIG.FO.itemTypes.equipment ||
-          (item.type === CONFIG.FO.itemTypes.armor && !item.system.equippedArmor) || 
-          (item.type === CONFIG.FO.itemTypes.shield && !item.system.equippedOffHand) || 
-          (item.type === CONFIG.FO.itemTypes.weapon && !item.system.equippedMainHand && !item.system.equippedOffHand)
+          item.type === CONFIG.FO.itemTypes.armor ||
+          item.type === CONFIG.FO.itemTypes.shield ||
+          item.type === CONFIG.FO.itemTypes.weapon
           );
       })
       .sort(byName);
