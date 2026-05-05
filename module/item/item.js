@@ -6,7 +6,7 @@ import { FO } from "../config.js";
  export class FOItem extends Item {
 
   get totalCarrySlots() {
-    if (this.type === FO.itemTypes.armor && this.system.equipped) {
+    if (this.type === FO.itemTypes.armor && this.system.equippedArmor) {
       // equipped armor doesn't count
       return 0;
     }
