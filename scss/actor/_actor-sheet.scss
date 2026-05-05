@@ -109,8 +109,11 @@
             .item-controls {
               padding-left: 5px;
               text-align: right;
-              .item-equip.unequipped {
+              .item-control {
                 opacity: 0.5;
+              }
+              .item-control.equipped {
+                opacity: 1.0;
               }
             }
           }

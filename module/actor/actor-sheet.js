@@ -105,11 +105,17 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const oldMainHand = this.actor.items.filter((item) => item.system.equippedMainHand).pop();
     if (!oldMainHand || item._id === oldMainHand._id) {
       // toggle      
-      await item.update({ ["system.equippedMainHand"]: !item.system.equippedMainHand});
+      await item.update({ 
+        ["system.equippedMainHand"]: !item.system.equippedMainHand,
+        ["system.equippedOffHand"]: false,
+      });
     } else {
       // swap
       await oldMainHand.update({ ["system.equippedMainHand"]: false});
-      await item.update({ ["system.equippedMainHand"]: true});
+      await item.update({ 
+        ["system.equippedMainHand"]: true,
+        ["system.equippedOffHand"]: false,
+      });
     }
 
     if (item.system.twoHanded) {
@@ -130,11 +136,17 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const oldOffHand = this.actor.items.filter((item) => item.system.equippedOffHand).pop();
     if (!oldOffHand || item._id === oldOffHand._id) {
       // toggle      
-      await item.update({ ["system.equippedOffHand"]: !item.system.equippedOffHand});
+      await item.update({ 
+        ["system.equippedMainHand"]: false,
+        ["system.equippedOffHand"]: !item.system.equippedOffHand
+      });
     } else {
       // swap
       await oldOffHand.update({ ["system.equippedOffHand"]: false});
-      await item.update({ ["system.equippedOffHand"]: true});
+      await item.update({ 
+        ["system.equippedMainHand"]: false,
+        ["system.equippedOffHand"]: true
+      });
     }
 
     // make sure a two-handed is cleared

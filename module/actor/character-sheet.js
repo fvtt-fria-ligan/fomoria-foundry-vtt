@@ -28,12 +28,13 @@ export class FOCharacterSheet extends FOActorSheet {
   async getData() {
     const superData = await super.getData();
     superData.data.items.forEach(item => {
-      // TODO: think through
-      // item.system.equippedClass = item.system.equippedArmor ? "equippedArmor" : "unequipped";
+      item.system.equippedArmorClass = item.system.equippedArmor ? "equipped" : "unequipped";
+      item.system.equippedMainHandClass = item.system.equippedMainHand ? "equipped" : "unequipped";
+      item.system.equippedOffHandClass = item.system.equippedOffHand ? "equipped" : "unequipped";
       item.system.equippableArmor = item.type == CONFIG.FO.itemTypes.armor;
       item.system.equippableMainHand = item.type == CONFIG.FO.itemTypes.weapon;
-      item.system.equippableOffHand = (item.type == (CONFIG.FO.itemTypes.weapon && ! item.system.twoHanded) ||
-        item.type == CONFIG.FO.itemTypes.shield);
+      item.system.equippableOffHand = (item.type == CONFIG.FO.itemTypes.weapon && !item.system.twoHanded) ||
+        item.type == CONFIG.FO.itemTypes.shield;
       });
     superData.data.system.boons = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.boon)

@@ -417,8 +417,11 @@
   padding-left: 5px;
   text-align: right;
 }
-.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-controls .item-equip.unequipped {
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-controls .item-control {
   opacity: 0.5;
+}
+.fomoria.sheet.actor section.window-content .sheet-body .item-row .item-fields .item-name-row .item-controls .item-control.equipped {
+  opacity: 1;
 }
 
 .sheet-body .background-tab {
