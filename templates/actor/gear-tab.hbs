@@ -31,36 +31,45 @@
 {{/inline}}
 
 <div class="tab gear-tab" data-group="primary" data-tab="gear">
-  <div class="carrying-row">
-    <div class="silver">
-      <div class="widget field-row">
-        <div class="field-label">
-          {{ localize 'FO.Silver'}}
-        </div>
-        <div class="field-value silver-value">
-          <input class="field-input" type="number" name="system.silver" value="{{data.system.silver}}" />
-        </div>
-      </div> 
+  <div class="cols">
+
+    <div class="col">
+      <div class="col-title">
+        {{localize 'FO.Gear'}}
+          <a class="item-control add-gear" data-item-type="condition" title='{{localize "FO.CreateNewFeat"}}'>
+              <i class="fas fa-plus"></i>
+          </a>
+      </div>
+
+      <div class="equipment item-list">
+        {{#each data.system.equipment as |item id|}}
+          {{> itemPartial item=item}}
+        {{/each}}
+      </div>
     </div>
-    <div class="carrying">
-      <div class="widget field-row {{data.system.encumberedClass}}">
-        <div class="field-label">
-          {{ localize 'FO.Carrying'}}
+
+    <div class="col">
+      <div class="gear-row">
+        <div class="carrying {{data.system.encumberedClass}}">
+          <div class="gear-label">
+            {{ localize 'FO.Carrying'}}: 
+          </div>
+          <div class="gear-value carrying-value">
+            {{ceil actor.carryingSlots}} / {{actor.carryingCapacity}}
+          </div>
         </div>
-        <div class="field-value carrying-value">
-          {{ceil actor.carryingSlots}} / {{actor.carryingCapacity}}
+      </div>
+      <div class="gear-row">
+        <div class="silver">
+          <div class="gear-label">
+            {{ localize 'FO.Silver'}}: 
+          </div>
+          <div class="gear-value silver-value">
+            <input type="number" name="system.silver" value="{{data.system.silver}}" />
+          </div>
         </div>
-      </div>  
+      </div>
     </div>
-    <div class="add-item-row">
-      <button type="button" class="sheet-button medium-button add-item-button">{{ localize 'FO.AddItem' }} <i class="fas fa-plus fa-fw"></i></button>
-    </div>          
-  </div>
-  <div class="equipment-wrapper">
-    <div class="equipment item-list">
-      {{#each data.system.equipment as |item id|}}
-        {{> itemPartial item=item}}
-      {{/each}}
-    </div>
-  </div>
+  </div>  
+
 </div>

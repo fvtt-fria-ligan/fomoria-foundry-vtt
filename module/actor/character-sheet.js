@@ -47,15 +47,13 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.equipment = superData.data.items
       .filter(item => {
         return (
+          item.type === CONFIG.FO.itemTypes.equipment ||
           (item.type === CONFIG.FO.itemTypes.armor && !item.system.equippedArmor) || 
           (item.type === CONFIG.FO.itemTypes.shield && !item.system.equippedOffHand) || 
           (item.type === CONFIG.FO.itemTypes.weapon && !item.system.equippedMainHand && !item.system.equippedOffHand)
           );
       })
       .sort(byName);
-    // superData.data.system.equippedArmor = this.actor.equippedArmor;
-    // superData.data.system.equippedMainHand = this.actor.equippedMainHand;
-    // superData.data.system.equippedOffHand = this.actor.equippedOffHand;
     superData.data.system.equippedArmor = superData.data.items
       .filter(item => item.system.equippedArmor)
       .pop();

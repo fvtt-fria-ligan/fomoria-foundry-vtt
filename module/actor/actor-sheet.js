@@ -1,4 +1,4 @@
-import { showAddItemDialog } from "./add-item-dialog.js";
+import { showAddGearDialog } from "./add-gear-dialog.js";
 import { showAttackDialog } from "../combat/attack-dialog.js";
 import { rollDismalBreakdown } from "../combat/breakdown.js";
 import { rollDireInjury } from "../combat/injury.js";
@@ -40,7 +40,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    html.find(".add-item-button").on("click", this._addItem.bind(this));
+    html.find(".add-gear").on("click", this._addItem.bind(this));
     html.find(".attack-button").on("click", this._attack.bind(this));
     html.find(".defend-button").on("click", this._defend.bind(this));
     html.find(".initiative-button").on("click", this._initiative.bind(this));
@@ -168,7 +168,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
 
   async _addItem(event) {
     event.preventDefault();
-    showAddItemDialog(this.actor);
+    showAddGearDialog(this.actor);
   }
 
   /**

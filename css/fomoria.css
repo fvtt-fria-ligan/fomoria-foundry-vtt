@@ -511,11 +511,6 @@
   padding-top: 0px;
 }
 
-.boons-tab .no-boons {
-  margin-left: 10px;
-  margin-top: 20px;
-}
-
 .fomoria.sheet.actor.character section.window-content {
   padding-right: 10px;
   overflow: hidden;
@@ -731,58 +726,72 @@
   margin-top: 20px;
 }
 
-.gear-tab .carrying-row {
+.gear-tab .cols {
+  gap: 10px;
+}
+.gear-tab .cols .col {
+  flex: 1;
+}
+.gear-tab .gear-row {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
-.gear-tab .carrying-row .silver {
-  flex: 1;
+.gear-tab .gear-label {
+  font-family: "Walter Turncoat";
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
+  width: 100px;
+  text-align: right;
+}
+.gear-tab .gear-value {
+  font-family: "Pokoljaro";
+  width: 100px;
+}
+.gear-tab .silver {
+  display: flex;
   height: 28px;
 }
-.gear-tab .carrying-row .silver .silver-value {
+.gear-tab .silver .silver-value {
   height: 28px;
 }
-.gear-tab .carrying-row .silver {
+.gear-tab .silver .silver-value input[type=number] {
+  font-size: 24px;
+  width: 90px !important;
+}
+.gear-tab .silver {
   margin-right: 5px;
 }
-.gear-tab .carrying-row .carrying {
-  flex: 1;
+.gear-tab .carrying {
+  display: flex;
 }
-.gear-tab .carrying-row .carrying .carrying-value {
-  padding-bottom: 2px;
-  padding-top: 5px;
+.gear-tab .carrying .carrying-value {
+  font-family: "Pokoljaro";
+  font-size: 24px;
 }
-.gear-tab .carrying-row .carrying .encumbered {
+.gear-tab .carrying .encumbered {
   color: var(--fo-highlight-color);
 }
-.gear-tab .carrying-row .add-item-row {
-  flex: 1;
-  padding-left: 5px;
+.gear-tab button.add-item-button {
+  width: 100px;
 }
-.gear-tab .equipment-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 40px);
-  width: 100%;
-  overflow: hidden;
+.gear-tab .add-item-row {
+  padding-left: 5px;
 }
 .gear-tab .equipment.item-list {
   column-gap: 20px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(auto-fill, 50px);
-  row-gap: 5px;
   overflow: auto;
 }
 .gear-tab .equipment.item-list .equipment-row {
   align-items: center;
-  height: 30px;
-  border: 1px solid red;
+  margin-bottom: 5px;
+  width: 100%;
 }
 .gear-tab .equipment.item-list .equipment-row .item .item-name {
   font-size: 20px;

@@ -67,6 +67,7 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   get carryingSlots() {
+    console.log(this.items);
     return this.items
       .reduce((slots, item) => slots + item.totalCarrySlots, 0);
   }

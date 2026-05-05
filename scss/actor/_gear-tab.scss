@@ -1,59 +1,72 @@
 .gear-tab {
-  .carrying-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    width: 100%;
-    .silver {
+  .cols {
+    gap: 10px;
+    .col {
       flex: 1;
-      // height: $field-height;
+    }
+  }
+  .gear-row {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .gear-label {
+    font-family: $label-font;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 100px;
+    text-align: right;
+  }
+  .gear-value {
+    font-family: $input-text-font;
+    width: 100px;
+  }
+  .silver {
+    display: flex;
+    height: 28px;
+    .silver-value {
       height: 28px;
-      .silver-value {
-        // padding-bottom: 2px;
-        // padding-top: 5px;
-        height: 28px;
+      input[type="number"] {
+        font-size: 24px;
+        width: 90px !important;
       }
-      margin-right: 5px;
     }
-    .carrying {
-      flex: 1;
-      .carrying-value {
-        padding-bottom: 2px;
-        padding-top: 5px;
-      }  
-      .encumbered {
-        color: var(--fo-highlight-color);
-      }  
-    }
-    .add-item-row {
-      flex: 1;
-      padding-left: 5px;
-    }
+    margin-right: 5px;
   }
-  .equipment-wrapper {
+  .carrying {
     display: flex;
-    flex-direction: column;
-    height: calc(100% - 40px);
-    width: 100%;
-    overflow: hidden;
+    .carrying-value {
+      font-family: $input-number-font;
+      font-size: 24px;
+      // padding-bottom: 10px;
+      // padding-top: 5px;
+    }  
+    .encumbered {
+      color: var(--fo-highlight-color);
+    }  
   }
+  button.add-item-button {
+    width: 100px;
+  }
+  .add-item-row {
+    // flex: 1;
+    padding-left: 5px;
+  }
+
   .equipment.item-list {
     column-gap: 20px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    // grid-auto-flow: row;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(auto-fill, 50px);
-    // min-height: 60px;
-    row-gap: 5px;
     overflow: auto;
 
     .equipment-row {
       align-items: center;
-      height: 30px;
-      border: 1px solid red;
+      margin-bottom: 5px;
+      width: 100%;
       
       .item {
           .item-name {

@@ -1,20 +1,20 @@
 import { FOApplication } from "../ui/application.js";
 
-export function showAddItemDialog(actor) {
-  const dialog = new AddItemDialog();
+export function showAddGearDialog(actor) {
+  const dialog = new AddGearDialog();
   dialog.actor = actor;
   dialog.render(true);
 }
 
-export class AddItemDialog extends FOApplication {
+export class AddGearDialog extends FOApplication {
   /** @override */
   static get defaultOptions() {
     const options = super.defaultOptions;
-    options.id = "add-item-dialog";
+    options.id = "add-gear-dialog";
     options.classes = ["fomoria", "dialog"];
-    options.title = game.i18n.localize("FO.AddItem");
+    options.title = game.i18n.localize("FO.AddGear");
     options.template =
-      "systems/fomoria/templates/dialog/add-item-dialog.html";
+      "systems/fomoria/templates/dialog/add-gear-dialog.html";
     options.width = 420;
     options.height = "auto";
     return options;
@@ -28,16 +28,16 @@ export class AddItemDialog extends FOApplication {
 
   async _onAddItem(event) {
     event.preventDefault();
-    const form = $(event.currentTarget).parents(".add-item-dialog")[0];
-    const itemName = form.itemname.value;
-    const itemType = form.itemtype.value;
-    if (!itemName || !itemType) {
-      ui.notifications.error(game.i18n.localize('FO.ItemNameAndTypeRequired'));
+    const form = $(event.currentTarget).parents(".add-gear-dialog")[0];
+    const gearName = form.gearname.value;
+    const gearType = form.geartype.value;
+    if (!gearName || !gearType) {
+      ui.notifications.error(game.i18n.localize('FO.GearNameAndTypeRequired'));
       return;
     }
     const itemData = {
-      name: form.itemname.value,
-      type: form.itemtype.value,
+      name: form.gearname.value,
+      type: form.geartype.value,
       data: {},
     };
     const docs = await this.actor.createEmbeddedDocuments("Item", [itemData]);
