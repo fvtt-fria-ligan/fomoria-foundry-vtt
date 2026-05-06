@@ -83,21 +83,11 @@ FO.armorTiers = {
     toughnessModifier: 0,
     label: "-d6",
   },
-  4: {
-    tier: 4,
-    key: "FO.ArmorTierExoSuit",
-    damageReductionDie: "1d8",
-    agilityModifier: 4,
-    defenseModifier: 2,
-    strengthModifier: -2,
-    toughnessModifier: -2,
-    label: "-d8",
-  },
 };
 
 // TODO: use this in combat-tab.html
 FO.armorTiersList = [FO.armorTiers[0], FO.armorTiers[1], 
-  FO.armorTiers[2], FO.armorTiers[3], FO.armorTiers[4]];
+  FO.armorTiers[2], FO.armorTiers[3]];
 
 FO.flagScope = FO.system;
 FO.flags = {
@@ -233,3 +223,8 @@ FO.colorSchemes = {
 
 FO.useBoonFumbleOn = 1;
 FO.useBoonCritOn = 20;
+
+FO.defaultFolk = "Compendium.fomoria.fomoria-items.Item.yWL4ljE4bezK1kRh";
+FO.defaultTradition = "Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa";
+
+FO.dizzyCondition = "";

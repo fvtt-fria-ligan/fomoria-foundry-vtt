@@ -1,4 +1,5 @@
 import { showAddGearDialog } from "./add-gear-dialog.js";
+import { learnBoon, useBoon } from "./boons.js";
 import { showAttackDialog } from "../combat/attack-dialog.js";
 import { rollDismalBreakdown } from "../combat/breakdown.js";
 import { rollDireInjury } from "../combat/injury.js";
@@ -55,6 +56,9 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     html.find(".rest-button").on("click", this._rest.bind(this));
     html.find(".tabs a.item").on("click", this._onTabClick.bind(this));
     html.find(".tier-radio").click(this._onArmorTierRadio.bind(this));
+    html.find(".use-boon-button").on("click", this._useBoon.bind(this));
+    html.find(".learn-boon-button").on("click", this._learnBoon.bind(this));
+
   }  
   
   _onTabClick(event) {
@@ -249,5 +253,15 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     const parent = input.parents(".item");
     const item = this.actor.items.get(parent.data("itemId"));
     await item.update({ ["system.tier.value"]: newTier });
+  }
+
+  async _useBoon(event) {
+    event.preventDefault();
+    await useBoon(this.actor);
+  }
+
+  async _learnBoon(event) {
+    event.preventDefault();
+    await learnBoon(this.actor);
   }
  }

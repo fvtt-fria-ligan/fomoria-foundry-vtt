@@ -80,7 +80,6 @@ export class FOCharacterSheet extends FOActorSheet {
       .filter((item) => item.type === CONFIG.FO.itemTypes.weaponfeat)
       .sort(byName);
     superData.data.system.encumberedClass = this.actor.isEncumbered ? "encumbered": "";
-    console.log(this.actor, this.actor.items, superData);
     return superData;
   }
 
@@ -90,7 +89,6 @@ export class FOCharacterSheet extends FOActorSheet {
     html
       .find(".ability-link")
       .on("click", this._testAbility.bind(this));
-    html.find(".use-boon-button").on("click", this._useBoon.bind(this));
     // html.find(".use-feat-button").on("click", this._useFeat.bind(this));
   }
 
@@ -122,11 +120,6 @@ export class FOCharacterSheet extends FOActorSheet {
         testToughness(this.actor);
         break;
     }
-  }
-
-  _useBoon(event) {
-    event.preventDefault();
-    useBoon(this.actor, itemId);
   }
 
   _onFeatRoll(event) {

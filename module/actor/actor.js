@@ -55,8 +55,8 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   async addDefaultFolkAndTradition() {
-    const defaultFolk = await fromUuid("Compendium.fomoria.fomoria-items.Item.yWL4ljE4bezK1kRh");
-    const defaultTradition = await fromUuid("Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa");
+    const defaultFolk = await fromUuid(FO.defaultFolk);
+    const defaultTradition = await fromUuid(FO.defaultTradition);
     await this.createEmbeddedDocuments("Item", [simpleData(defaultFolk), simpleData(defaultTradition)]);
   }
 
@@ -67,7 +67,6 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   get carryingSlots() {
-    console.log(this.items);
     return this.items
       .reduce((slots, item) => slots + item.totalCarrySlots, 0);
   }
@@ -77,6 +76,16 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
       return false;
     }
     return this.carryingSlots > this.carryingCapacity;
+  }
+
+  condition(conditionName) {
+    return this.items.find((item) => 
+      item.type === FO.itemTypes.condition && 
+      item.name.toLowerCase() == conditionName.toLowerCase());
+  }
+
+  hasCondition(conditionName) {
+    return this.condition(conditionName) !== undefined;
   }
 
   offHandWeapon() {
