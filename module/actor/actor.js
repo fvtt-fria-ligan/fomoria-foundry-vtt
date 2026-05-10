@@ -1,9 +1,8 @@
 import { FO } from "../config.js";
 import { FOItem } from "../item/item.js";
 import { trackCarryingCapacity } from "../settings.js";
-import { documentFromPack, simpleData } from "../packutils.js";
+import { documentsFromDraw, documentFromPack, drawFromTableUuid, drawDocumentFromTableUuid, simpleData } from "../packutils.js";
 import { showMakeFolkDialog } from "../generator/make-folk-dialog.js";
-
 
 const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ? 1 : b.system.tier.value < a.system.tier.value ? -1 : 0);
 
@@ -104,7 +103,52 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     return this.items.filter(x => x.type === itemType && x.name === itemName).shift();
   }
 
-  async reboot() {
+  async reroll() {
     showMakeFolkDialog(this);
   }  
+
+  async becomeDizzy() {
+    if (this.hasCondition("dizzy")) {
+      // already dizzy
+      return;
+    }
+
+    const dizzy = await fromUuid(FO.dizzyCondition);
+    await this.createEmbeddedDocuments("Item", [simpleData(dizzy)]);
+  }
+
+  async loseHitPoints(dmg) {
+    const newHP = Math.max(actor.system.hitPoints.value - dmg, 0);
+    await this.update({ ["system.hitPoints.value"]: newSP });
+    if (newHP === 0) {
+      await this.rollDireInjury();
+    }
+  }
+
+  async loseStabilityPoints(dmg) {
+    const newSP = Math.max(this.system.stabilityPoints.value - dmg, 0);
+    await this.update({ ["system.stabilityPoints.value"]: newSP });
+    if (newSP === 0) {
+      await this.rollBreakdown();
+    }
+  }
+
+  async rollBreakdown() {
+    const breakdown = await drawDocumentFromTableUuid(FO.dismalBreakdownsTable);
+    console.log(breakdown);
+    if (breakdown) {
+      await this.createEmbeddedDocuments("Item", [simpleData(breakdown)]);
+    } else {
+      console.log("Could not drawn from table", FO.dismalBreakdownsTable);
+    }
+  }
+
+  async rollInjury() {
+    const injury = await drawDocumentFromTableUuid(FO.direInjuriesTable);
+    if (injury) {
+      await this.createEmbeddedDocuments("Item", [simpleData(injury)]);
+    } else {
+      console.log("Could not drawn from table", FO.direInjuriesTable);
+    }
+  }
  }

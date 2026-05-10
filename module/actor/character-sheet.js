@@ -1,6 +1,6 @@
 import { testAgility, testOccult, testPresence, testStrength, testToughness } from "./ability-tests.js";
 import { FOActorSheet } from "./actor-sheet.js";
-import { useBoon } from "./boons.js";
+import { learnBoon, useBoon } from "./boons.js";
 import { useFeat } from "./feats.js";
 import { showThreadsHelp } from "./threads.js";
 import { byName } from "../utils.js";
@@ -90,6 +90,10 @@ export class FOCharacterSheet extends FOActorSheet {
       .find(".ability-link")
       .on("click", this._testAbility.bind(this));
     // html.find(".use-feat-button").on("click", this._useFeat.bind(this));
+    html.find(".breakdown-button").on("click", this._rollBreakdown.bind(this));
+    html.find(".injury-button").on("click", this._rollInjury.bind(this));
+    html.find(".learn-boon-button").on("click", this._learnBoon.bind(this));
+    html.find(".use-boon-button").on("click", this._useBoon.bind(this));
   }
 
   /** @override */
@@ -122,11 +126,32 @@ export class FOCharacterSheet extends FOActorSheet {
     }
   }
 
-  _onFeatRoll(event) {
+  _useFeat(event) {
     event.preventDefault();
     const button = $(event.currentTarget);
     const li = button.parents(".item");
     const itemId = li.data("itemId");
     useFeat(this.actor, itemId);
   }
+
+  async _learnBoon(event) {
+    event.preventDefault();
+    await learnBoon(this.actor);
+  }  
+
+  async _useBoon(event) {
+    event.preventDefault();
+    await useBoon(this.actor);
+  }
+
+  async _rollBreakdown(event) {
+    event.preventDefault();
+    await this.actor.rollBreakdown();
+  }
+
+  async _rollInjury(event) {
+    event.preventDefault();
+    await this.actor.rollInjury();
+  }
+
  }

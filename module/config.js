@@ -226,5 +226,7 @@ FO.useBoonCritOn = 20;
 
 FO.defaultFolk = "Compendium.fomoria.fomoria-items.Item.yWL4ljE4bezK1kRh";
 FO.defaultTradition = "Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa";
+FO.dizzyCondition = "Compendium.fomoria.fomoria-items.Item.s2uDlX2iI7chmOY9";
+FO.direInjuriesTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.NtilgUYkLBSkrjWb";
+FO.dismalBreakdownsTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.tkw733wQ0qnXHxL1";
 
-FO.dizzyCondition = "";

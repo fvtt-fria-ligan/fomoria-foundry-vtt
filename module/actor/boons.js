@@ -25,6 +25,7 @@ export async function useBoon(actor) {
   let useOutcome = null;
   let damageRoll = null;
   let takeDamage = null;
+  let becomeDizzy = false;
   if (isCrit || useRoll.total >= useDR) {
     // SUCCESS
     useOutcome = game.i18n.localize(
@@ -43,7 +44,8 @@ export async function useBoon(actor) {
     } ${game.i18n.localize("FO.Damage")}, ${game.i18n.localize(
       "FO.UseBoonDizzy"
     )}`;
-    // TODO: give actor Dizzy condition if they don't have it already
+
+    becomeDizzy = true;
   }
 
   const useFormula = `1d20 + ${game.i18n.localize(
@@ -94,7 +96,15 @@ export async function useBoon(actor) {
   });
 
   const newWyrd = Math.max(0, actor.system.wyrd.value - 1);
-  await actor.update({ ["system.wyrd.value"]: newWyrd });
+  await actor.update({ 
+    ["system.wyrd.value"]: newWyrd,
+  });
+  if (becomeDizzy) {
+    await actor.becomeDizzy();
+  }  
+  if (damageRoll) {
+    await actor.loseStabilityPoints(damageRoll.total);
+  }
 }
 
 export async function learnBoon(actor) {
@@ -159,11 +169,8 @@ export async function learnBoon(actor) {
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
 
-  const newSP = Math.max(actor.system.stabilityPoints.value - damageRoll.total, 0);
-  await actor.update({ ["system.stabilityPoints.value"]: newSP });
-  if (newSP === 0) {
-    // TODO: dismal breakdown
-    // draw a dismal breakdown, apply it
+  if (damageRoll) {
+    await actor.loseStabilityPoints(damageRoll.total);
   }
 }
 

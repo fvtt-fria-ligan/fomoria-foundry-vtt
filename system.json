@@ -37,6 +37,13 @@
       "system": "fomoria",
       "path": "./packs/fomoria-items",
       "type": "Item"
+    },
+    {
+      "name": "fomoria-rollable-tables",
+      "label": "Fomoria (Rollable Tables)",
+      "system": "fomoria",
+      "path": "./packs/fomoria-rollable-tables",
+      "type": "RollTable"
     }
   ],
   "socket": true,
