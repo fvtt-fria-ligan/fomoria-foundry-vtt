@@ -104,7 +104,7 @@ function drModifiersToHtml(drModifiers) {
 };
 
 async function testAbility(actor, ability, abilityKey, drModifiers) {
-  const value = actor.system.abilities[ability].value;
+  const value = actor.system.abilities[ability].value + actor.system.abilities[ability].modifier;
   const formula = d20Formula(value);
   const abilityRoll = new Roll(formula);
   const flavor = `${game.i18n.localize('FO.Test')} ${game.i18n.localize(abilityKey)} ${drModifiersToHtml(drModifiers)}`;

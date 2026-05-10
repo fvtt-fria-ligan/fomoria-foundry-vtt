@@ -1,8 +1,6 @@
 import { showAddGearDialog } from "./add-gear-dialog.js";
 import { learnBoon, useBoon } from "./boons.js";
 import { showAttackDialog } from "../combat/attack-dialog.js";
-import { rollDismalBreakdown } from "../combat/breakdown.js";
-import { rollDireInjury } from "../combat/injury.js";
 import { showDefendDialog } from "../combat/defend-dialog.js";
 import { rollPartyInitiative } from "../combat/initiative.js";
 import { showRestDialog } from "../combat/rest-dialog.js";

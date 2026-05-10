@@ -8,7 +8,7 @@ const DEFEND_ROLL_CARD_TEMPLATE =
  * Do the actual defend rolls and resolution.
  */
 export async function rollDefend(actor, defendDR, incomingAttack) {
-  const agility = actor.system.abilities.agility.value;
+  const agility = actor.system.abilities.agility.value + actor.system.abilities.agility.modifier;
   const defendFormula = d20Formula(agility);
 
   // roll 1: defend

@@ -29,7 +29,7 @@ export async function rollAttack(
     abilityAbbrevKey = "FO.StrengthAbbrev";
     attackTypeKey = "FO.Melee";
   }
-  const value = actor.system.abilities[ability].value;
+  const value = actor.system.abilities[ability].value + actor.system.abilities[ability].modifier;
 
   // TODO: check for off-hand weapon
   const offHandWeapon = actor.offHandWeapon();

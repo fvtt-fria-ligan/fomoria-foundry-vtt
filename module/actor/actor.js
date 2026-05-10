@@ -36,21 +36,9 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   async _onCreate(data, options, userId) {
     if (data.type === FO.actorTypes.character) {
       // give Characters a default Folk and Tradition
-      this.addDefaultFolkAndTradition();
+      await this.addDefaultFolkAndTradition();
     }
     super._onCreate(data, options, userId);
-  }
-
-  /** @override */
-  async _onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
-    super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
-    if (this.type === FO.actorTypes.character) {
-      for (const doc of documents) {
-        if (doc instanceof FOItem && doc.type === FO.itemTypes.boonPower && !doc.system.infestionId) {
-          await doc.createLinkedInfestation();
-        }
-      }
-    }
   }
 
   async addDefaultFolkAndTradition() {
@@ -59,6 +47,29 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     await this.createEmbeddedDocuments("Item", [simpleData(defaultFolk), simpleData(defaultTradition)]);
   }
 
+  /** @override */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+
+    if (this.type === FO.actorTypes.character) {
+      this.system.abilities.strength.modifier = 0;
+      this.system.abilities.agility.modifier = 0;
+      this.system.abilities.presence.modifier = 0;
+      this.system.abilities.toughness.modifier = 0;
+      this.system.abilities.occult.modifier = 0;
+
+      this.items.forEach(item => {
+        if (item.type == FO.itemTypes.condition) {
+          this.system.abilities.strength.modifier += item.system.abilityModifiers.strength;
+          this.system.abilities.agility.modifier += item.system.abilityModifiers.agility;
+          this.system.abilities.presence.modifier += item.system.abilityModifiers.presence;
+          this.system.abilities.toughness.modifier += item.system.abilityModifiers.toughness;
+          this.system.abilities.occult.modifier += item.system.abilityModifiers.occult;
+        }
+      });
+    }
+  }
+  
   // ===== encumbrance =====
   
   get carryingCapacity() {
@@ -85,6 +96,10 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
 
   hasCondition(conditionName) {
     return this.condition(conditionName) !== undefined;
+  }
+
+  equippedArmor() {
+    this.items.filter((item) => item.system.equippedArmor && item.type === FO.itemTypes.armor).pop();
   }
 
   offHandWeapon() {
@@ -130,25 +145,6 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     await this.update({ ["system.stabilityPoints.value"]: newSP });
     if (newSP === 0) {
       await this.rollBreakdown();
-    }
-  }
-
-  async rollBreakdown() {
-    const breakdown = await drawDocumentFromTableUuid(FO.dismalBreakdownsTable);
-    console.log(breakdown);
-    if (breakdown) {
-      await this.createEmbeddedDocuments("Item", [simpleData(breakdown)]);
-    } else {
-      console.log("Could not drawn from table", FO.dismalBreakdownsTable);
-    }
-  }
-
-  async rollInjury() {
-    const injury = await drawDocumentFromTableUuid(FO.direInjuriesTable);
-    if (injury) {
-      await this.createEmbeddedDocuments("Item", [simpleData(injury)]);
-    } else {
-      console.log("Could not drawn from table", FO.direInjuriesTable);
     }
   }
  }

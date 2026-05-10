@@ -1,7 +1,9 @@
 import { testAgility, testOccult, testPresence, testStrength, testToughness } from "./ability-tests.js";
 import { FOActorSheet } from "./actor-sheet.js";
 import { learnBoon, useBoon } from "./boons.js";
+import { rollBreakdown } from "../combat/breakdown.js";
 import { useFeat } from "./feats.js";
+import { rollInjury } from "../combat/injury.js";
 import { showThreadsHelp } from "./threads.js";
 import { byName } from "../utils.js";
 
@@ -20,7 +22,7 @@ export class FOCharacterSheet extends FOActorSheet {
           initial: "combat",
         },
       ],
-      dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
+      // dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
     });
   }
 
@@ -146,12 +148,12 @@ export class FOCharacterSheet extends FOActorSheet {
 
   async _rollBreakdown(event) {
     event.preventDefault();
-    await this.actor.rollBreakdown();
+    await rollBreakdown(this.actor);
   }
 
   async _rollInjury(event) {
     event.preventDefault();
-    await this.actor.rollInjury();
+    await rollInjury(this.actor);
   }
 
  }

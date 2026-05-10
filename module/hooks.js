@@ -5,22 +5,23 @@ import { createScvmFromClassUuid } from "./generator/folkfactory.js";
 export function registerHooks() {
 
   Hooks.on("createItem", async (item, options, userId) => {
-    if (userId != game.user.id) {
-      return;
-    }
-    if (item.parent?._sheet?._state == Application.RENDER_STATES.RENDERED) {
-      // uiAdd();
-    }
+    console.log("createItem", item);
+    // if (userId != game.user.id) {
+    //   return;
+    // }
+    // if (item.parent?._sheet?._state == Application.RENDER_STATES.RENDERED) {
+    //   // uiAdd();
+    // }
   });
 
-  Hooks.on("deleteItem", async (item, options, userId) => {
-    if (userId != game.user.id) {
-      return;
-    }
-    if (item.parent?._sheet?._state == Application.RENDER_STATES.RENDERED) {
-      // uiDelete();
-    }
-  });
+  // Hooks.on("deleteItem", async (item, options, userId) => {
+  //   if (userId != game.user.id) {
+  //     return;
+  //   }
+  //   if (item.parent?._sheet?._state == Application.RENDER_STATES.RENDERED) {
+  //     // uiDelete();
+  //   }
+  // });
 
   Hooks.once("ready", () => {
     applyFontsAndColors();
@@ -37,7 +38,13 @@ export function registerHooks() {
     html.find(".rollable").off("click");
     html.find(".create-scvm").off("click");
   });
+
+  Hooks.on("dropActorSheetData", async (targetActor, targetSheet, futureItem) => {  
+    console.log("dropActorSheetData", futureItem);
+    return true;
+  });
 };
+
 
 async function drawFromRollableTable(event) {
   event.preventDefault();

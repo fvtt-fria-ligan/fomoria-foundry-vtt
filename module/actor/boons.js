@@ -1,7 +1,6 @@
 import { FO } from "../config.js";
 import { diceSound, showDice } from "../dice.js";
-import { d20Formula, showOutcomeRollCard } from "../utils.js";
-
+import { d20Formula, showOutcomeRollCard} from "../utils.js";
 
 export async function useBoon(actor) {
   if (actor.system.wyrd.value < 1) {
@@ -9,10 +8,8 @@ export async function useBoon(actor) {
     return;
   }
 
-  const useRoll = new Roll(
-    "d20+@abilities.occult.value",
-    actor.getRollData()
-  );
+  const occult = actor.system.abilities.occult.value + actor.system.abilities.occult.modifier;
+  const useRoll = new Roll(d20Formula(occult));
   await useRoll.evaluate();
   await showDice(useRoll);
 
@@ -108,10 +105,8 @@ export async function useBoon(actor) {
 }
 
 export async function learnBoon(actor) {
-  const roll = new Roll(
-    "d20+@abilities.occult.value",
-    actor.getRollData()
-  );
+  const occult = actor.system.abilities.occult.value + actor.system.abilities.occult.modifier;  
+  const roll = new Roll(d20Formula(occult));
   await roll.evaluate();
   await showDice(roll);
 
