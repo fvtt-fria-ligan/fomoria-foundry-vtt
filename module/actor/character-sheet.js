@@ -22,7 +22,7 @@ export class FOCharacterSheet extends FOActorSheet {
           initial: "combat",
         },
       ],
-      // dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
+      dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
     });
   }
 

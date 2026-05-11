@@ -11,10 +11,16 @@
 
   <div class="violence-grid cols">
     <div class="col">
-      <div class="main-hand-cell">
-        <div class="col-title">{{localize 'FO.MainHand'}}</div>
-        <div class="item-list weapons">
-          {{#if data.system.equippedMainHand}}
+      {{#if data.system.equippedMainHand}}
+        <div class="main-hand-cell">
+          <div class="col-title">
+            {{#if data.system.equippedMainHand.system.twoHanded}}
+              {{localize 'FO.TwoHanded'}}
+            {{else}}
+              {{localize 'FO.MainHand'}}
+            {{/if}}
+          </div>
+          <div class="item-list weapons">
             <div class="item item-row weapon-row" data-item-id="{{data.system.equippedMainHand._id}}">
               <div class="bullet">g</div>
               <div class="item-fields">
@@ -31,14 +37,14 @@
                 </div>
               </div>
             </div>
-          {{/if}}
+          </div>
         </div>
-      </div>
+      {{/if}}      
 
-      <div class="off-hand-cell">
-        <div class="col-title">{{localize 'FO.OffHand'}}</div>
-        <div class="item-list weapons">
-          {{#if data.system.equippedOffHand}}
+      {{#if data.system.equippedOffHand}}
+        <div class="off-hand-cell">
+          <div class="col-title">{{localize 'FO.OffHand'}}</div>
+          <div class="item-list weapons">
             <div class="item item-row weapon-row" data-item-id="{{data.system.equippedOffHand._id}}">
               <div class="bullet">g</div>
               <div class="item-fields">
@@ -52,14 +58,14 @@
                 </div>
               </div>
             </div>
-          {{/if}}
+          </div>
         </div>
-      </div>
+      {{/if}}
 
-      <div class="armor-cell">
-        <div class="col-title">{{localize 'FO.Armor'}}</div>
-        <div class="item-list armor">
-          {{#if data.system.equippedArmor}}
+      {{#if data.system.equippedArmor}}
+        <div class="armor-cell">
+          <div class="col-title">{{localize 'FO.Armor'}}</div>
+          <div class="item-list armor">
             <div class="item item-row armor-row" data-item-id="{{data.system.equippedArmor._id}}">
               <div class="bullet">g</div>
               <div class="item-fields">
@@ -120,11 +126,11 @@
                 </div>
               </div>
             </div>      
-          {{/if}}
+          </div>
         </div>
-      </div>
-
+      {{/if}}
     </div>
+
     <div class="col">
       <div class="expertise-cell">
         <div class="col-title">
