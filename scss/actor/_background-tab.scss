@@ -26,10 +26,10 @@
           text-transform: uppercase;
         }
         .linked-item-value {
+          align-items: center;
           display: flex;
           flex: 0 0 150px;
           height: 100%;
-          align-items: center;
           .item {
             align-items: center;
             display: flex;
@@ -39,8 +39,8 @@
               flex: 1;
               font-family: $name-font;
               font-size: 24px;
-              // padding-left: 40px;
               text-align: center;
+              text-decoration: underline;
             }
             .item-controls {
               display: flex;

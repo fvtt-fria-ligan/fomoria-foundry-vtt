@@ -129,7 +129,7 @@
         .ability-label{
           align-items: center;
           background-color: var(--fo-foreground-color);
-          border-right: 1px solid var(--fo-foreground-color);
+          // border-right: 1px solid var(--fo-foreground-color);
           display: flex;
           flex: 1;
           justify-content: center;
@@ -153,26 +153,23 @@
           align-items: center;
           flex: 1;
           display: flex;
-          // flex-direction: column;
-          // align-items: center;
-          // justify-content: center;
           input[type="number"] {
             flex: 0 0 40px;
             height: 30px;
             font-family: "Amaranth";
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             padding-bottom: 0px;
           }
           .ability-modifier {
-            flex: 0 0 40px;
+            color: var(--fo-highlight-color);
+            flex: 0 0 35px;
             font-family: "Amaranth";
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             height: 30px;
-            text-align: center;
+            text-align: right;
             line-height: 30px;
-            opacity: 0.8;
           }
         }
       }

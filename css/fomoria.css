@@ -5,7 +5,6 @@
   --fo-border-blur: 5px;
   --fo-button-foreground-color: #F800F8;
   --fo-button-background-color: #F800F833;
-  --fo-cybertext-color: #F8F800;
   --fo-disabled-color: gray;
   --fo-foreground-color: #575A3F;
   --fo-highlight-color: #F800F8;
@@ -451,10 +450,10 @@
   text-transform: uppercase;
 }
 .sheet-body .background-tab .folk-row .linked-item-widget .linked-item-value {
+  align-items: center;
   display: flex;
   flex: 0 0 150px;
   height: 100%;
-  align-items: center;
 }
 .sheet-body .background-tab .folk-row .linked-item-widget .linked-item-value .item {
   align-items: center;
@@ -467,6 +466,7 @@
   font-family: "Pokoljaro";
   font-size: 24px;
   text-align: center;
+  text-decoration: underline;
 }
 .sheet-body .background-tab .folk-row .linked-item-widget .linked-item-value .item .item-controls {
   display: flex;
@@ -633,7 +633,6 @@
 .fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-label {
   align-items: center;
   background-color: var(--fo-foreground-color);
-  border-right: 1px solid var(--fo-foreground-color);
   display: flex;
   flex: 1;
   justify-content: center;
@@ -662,19 +661,19 @@
   flex: 0 0 40px;
   height: 30px;
   font-family: "Amaranth";
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   padding-bottom: 0px;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .ability-row .ability-score .ability-modifier {
-  flex: 0 0 40px;
+  color: var(--fo-highlight-color);
+  flex: 0 0 35px;
   font-family: "Amaranth";
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   height: 30px;
-  text-align: center;
+  text-align: right;
   line-height: 30px;
-  opacity: 0.8;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .light-hours-row {
   display: flex;
