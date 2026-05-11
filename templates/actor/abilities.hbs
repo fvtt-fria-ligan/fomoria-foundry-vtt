@@ -1,5 +1,5 @@
 <div class="abilities-wrapper">
-  <div class="widget ability-row">
+  <div class="ability-row">
     <div class="ability-label">
       <a class="ability-link" data-ability="strength" title="{{ localize 'FO.Strength' }}">
         <div class="ability-label">{{ localize 'FO.StrengthAbbrev' }}</div>
@@ -7,9 +7,14 @@
     </div>
     <div class="ability-score">
       <input class="strength" type="number" name="system.abilities.strength.value" value="{{data.system.abilities.strength.value}}" />
+      <div class="ability-modifier">
+        {{#ifNe data.system.abilities.strength.modifier 0}} 
+          {{data.system.abilities.strength.modified}}        
+        {{/ifNe}}
+      </div>
     </div>
   </div>        
-  <div class="widget ability-row">
+  <div class="ability-row">
     <div class="ability-label">
       <a class="ability-link" data-ability="agility" title="{{ localize 'FO.Agility' }}">
         <div class="ability-label">{{ localize 'FO.AgilityAbbrev' }}</div>        
@@ -17,9 +22,14 @@
     </div>
     <div class="ability-score">
       <input class="strength" type="number" name="system.abilities.agility.value" value="{{data.system.abilities.agility.value}}" />
+      <div class="ability-modifier">
+        {{#ifNe data.system.abilities.agility.modifier 0}} 
+          {{data.system.abilities.agility.modified}}
+        {{/ifNe}}
+      </div>
     </div>
   </div>        
-  <div class="widget ability-row">
+  <div class="ability-row">
     <div class="ability-label">
       <a class="ability-link" data-ability="presence" title="{{ localize 'FO.Presence' }}">
         <div class="ability-label">{{ localize 'FO.PresenceAbbrev' }}</div>
@@ -27,9 +37,14 @@
     </div>
     <div class="ability-score">
       <input class="presence" type="number" name="system.abilities.presence.value" value="{{data.system.abilities.presence.value}}" />
+      <div class="ability-modifier">
+        {{#ifNe data.system.abilities.presence.modifier 0}} 
+          {{data.system.abilities.presence.modified}}
+        {{/ifNe}}
+      </div>
     </div>
   </div>        
-  <div class="widget ability-row">
+  <div class="ability-row">
     <div class="ability-label">
       <a class="ability-link" data-ability="toughness" title="{{ localize 'FO.Toughness' }}">
         <div class="ability-label">{{ localize 'FO.ToughnessAbbrev' }}</div>        
@@ -37,9 +52,14 @@
     </div>
     <div class="ability-score">
       <input class="toughness" type="number" name="system.abilities.toughness.value" value="{{data.system.abilities.toughness.value}}" />
+      <div class="ability-modifier">
+        {{#ifNe data.system.abilities.toughness.modifier 0}} 
+          ({{data.system.abilities.toughness.modified}})
+        {{/ifNe}}
+      </div>
     </div>
   </div>        
-  <div class="widget ability-row">
+  <div class="ability-row">
     <div class="ability-label">
       <a class="ability-link" data-ability="occult" title="{{ localize 'FO.Occult' }}">
         <div class="ability-label">{{ localize 'FO.OccultAbbrev' }}</div>
@@ -47,6 +67,11 @@
     </div>
     <div class="ability-score">
       <input class="occult" type="number" name="system.abilities.occult.value" value="{{data.system.abilities.occult.value}}" />
+      <div class="ability-modifier">
+        {{#ifNe data.system.abilities.occult.modifier 0}} 
+          {{data.system.abilities.occult.modified}}        
+        {{/ifNe}}
+      </div>
     </div>
   </div>
 </div>

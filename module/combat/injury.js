@@ -4,5 +4,5 @@ import { documentFromDraw, drawFromTableUuid, simpleData } from "../packutils.js
 export async function rollInjury(actor) {
   const draw = await drawFromTableUuid(FO.direInjuriesTable, null, true);
   const injury= await documentFromDraw(draw);
-  await this.createEmbeddedDocuments("Item", [simpleData(injury)]);
+  await actor.createEmbeddedDocuments("Item", [simpleData(injury)]);
 }

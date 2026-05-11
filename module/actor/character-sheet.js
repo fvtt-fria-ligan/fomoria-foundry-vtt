@@ -13,7 +13,7 @@ export class FOCharacterSheet extends FOActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fomoria", "sheet", "actor", "character"],
       template: "systems/fomoria/templates/actor/character-sheet.html",
-      width: 750,
+      width: 770,
       height: 690,     
       tabs: [
         {

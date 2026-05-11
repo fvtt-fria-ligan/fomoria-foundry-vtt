@@ -38,6 +38,10 @@ export const registerHandlebarsHelpers = () => {
     return arg1 === arg2 ? options.fn(this) : options.inverse(this);
   });
 
+  Handlebars.registerHelper("ifNe", function (arg1, arg2, options) {
+    return arg1 !== arg2 ? options.fn(this) : options.inverse(this);
+  });
+
   Handlebars.registerHelper("ifLt", function (arg1, arg2, options) {
     return arg1 < arg2 ? options.fn(this) : options.inverse(this);
   });

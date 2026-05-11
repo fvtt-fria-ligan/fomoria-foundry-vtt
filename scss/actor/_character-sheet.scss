@@ -24,7 +24,7 @@
 
       .header-grid {
         display: grid;
-        grid-template-columns: 180px 1fr 88px;
+        grid-template-columns: 180px 1fr 120px;
         grid-template-rows: 200px;
         width: 100%;
         .portrait-cell {
@@ -40,7 +40,6 @@
           grid-column-end: 3;
           grid-row-start: 1;
           grid-row-end: 2;
-          margin-top: 5px;
           padding-left: 5px;
           padding-right: 5px;
           .cols {
@@ -151,13 +150,29 @@
           }
         }
         .ability-score {
+          align-items: center;
           flex: 1;
           display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          input {
+          // flex-direction: column;
+          // align-items: center;
+          // justify-content: center;
+          input[type="number"] {
+            flex: 0 0 40px;
             height: 30px;
+            font-family: "Amaranth";
+            font-size: 20px;
+            font-weight: bold;
+            padding-bottom: 0px;
+          }
+          .ability-modifier {
+            flex: 0 0 40px;
+            font-family: "Amaranth";
+            font-size: 20px;
+            font-weight: bold;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            opacity: 0.8;
           }
         }
       }

@@ -67,6 +67,13 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
           this.system.abilities.occult.modifier += item.system.abilityModifiers.occult;
         }
       });
+
+      this.system.abilities.strength.modified = this.system.abilities.strength.value + this.system.abilities.strength.modifier;
+      this.system.abilities.agility.modified = this.system.abilities.agility.value + this.system.abilities.agility.modifier;
+      this.system.abilities.presence.modified = this.system.abilities.presence.value + this.system.abilities.presence.modifier;
+      this.system.abilities.toughness.modified = this.system.abilities.toughness.value + this.system.abilities.toughness.modifier;
+      this.system.abilities.occult.modified = this.system.abilities.occult.value + this.system.abilities.occult.modifier;
+
     }
   }
   
