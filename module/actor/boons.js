@@ -8,7 +8,7 @@ export async function useBoon(actor) {
     return;
   }
 
-  const occult = actor.system.abilities.occult.value + actor.system.abilities.occult.modifier;
+  const occult = actor.system.abilities.occult.modified;
   const useRoll = new Roll(d20Formula(occult));
   await useRoll.evaluate();
   await showDice(useRoll);
@@ -105,7 +105,7 @@ export async function useBoon(actor) {
 }
 
 export async function learnBoon(actor) {
-  const occult = actor.system.abilities.occult.value + actor.system.abilities.occult.modifier;  
+  const occult = actor.system.abilities.occult.modified;  
   const roll = new Roll(d20Formula(occult));
   await roll.evaluate();
   await showDice(roll);

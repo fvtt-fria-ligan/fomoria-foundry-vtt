@@ -8,7 +8,7 @@
     <div class="ability-score">
       <input class="strength" type="number" name="system.abilities.strength.value" value="{{data.system.abilities.strength.value}}" />
       <div class="ability-modifier">
-        {{#ifNe data.system.abilities.strength.modifier 0}} 
+        {{#ifNe data.system.abilities.strength.value data.system.abilities.strength.modified}} 
           {{data.system.abilities.strength.modified}}*    
         {{/ifNe}}
       </div>
@@ -23,7 +23,7 @@
     <div class="ability-score">
       <input class="strength" type="number" name="system.abilities.agility.value" value="{{data.system.abilities.agility.value}}" />
       <div class="ability-modifier">
-        {{#ifNe data.system.abilities.agility.modifier 0}} 
+        {{#ifNe data.system.abilities.agility.value data.system.abilities.agility.modified}} 
           {{data.system.abilities.agility.modified}}*
         {{/ifNe}}
       </div>
@@ -38,7 +38,7 @@
     <div class="ability-score">
       <input class="presence" type="number" name="system.abilities.presence.value" value="{{data.system.abilities.presence.value}}" />
       <div class="ability-modifier">
-        {{#ifNe data.system.abilities.presence.modifier 0}} 
+        {{#ifNe data.system.abilities.presence.value data.system.abilities.presence.modified}} 
           {{data.system.abilities.presence.modified}}*
         {{/ifNe}}
       </div>
@@ -53,7 +53,7 @@
     <div class="ability-score">
       <input class="toughness" type="number" name="system.abilities.toughness.value" value="{{data.system.abilities.toughness.value}}" />
       <div class="ability-modifier">
-        {{#ifNe data.system.abilities.toughness.modifier 0}} 
+        {{#ifNe data.system.abilities.toughness.value data.system.abilities.toughness.modified}} 
           {{data.system.abilities.toughness.modified}}*
         {{/ifNe}}
       </div>
@@ -68,7 +68,7 @@
     <div class="ability-score">
       <input class="occult" type="number" name="system.abilities.occult.value" value="{{data.system.abilities.occult.value}}" />
       <div class="ability-modifier">
-        {{#ifNe data.system.abilities.occult.modifier 0}} 
+        {{#ifNe data.system.abilities.occult.value data.system.abilities.occult.modified}} 
           {{data.system.abilities.occult.modified}}*     
         {{/ifNe}}
       </div>

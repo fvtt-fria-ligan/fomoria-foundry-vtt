@@ -52,28 +52,21 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     super.prepareDerivedData();
 
     if (this.type === FO.actorTypes.character) {
-      this.system.abilities.strength.modifier = 0;
-      this.system.abilities.agility.modifier = 0;
-      this.system.abilities.presence.modifier = 0;
-      this.system.abilities.toughness.modifier = 0;
-      this.system.abilities.occult.modifier = 0;
+      this.system.abilities.strength.modified = this.system.abilities.strength.value;
+      this.system.abilities.agility.modified = this.system.abilities.agility.value;
+      this.system.abilities.presence.modified = this.system.abilities.presence.value;
+      this.system.abilities.toughness.modified = this.system.abilities.toughness.value;
+      this.system.abilities.occult.modified = this.system.abilities.occult.value;
 
       this.items.forEach(item => {
         if (item.type == FO.itemTypes.condition) {
-          this.system.abilities.strength.modifier += item.system.abilityModifiers.strength;
-          this.system.abilities.agility.modifier += item.system.abilityModifiers.agility;
-          this.system.abilities.presence.modifier += item.system.abilityModifiers.presence;
-          this.system.abilities.toughness.modifier += item.system.abilityModifiers.toughness;
-          this.system.abilities.occult.modifier += item.system.abilityModifiers.occult;
+          this.system.abilities.strength.modified += item.system.abilityModifiers.strength;
+          this.system.abilities.agility.modified += item.system.abilityModifiers.agility;
+          this.system.abilities.presence.modified += item.system.abilityModifiers.presence;
+          this.system.abilities.toughness.modified += item.system.abilityModifiers.toughness;
+          this.system.abilities.occult.modified += item.system.abilityModifiers.occult;
         }
       });
-
-      this.system.abilities.strength.modified = this.system.abilities.strength.value + this.system.abilities.strength.modifier;
-      this.system.abilities.agility.modified = this.system.abilities.agility.value + this.system.abilities.agility.modifier;
-      this.system.abilities.presence.modified = this.system.abilities.presence.value + this.system.abilities.presence.modifier;
-      this.system.abilities.toughness.modified = this.system.abilities.toughness.value + this.system.abilities.toughness.modifier;
-      this.system.abilities.occult.modified = this.system.abilities.occult.value + this.system.abilities.occult.modifier;
-
     }
   }
   
