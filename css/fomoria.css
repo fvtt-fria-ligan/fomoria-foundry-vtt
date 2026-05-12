@@ -1060,6 +1060,10 @@
   flex: 1;
   text-align: center;
 }
+.window-app.fomoria.dialog .window-content form.dialog .form-row .field-value select {
+  text-align: center;
+  width: 100%;
+}
 .window-app.fomoria.dialog .window-content form.dialog .form-row input {
   flex: 1;
   text-align: center;

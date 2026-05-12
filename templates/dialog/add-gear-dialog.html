@@ -2,19 +2,23 @@
 <form class="dialog add-gear-dialog" action="">
   <div class="form-row">
     <label>{{ localize "FO.GearName" }}</label>
-    <input type="text" name="gearname" value="" placeholder="{{ localize 'FO.Name' }}" data-dtype="String"/>
+    <div class="field-value">
+      <input type="text" name="gearname" value="" placeholder="{{ localize 'FO.Name' }}" data-dtype="String"/>
+    </div>
   </div>
   <div class="form-row">
     <label>{{ localize "FO.GearType" }}</label>
-    <select class="add-type" name="geartype"> 
-      <option value="armor">{{ localize "FO.Armor" }}</option>
-      <option value="clan">{{ localize "FO.Clan" }}</option>
-      <option value="equipment" selected="selected">{{ localize "FO.Equipment" }}</option>
-      <option value="folk">{{ localize "FO.Folk" }}</option>
-      <option value="shield">{{ localize "FO.Shield" }}</option>
-      <option value="tradition">{{ localize "FO.Tradition" }}</option>
-      <option value="weapon">{{ localize "FO.Weapon" }}</option>
-    </select>
+    <div class="field-value">
+      <select class="add-type" name="geartype"> 
+        <option value="armor">{{ localize "FO.Armor" }}</option>
+        <option value="clan">{{ localize "FO.Clan" }}</option>
+        <option value="equipment" selected="selected">{{ localize "FO.Equipment" }}</option>
+        <option value="folk">{{ localize "FO.Folk" }}</option>
+        <option value="shield">{{ localize "FO.Shield" }}</option>
+        <option value="tradition">{{ localize "FO.Tradition" }}</option>
+        <option value="weapon">{{ localize "FO.Weapon" }}</option>
+      </select>
+    </div>
   </div>
   <div class="button-row">
     <button class="add-item-button" type="submit" name="add-item-button">{{ localize "FO.Add" }}</button>

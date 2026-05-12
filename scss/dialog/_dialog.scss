@@ -52,6 +52,10 @@
           // body.game .app form .form-group > * { flex: 3
           flex: 1;
           text-align: center;
+          select {
+            text-align: center;
+            width: 100%;
+          }
         }
         input {
           flex: 1;
