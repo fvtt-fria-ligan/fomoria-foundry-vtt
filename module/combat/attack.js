@@ -31,17 +31,10 @@ export async function rollAttack(
   }
   const value = actor.system.abilities[ability].modified;
 
-  // TODO: check for off-hand weapon
-  const offHandWeapon = actor.offHandWeapon();
-  if (offHandWeapon) {
-
-  }
-
   // roll 1: attack
   const attackRoll = new Roll(d20Formula(value));
   await attackRoll.evaluate();
   await showDice(attackRoll);
-
   const d20Result = attackRoll.terms[0].results[0].result;
   const fumbleTarget = itemRollData.fumbleOn ?? 1;
   const critTarget = itemRollData.critOn ?? 20;
@@ -55,11 +48,16 @@ export async function rollAttack(
   let damageRoll = null;
   let targetArmorRoll = null;
   let takeDamage = null;
+  const offHandWeapon = actor.offHandWeapon();
+  console.log(actor, offHandWeapon);
+  const items = offHandWeapon ? [item, offHandWeapon] : [item];
+
   if (isHit) {
     // HIT!!!
     attackOutcome = game.i18n.localize(
       isCrit ? "FO.AttackCritText" : "FO.Hit"
     );
+
     // roll 2: damage.
     const baseDamage = item.system.damage;
     let damageFormula = baseDamage;
@@ -77,6 +75,16 @@ export async function rollAttack(
     const dicePromises = [];
     addShowDicePromise(dicePromises, damageRoll);
     let damage = damageRoll.total;
+
+    // check for off-hand weapon
+    if (offHandWeapon) {
+      // offhand hits if main weapon hits, roll twice for damage and take lower
+      const off1 = await new Roll(offHandWeapon.system.damage).evaluate();
+      const off2 = await new Roll(offHandWeapon.system.damage).evaluate();
+      const lower = Math.min(off1.total, off2.total);
+      damage += lower;
+    }
+
     // roll 3: target armor soak
     if (targetArmor) {
       targetArmorRoll = new Roll(targetArmor, {});
@@ -103,7 +111,7 @@ export async function rollAttack(
     attackOutcome,
     attackTypeKey,
     damageRoll,
-    items: [item],
+    items,
     takeDamage,
     targetArmorRoll,
   };

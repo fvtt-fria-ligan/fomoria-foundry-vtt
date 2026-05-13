@@ -43,6 +43,15 @@
       />      
     </div>
   </div>
+  <div class="form-row">
+    <label>{{localize 'FO.DamageDealtTo'}}:</label>
+    <div class="field-value">
+      <select name="damage-dealt-to">
+        <option value="hit-points" {{#ifEq damageDealtTo "hit-points"}}selected{{/ifEq}}>{{localize 'FO.HitPoints'}}</option>
+        <option value="stability-points" {{#ifEq damageDealtTo "stability-points"}}selected{{/ifEq}}>{{localize 'FO.StabilityPoints'}}</option>
+      </select>
+    </div>
+  </div>
   <div class="button-row">
     <button class="dialog-button defend-button" type="button" name="Defend">{{ localize "FO.Defend" }}</button>
   </div>

@@ -92,6 +92,7 @@ FO.armorTiersList = [FO.armorTiers[0], FO.armorTiers[1],
 FO.flagScope = FO.system;
 FO.flags = {
   ATTACK_DR: "attackDR",
+  DAMAGE_DEALT_TO: "damageDealtTo",
   DEFEND_DR: "defendDR",
   INCOMING_ATTACK: "incomingAttack",
   TARGET_ARMOR: "targetArmor",
@@ -229,4 +230,5 @@ FO.defaultTradition = "Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa";
 FO.dizzyCondition = "Compendium.fomoria.fomoria-items.Item.s2uDlX2iI7chmOY9";
 FO.direInjuriesTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.NtilgUYkLBSkrjWb";
 FO.dismalBreakdownsTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.tkw733wQ0qnXHxL1";
+FO.dreadCondition = "Compendium.fomoria.fomoria-items.Item.ZT9e0NPMuOUeb5cZ";
 

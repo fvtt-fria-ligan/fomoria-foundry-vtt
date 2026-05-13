@@ -2,18 +2,11 @@
   <div class="card-title">
     {{localize attackTypeKey}} {{localize 'FO.Attack'}}
   </div>
-  {{#each items as |item id|}}
-  <div class="item-row">
-    <img src="{{item.img}}" title="{{item.name}}" />
-    <span class="item-name">{{item.name}}</span>
-  </div>
-  {{/each}}
   <div class="attack-roll">
     <div class="roll-title">
-      <span
-        >{{localize 'FO.Attack'}}: {{attackFormula}} {{localize 'FO.Vs'}}
-        {{localize 'FO.DR'}}{{attackDR}}</span
-      >
+      <span>
+        {{attackFormula}} {{localize 'FO.Vs'}} {{localize 'FO.DR'}}{{attackDR}}
+      </span>
     </div>
     <div class="roll-result">
       <span>{{xtotal attackRoll}}</span>
@@ -31,7 +24,8 @@
       <span>{{xtotal damageRoll}}</span>
     </div>
   </div>
-  {{/if}} {{#if targetArmorRoll}}
+  {{/if}} 
+  {{#if targetArmorRoll}}
   <div class="target-armor-roll">
     <div class="roll-title">
       <span>{{localize 'FO.TargetArmor'}}: {{targetArmorRoll.formula}}</span>

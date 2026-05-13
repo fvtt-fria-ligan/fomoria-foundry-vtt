@@ -1,3 +1,5 @@
+import {rollBreakdown} from "../combat/breakdown.js";
+import {rollInjury} from "../combat/injury.js";
 import { FO } from "../config.js";
 import { FOItem } from "../item/item.js";
 import { trackCarryingCapacity } from "../settings.js";
@@ -98,16 +100,26 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     return this.condition(conditionName) !== undefined;
   }
 
+  async gainCondition(name, uuid) {
+    if (this.hasCondition("name")) {
+      return;
+    }
+
+    const condition = await fromUuid(uuid);
+    await this.createEmbeddedDocuments("Item", [simpleData(condition)]);
+
+  }
+
   equippedArmor() {
-    this.items.filter((item) => item.system.equippedArmor && item.type === FO.itemTypes.armor).pop();
+    return this.items.filter((item) => item.system.equippedArmor && item.type === FO.itemTypes.armor).pop();
   }
 
   offHandWeapon() {
-    this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.weapon).pop();
+    return this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.weapon).pop();
   }
 
   offHandShield() {
-    this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.shield).pop();    
+    return this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.shield).pop();    
   }
 
   _first(itemType) {
@@ -123,20 +135,18 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }  
 
   async becomeDizzy() {
-    if (this.hasCondition("dizzy")) {
-      // already dizzy
-      return;
-    }
+    await this.gainCondition("dizzy", FO.dizzyCondition);
+  }
 
-    const dizzy = await fromUuid(FO.dizzyCondition);
-    await this.createEmbeddedDocuments("Item", [simpleData(dizzy)]);
+  async sufferDread() {
+    await this.gainCondition("dread", FO.dreadCondition);
   }
 
   async loseHitPoints(dmg) {
-    const newHP = Math.max(actor.system.hitPoints.value - dmg, 0);
-    await this.update({ ["system.hitPoints.value"]: newSP });
+    const newHP = Math.max(this.system.hitPoints.value - dmg, 0);
+    await this.update({ ["system.hitPoints.value"]: newHP });
     if (newHP === 0) {
-      await this.rollDireInjury();
+      await rollInjury(this);
     }
   }
 
@@ -144,7 +154,7 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     const newSP = Math.max(this.system.stabilityPoints.value - dmg, 0);
     await this.update({ ["system.stabilityPoints.value"]: newSP });
     if (newSP === 0) {
-      await this.rollBreakdown();
+      await rollBreakdown(this);
     }
   }
  }

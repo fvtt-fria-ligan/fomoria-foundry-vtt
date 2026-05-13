@@ -49,7 +49,11 @@
               <div class="bullet">g</div>
               <div class="item-fields">
                 <div class="item-field-row item-name-row">        
-                  <div class="item-name"><a class="item-control item-edit">{{data.system.equippedOffHand.name}}</a></div>
+                  <div class="item-name"><a class="item-control item-edit">{{data.system.equippedOffHand.name}}
+                    {{#if data.system.equippedMainHand.system.damage}}
+                    &nbsp;({{data.system.equippedMainHand.system.damage}})
+                    {{/if}}
+                  </a></div>
                   <div class="item-controls">
                     <a class="item-control item-equip-off-hand equipped" title="{{localize 'FO.ToggleOffHand'}}"><i class="fas fa-shield"></i></a>
                     <a class="item-control item-edit" title="{{localize 'FO.Edit'}}"><i class="fas fa-edit"></i></a>

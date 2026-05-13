@@ -1,4 +1,4 @@
-import { rollDefend } from "./defend.js";
+import { defendHitPoints, defendStabilityPoints } from "./defend.js";
 import { FOApplication } from "../ui/application.js";
 
 /**
@@ -48,6 +48,13 @@ export class DefendDialog extends FOApplication {
     if (!incomingAttack) {
       incomingAttack = "1d4"; // default
     }
+    let damageDealtTo = await this.actor.getFlag(
+      CONFIG.FO.flagScope,
+      CONFIG.FO.flags.DAMAGE_DEALT_TO
+    );
+    if (!damageDealtTo) {
+      damageDealtTo = "hit-points"; // default
+    }
 
     const armor = this.actor.equippedArmor();
     const drModifiers = [];
@@ -71,6 +78,7 @@ export class DefendDialog extends FOApplication {
     }
 
     return {
+      damageDealtTo,
       defendDR,
       incomingAttack,
       drModifiers
@@ -105,9 +113,10 @@ export class DefendDialog extends FOApplication {
     const baseDR = parseInt($(form).find("input[name=defense-base-dr]").val());
     const modifiedDR = parseInt($(form).find("input[name=defense-modified-dr]").val());
     const incomingAttack = $(form).find("input[name=incoming-attack]").val();
+    const damageDealtTo = $(form).find("select[name=damage-dealt-to]").val();
 
-    if (!baseDR || !modifiedDR || !incomingAttack) {
-      // TODO: prevent dialog/form submission w/ required field(s)
+    // prevent dialog/form submission w/ required field(s)
+    if (!baseDR || !modifiedDR || !incomingAttack || !damageDealtTo) {
       return;
     }
 
@@ -122,10 +131,23 @@ export class DefendDialog extends FOApplication {
       CONFIG.FO.flags.INCOMING_ATTACK,
       incomingAttack
     );
-    rollDefend(
-      this.actor,
-      modifiedDR,
-      incomingAttack
+    await this.actor.setFlag(
+      CONFIG.FO.flagScope,
+      CONFIG.FO.flags.DAMAGE_DEALT_TO,
+      damageDealtTo
     );
+    if (damageDealtTo === "stability-points") {
+      defendStabilityPoints(
+        this.actor,
+        modifiedDR,
+        incomingAttack
+      );
+    } else {
+      defendHitPoints(
+        this.actor,
+        modifiedDR,
+        incomingAttack
+      );
+    }
   }
 }

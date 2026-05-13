@@ -4,10 +4,77 @@ import { d20Formula } from "../utils.js";
 const DEFEND_ROLL_CARD_TEMPLATE =
   "systems/fomoria/templates/chat/defend-roll-card.html";
 
-/**
- * Do the actual defend rolls and resolution.
- */
-export async function rollDefend(actor, defendDR, incomingAttack) {
+export async function defendStabilityPoints(actor, defendDR, incomingAttack) {
+  const occult = actor.system.abilities.occult.modified;
+  const defendFormula = d20Formula(occult);
+
+  // roll 1: defend
+  const defendRoll = new Roll(defendFormula);
+  await defendRoll.evaluate();
+  await showDice(defendRoll);
+
+  const d20Result = defendRoll.terms[0].results[0].result;
+  const isFumble = d20Result === 1;
+  const isCrit = d20Result === 20;
+
+  const items = [];
+  let damageRoll = null;
+  let armorRoll = null;
+  let defendOutcome = null;
+  let damage = 0;
+  let takeDamage = null;
+
+  if (isCrit) {
+    // critical success
+    defendOutcome = game.i18n.localize("FO.DefendSPCritText");
+  } else if (defendRoll.total >= defendDR) {
+    // success
+    defendOutcome = game.i18n.localize("FO.Dodge");
+  } else {
+    // failure
+    if (isFumble) {
+      defendOutcome = game.i18n.localize("FO.DefendSPFumbleText");
+      // TODO: player gets Dread condition
+    } else {
+      defendOutcome = game.i18n.localize("FO.YouAreHit");
+    }
+
+    // roll 2: incoming damage
+    let damageFormula = incomingAttack;
+    damageRoll = new Roll(damageFormula, {});
+    await damageRoll.evaluate();
+    const dicePromises = [];
+    addShowDicePromise(dicePromises, damageRoll);
+    damage = damageRoll.total;
+
+    if (dicePromises) {
+      await Promise.all(dicePromises);
+    }
+    takeDamage = `${game.i18n.localize(
+      "FO.Take"
+    )} ${damage} ${game.i18n.localize("FO.Damage")}`;
+  }
+
+  const rollResult = {
+    actor: actor,
+    armorRoll,
+    cardTitle: game.i18n.localize("FO.DefendSP"),
+    damageRoll,
+    defendDR,
+    defendFormula: `1d20+${game.i18n.localize("FO.OccultAbbrev")}`,
+    defendOutcome,
+    defendRoll,
+    items,
+    takeDamage,
+  };
+  await renderDefendRollCard(actor, rollResult);
+
+  if (damage > 0) {
+    await actor.loseStabilityPoints(damage);
+  }
+}
+
+export async function defendHitPoints(actor, defendDR, incomingAttack) {
   const agility = actor.system.abilities.agility.modified;
   const defendFormula = d20Formula(agility);
 
@@ -29,14 +96,14 @@ export async function rollDefend(actor, defendDR, incomingAttack) {
 
   if (isCrit) {
     // critical success
-    defendOutcome = game.i18n.localize("FO.DefendCritText");
+    defendOutcome = game.i18n.localize("FO.DefendHPCritText");
   } else if (defendRoll.total >= defendDR) {
     // success
     defendOutcome = game.i18n.localize("FO.Dodge");
   } else {
     // failure
     if (isFumble) {
-      defendOutcome = game.i18n.localize("FO.DefendFumbleText");
+      defendOutcome = game.i18n.localize("FO.DefendHPFumbleText");
     } else {
       defendOutcome = game.i18n.localize("FO.YouAreHit");
     }
@@ -80,6 +147,7 @@ export async function rollDefend(actor, defendDR, incomingAttack) {
   const rollResult = {
     actor: actor,
     armorRoll,
+    cardTitle: game.i18n.localize("FO.DefendHP"),
     damageRoll,
     defendDR,
     defendFormula: `1d20+${game.i18n.localize("FO.AgilityAbbrev")}`,
@@ -89,13 +157,18 @@ export async function rollDefend(actor, defendDR, incomingAttack) {
     takeDamage,
   };
   await renderDefendRollCard(actor, rollResult);
+
+  console.log("damage", damage);
+  if (damage > 0) {
+    await actor.loseHitPoints(damage);
+  }
 };
 
 /**
  * Show attack rolls/result in a chat roll card.
  */
 async function renderDefendRollCard(actor, rollResult) {
-  const html = await renderTemplate(DEFEND_ROLL_CARD_TEMPLATE, rollResult);
+  const html = await foundry.applications.handlebars.renderTemplate(DEFEND_ROLL_CARD_TEMPLATE, rollResult);
   ChatMessage.create({
     content: html,
     sound: diceSound(),
