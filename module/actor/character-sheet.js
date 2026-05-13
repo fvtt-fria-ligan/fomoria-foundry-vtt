@@ -98,10 +98,6 @@ export class FOCharacterSheet extends FOActorSheet {
     html.find(".use-boon-button").on("click", this._useBoon.bind(this));
   }
 
-  /** @override */
-  async _onDropItem(event, itemData) {
-  }
-
   _testAbility(event) {
     event.preventDefault();
     // uiClick();
