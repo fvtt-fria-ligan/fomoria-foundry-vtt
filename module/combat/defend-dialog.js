@@ -27,7 +27,8 @@ export class DefendDialog extends FOApplication {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    html.find("input[name='defense-base-dr']").change(this._onDefenseBaseDRChange.bind(this));
+    html.find("select[name='damage-dealt-to']").change(this._recalculateModifiedDR.bind(this));
+    html.find("input[name='defense-base-dr']").change(this._recalculateModifiedDR.bind(this));
     html.find("input[name='defense-base-dr']").trigger("change");    
     html.find(".defend-button").click(this._onDefend.bind(this));
   }
@@ -85,24 +86,33 @@ export class DefendDialog extends FOApplication {
     };
   }
 
-  _onDefenseBaseDRChange(event) {
+  _recalculateModifiedDR(event) {
     event.preventDefault();
-    const baseInput = $(event.currentTarget);
+
+    const form = $(event.currentTarget).closest("form.defend-dialog");
+    const damageDealtTo = $(form).find("select[name=damage-dealt-to]").val();
+
     let drModifier = 0;
-    const armor = this.actor.equippedArmor();
-    if (armor) {
-      // TODO: maxTier is getting stored as a string
-      const maxTier = parseInt(armor.system.tier.max);
-      const defenseModifier = CONFIG.FO.armorTiers[maxTier].defenseModifier;
-      if (defenseModifier) {
-        drModifier += defenseModifier;
+    if (damageDealtTo === "hit-points") {
+      $(form).find("div.dr-modifiers").show();
+      const armor = this.actor.equippedArmor();
+      if (armor) {
+        // TODO: maxTier is getting stored as a string
+        const maxTier = parseInt(armor.system.tier.max);
+        const defenseModifier = CONFIG.FO.armorTiers[maxTier].defenseModifier;
+        if (defenseModifier) {
+          drModifier += defenseModifier;
+        }
       }
+      if (this.actor.isEncumbered) {
+        drModifier += 2;
+      }      
+    } else {
+      $(form).find("div.dr-modifiers").hide();
     }
-    if (this.actor.isEncumbered) {
-      drModifier += 2;
-    }
-    const modifiedDR = parseInt(baseInput.val()) + drModifier;
-    const form = $(baseInput).closest("form.defend-dialog");
+
+    const baseDR = parseInt($(form).find("input[name=defense-base-dr]").val());
+    const modifiedDR = baseDR + drModifier;
     const modifiedInput = $(form).find("input[name=defense-modified-dr]")
     modifiedInput.val(modifiedDR);
   }
@@ -137,13 +147,13 @@ export class DefendDialog extends FOApplication {
       damageDealtTo
     );
     if (damageDealtTo === "stability-points") {
-      defendStabilityPoints(
+      await defendStabilityPoints(
         this.actor,
         modifiedDR,
         incomingAttack
       );
     } else {
-      defendHitPoints(
+      await defendHitPoints(
         this.actor,
         modifiedDR,
         incomingAttack

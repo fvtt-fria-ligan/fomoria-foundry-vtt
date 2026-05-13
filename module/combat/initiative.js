@@ -42,7 +42,7 @@ export async function rollIndividualInitiative(actor) {
   }
 
   // no encounter going on, so just show chat cards
-  const formula = rollFormula("1d6", actor.system.abilities.agility.value);
+  const formula = rollFormula("1d6", actor.system.abilities.agility.modified);
   const initiativeRoll = new Roll(formula);
   await initiativeRoll.evaluate();
   await showDice(initiativeRoll);

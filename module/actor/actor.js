@@ -104,10 +104,8 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     if (this.hasCondition("name")) {
       return;
     }
-
     const condition = await fromUuid(uuid);
     await this.createEmbeddedDocuments("Item", [simpleData(condition)]);
-
   }
 
   equippedArmor() {

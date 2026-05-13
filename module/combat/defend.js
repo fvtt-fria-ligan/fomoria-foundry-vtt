@@ -158,7 +158,6 @@ export async function defendHitPoints(actor, defendDR, incomingAttack) {
   };
   await renderDefendRollCard(actor, rollResult);
 
-  console.log("damage", damage);
   if (damage > 0) {
     await actor.loseHitPoints(damage);
   }
