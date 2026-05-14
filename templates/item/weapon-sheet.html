@@ -5,6 +5,20 @@
     {{> systems/fomoria/templates/item/item-description-tab.hbs }} 
     <div class="tab data-tab" data-group="primary" data-tab="details">
       {{> systems/fomoria/templates/item/item-base-fields.hbs }} 
+      <div class="widget field-row form-group">
+        <div class="field-label">
+          {{ localize "FO.AttackType" }}
+        </div>
+        <div class="field-value">
+          <select name="system.attackType">
+            {{#select data.system.attackType}} 
+              {{#each config.attackTypeKeys as |name type|}}
+                <option value="{{type}}">{{localize name}}</option>
+              {{/each}} 
+            {{/select}}
+          </select>
+        </div>
+      </div>
       <div class="widget field-row">
         <div class="field-label">
           {{ localize 'FO.Damage'}}
@@ -23,26 +37,10 @@
       </div>
       <div class="widget field-row">
         <div class="field-label">
-          {{ localize 'FO.UsesAbility'}}
-        </div>
-        <div class="field-value">
-          <input class="field-input" type="text" name="system.usesAbility" value="{{data.system.usesAbility}}" spellcheck="false"/>
-        </div>
-      </div>
-      <div class="widget field-row">
-        <div class="field-label">
           {{ localize 'FO.UsesAmmo'}}
         </div>
         <div class="field-value">
           <input class="field-input" type="checkbox" name="system.usesAmmo" {{checked data.system.usesAmmo}} />
-        </div>
-      </div>
-      <div class="widget field-row">
-        <div class="field-label">
-          {{ localize 'FO.Special'}}
-        </div>
-        <div class="field-value">
-          <input class="field-input" type="text" name="system.special" value="{{data.system.special}}" spellcheck="false"/>
         </div>
       </div>
       <div class="widget field-row">

@@ -286,6 +286,11 @@
   justify-content: center;
 }
 .fomoria.sheet section.window-content .field-row .field-value input {
+  text-align: center;
+  width: 100%;
+}
+.fomoria.sheet section.window-content .field-row .field-value select {
+  text-align: center;
   width: 100%;
 }
 .fomoria.sheet section.window-content .field-row textarea {

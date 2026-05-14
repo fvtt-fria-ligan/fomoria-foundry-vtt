@@ -29,6 +29,16 @@ FO.itemTypes = {
   weaponfeat: "weaponfeat",
 };
 
+FO.attackTypes = {
+  melee: "melee",
+  ranged: "ranged",
+}
+
+FO.attackTypeKeys = {
+  melee: "FO.AttackTypeMelee",
+  ranged: "FO.AttackTypeRanged",
+}
+
 FO.weaponTypes = {
   battleaxes: "battleaxes",
   maces: "maces",

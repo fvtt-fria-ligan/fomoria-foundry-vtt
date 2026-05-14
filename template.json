@@ -147,17 +147,15 @@
     },
     "weapon": {
       "templates": ["baseEquipment"],
+      "attackType": "melee",
       "critMultiplier": 2,
       "critOn": 20,
       "damage": "1d2",
       "equippedMainHand": false,
       "equippedOffHand": false,
       "fumbleOn": 1,
-      "special": "",
       "twoHanded": false,
-      "usesAmmo": false,
-      "usesAbility": "strength",
-      "weaponType": ""
+      "usesAmmo": false
     },
     "weaponfeat": {
       "description": "",

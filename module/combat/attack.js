@@ -17,17 +17,15 @@ export async function rollAttack(
   // decide relevant attack ability
   let ability;
   let abilityAbbrevKey;
-  let attackTypeKey;
-  if (itemRollData.usesAbility?.toLowerCase() === "presence") {
+  const isRanged = item.system.attackType == FO.attackTypes.ranged;
+  if (isRanged) {
     // ranged
     ability = "presence";
     abilityAbbrevKey = "FO.PresenceAbbrev";
-    attackTypeKey = "FO.Ranged";
   } else {
     // melee
     ability = "strength";
     abilityAbbrevKey = "FO.StrengthAbbrev";
-    attackTypeKey = "FO.Melee";
   }
   const value = actor.system.abilities[ability].modified;
 
@@ -49,7 +47,6 @@ export async function rollAttack(
   let targetArmorRoll = null;
   let takeDamage = null;
   const offHandWeapon = actor.offHandWeapon();
-  console.log(actor, offHandWeapon);
   const items = offHandWeapon ? [item, offHandWeapon] : [item];
 
   if (isHit) {
@@ -103,13 +100,25 @@ export async function rollAttack(
     attackOutcome = await missText(isFumble);
   }
 
+  let cardTitle = "";
+  if (isRanged) {
+    cardTitle = `${game.i18n.localize("FO.Ranged")} ${game.i18n.localize("FO.Attack")}`;
+  } else if (offHandWeapon) {
+    cardTitle = `${game.i18n.localize("FO.DualWielding")} ${game.i18n.localize("FO.Attack")}`;
+  } else if (item.system.twoHanded) {
+    cardTitle = `${game.i18n.localize("FO.TwoHanded")} ${game.i18n.localize("FO.Attack")}`;
+  } else {
+    // plain old melee
+    cardTitle = `${game.i18n.localize("FO.Melee")} ${game.i18n.localize("FO.Attack")}`;
+  }
+
   const rollResult = {
     actor,
     attackDR,
     attackFormula: `1d20+${game.i18n.localize(abilityAbbrevKey)}`,
     attackRoll,
     attackOutcome,
-    attackTypeKey,
+    cardTitle,
     damageRoll,
     items,
     takeDamage,

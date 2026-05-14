@@ -44,6 +44,7 @@ export class FOItemSheet extends foundry.appv1.sheets.ItemSheet {
   /** @override */
   async getData() {
     const superData = await super.getData();
+    superData.config = CONFIG.FO;
     superData.data.system.description = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
       superData.data.system.description);
     return superData;

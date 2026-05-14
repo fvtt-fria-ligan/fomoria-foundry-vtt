@@ -260,6 +260,11 @@
                 flex: 1.5;
                 justify-content: center;
                 input {
+                    text-align: center;
+                    width: 100%;
+                }
+                select {
+                    text-align: center;
                     width: 100%;
                 }
             }
