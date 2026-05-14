@@ -1,5 +1,5 @@
 import { showDice } from "../dice.js";
-import { showOutcomeRollCard } from "../utils.js";
+import { rollFormula, showOutcomeRollCard } from "../utils.js";
 
 export async function rollPartyInitiative(actor) {
   const initiativeRoll = new Roll("d6", {});
@@ -12,7 +12,7 @@ export async function rollPartyInitiative(actor) {
     outcomeText = game.i18n.localize("FO.InitiativeCabalGoesFirst");
   }
   const rollResult = {
-    cardTitle: game.i18n.localize("FO.PartyInitiative"),
+    cardTitle: game.i18n.localize("FO.CabalInitiative"),
     formula: "1d6",
     roll: initiativeRoll,
     outcome: outcomeText,

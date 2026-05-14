@@ -1,12 +1,8 @@
 <div class="tab violence-tab" data-group="primary" data-tab="violence">
-  <div class="button-row violence-buttons">
-    <button type="button" class="sheet-button big-button initiative-button">{{ localize 'FO.Initiative' }} <i class="fas fa-dice-six fa-fw"></i></button>
-    <button type="button" class="sheet-button big-button defend-button">{{ localize 'FO.Defend' }} <i class="fas fa-dice-d20 fa-fw"></i></button>
-    {{#ifEq data.type "character"}}
-      <button type="button" class="sheet-button big-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-moon fa-fw"></i></button>
-      <button type="button" class="sheet-button big-button injury-button">{{ localize "FO.Injury" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
-      <button type="button" class="sheet-button big-button breakdown-button">{{ localize "FO.Breakdown" }} <i class="fas fa-dice-d20 fa-fw"></i></button>
-    {{/ifEq}}
+  <div class="initiative-row">
+    <div class="sheet-label">{{ localize 'FO.RollInitiative' }}:</div>
+    <button type="button" class="sheet-button medium-button party-initiative-button">{{ localize 'FO.Cabal' }} <i class="fas fa-dice-six fa-fw"></i></button>
+    <button type="button" class="sheet-button medium-button individual-initiative-button">{{ localize 'FO.Individual' }} <i class="fas fa-dice-six fa-fw"></i></button>
   </div>
 
   <div class="violence-grid cols">
@@ -133,6 +129,10 @@
           </div>
         </div>
       {{/if}}
+
+      <div class="defend-button-row">
+        <button type="button" class="sheet-button medium-button defend-button">{{ localize 'FO.Defend' }} <i class="fas fa-dice-d20 fa-fw"></i></button>
+      </div>
     </div>
 
     <div class="col">

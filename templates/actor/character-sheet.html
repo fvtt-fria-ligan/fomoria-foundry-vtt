@@ -11,9 +11,11 @@
           <div class="name">
             <input class="character-name" type="text" name="name" value="{{actor.name}}" placeholder="{{ localize 'FO.Name' }}" spellcheck="false"/>          
           </div>
-          <div class="cols">
-            <div class="col left">
+          <div class="widget-row">
               {{> systems/fomoria/templates/actor/hit-points.hbs}}
+              {{> systems/fomoria/templates/actor/stability-points.hbs}}
+          </div>
+          <div class="widget-row">
               <div class="header-widget threads-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Threads'}}
@@ -22,18 +24,15 @@
                   <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
-            </div>
-            <div class="col right">
-              {{> systems/fomoria/templates/actor/stability-points.hbs}}
               <div class="header-widget wyrd-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Wyrd'}}
                 </div>
                 <div class="header-widget-value">
-                  <input class="threads" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
+                  <input class="wyrd" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
                 </div>
               </div>
-            </div>
+              <button type="button" class="sheet-button medium-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-moon fa-fw"></i></button>              
           </div>
           {{> systems/fomoria/templates/actor/hours-of-light.hbs}}
         </div>

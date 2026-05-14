@@ -2,7 +2,7 @@ import { showAddGearDialog } from "./add-gear-dialog.js";
 import { learnBoon, useBoon } from "./boons.js";
 import { showAttackDialog } from "../combat/attack-dialog.js";
 import { showDefendDialog } from "../combat/defend-dialog.js";
-import { rollPartyInitiative } from "../combat/initiative.js";
+import { rollIndividualInitiative, rollPartyInitiative } from "../combat/initiative.js";
 import { showRestDialog } from "../combat/rest-dialog.js";
 import { uiWindowClose, uiWindowOpen } from "../sound.js";
 
@@ -42,7 +42,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     html.find(".add-gear").on("click", this._addItem.bind(this));
     html.find(".attack-button").on("click", this._attack.bind(this));
     html.find(".defend-button").on("click", this._defend.bind(this));
-    html.find(".initiative-button").on("click", this._initiative.bind(this));
+    html.find(".individual-initiative-button").on("click", this._individualInitiative.bind(this));
     html.find(".item-create").on("click", this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
@@ -51,6 +51,7 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     html.find(".item-equip-off-hand").click(this._equipOffHand.bind(this));
     html.find(".item-qty-minus").click(this._onItemSubtractQuantity.bind(this));
     html.find(".item-qty-plus").click(this._onItemAddQuantity.bind(this));
+    html.find(".party-initiative-button").on("click", this._partyInitiative.bind(this));
     html.find(".rest-button").on("click", this._rest.bind(this));
     html.find(".tabs a.item").on("click", this._onTabClick.bind(this));
     html.find(".tier-radio").click(this._onArmorTierRadio.bind(this));
@@ -215,10 +216,16 @@ import { uiWindowClose, uiWindowOpen } from "../sound.js";
     }
   }
 
-  _initiative(event) {
+  _partyInitiative(event) {
     event.preventDefault();
     rollPartyInitiative(this.actor);
   }
+
+  _individualInitiative(event) {
+    event.preventDefault();
+    rollIndividualInitiative(this.actor);
+  }
+
 
   async _defend(event) {
     event.preventDefault();

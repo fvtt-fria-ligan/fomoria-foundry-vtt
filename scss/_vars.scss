@@ -1,6 +1,7 @@
 // Fomoria colors
 $off-white: #F8F4E3;
 $soft-gray: #575A3F;
+$flame-red: #FE6426;
 
 $border-radius: 0px;
 
@@ -18,8 +19,9 @@ $portrait-size: 200px;
 $button-font: "Amaranth";
 $input-number-font: "Pokoljaro";
 $input-text-font: "Pokoljaro";
-$name-font: "Pokoljaro";
 $label-font: "Walter Turncoat";
+$name-font: "Pokoljaro";
+$number-font: "Amaranth";
 $primary-font: "Noto Serif";
 $sheet-font: "Noto Serif";
 $tab-font: "Pokoljaro";
@@ -37,5 +39,6 @@ $textarea-line-height: 16px;
   --fo-foreground-color: #575A3F;
   --fo-highlight-color: #F800F8;
   --fo-sheet-shadow: none;
-  --fo-window-background-color: #FFFBF3;;
+  --fo-window-background-color: #FFFBF3;
+  --fo-flame-color: #FE6426;
 }

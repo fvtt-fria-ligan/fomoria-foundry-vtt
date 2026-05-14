@@ -8,17 +8,24 @@
 
     .widget-row {
       display: flex;
-      .widget {
-        flex: 1;
-        margin-right: 4px;
-      }
-      .widget:last-child {
-        margin-right: 0px;
+      gap: 10px;
+      justify-content: center;
+      // .widget {
+      //   flex: 1;
+      //   margin-right: 4px;
+      // }
+      // .widget:last-child {
+      //   margin-right: 0px;
+      // }
+      margin-bottom: 10px;
+
+      button.sheet-button.medium-button.rest-button {
+        width: 100px;
       }
     }
     .sheet-header {
       flex-direction: column;
-      height: 210px;
+      height: 180px;
       margin-bottom: 10px;
       width: 100%;
 
@@ -156,7 +163,7 @@
           input[type="number"] {
             flex: 0 0 40px;
             height: 30px;
-            font-family: "Amaranth";
+            font-family: $number-font;
             font-size: 22px;
             font-weight: bold;
             padding-bottom: 0px;
@@ -174,10 +181,9 @@
         }
       }
 
-      .light-hours-row {
+      .hours-of-light-row {
         display: flex;
         justify-content: center;
-        margin-top: 5px;
 
         .label {
           font-family: $label-font;
@@ -236,11 +242,16 @@
           }
 
           input[type="radio"]:checked + span {
+            // background: var(--fo-background-color);
+            // color: var(--fo-foreground-color);
             background: var(--fo-background-color);
+            // border: 2px solid var(--fo-flame-color);
+            // border-radius: 100%;
+            box-shadow:1px 1px 2px 2px #FFAAAA, -1px -1px 2px 2px #FFAAAA;
             color: var(--fo-foreground-color);
             // background: var(--fo-foreground-color);
             // color: var(--fo-background-color);
-            border: 1px solid red;
+            // border: 1px solid red;
             // border-width: 2px;
           }
 

@@ -91,11 +91,11 @@ export class FOCharacterSheet extends FOActorSheet {
     html
       .find(".ability-link")
       .on("click", this._testAbility.bind(this));
-    // html.find(".use-feat-button").on("click", this._useFeat.bind(this));
     html.find(".breakdown-button").on("click", this._rollBreakdown.bind(this));
     html.find(".injury-button").on("click", this._rollInjury.bind(this));
     html.find(".learn-boon-button").on("click", this._learnBoon.bind(this));
     html.find(".use-boon-button").on("click", this._useBoon.bind(this));
+    // html.find(".use-feat-button").on("click", this._useFeat.bind(this));
   }
 
   _testAbility(event) {

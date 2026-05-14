@@ -12,14 +12,6 @@
     justify-content: center;
     margin-top: 20px;
   }
-  .gear-label {
-    font-family: $label-font;
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 10px;
-    width: 100px;
-    text-align: right;
-  }
   .gear-value {
     font-family: $input-text-font;
     width: 100px;
@@ -39,10 +31,9 @@
   .carrying {
     display: flex;
     .carrying-value {
-      font-family: $input-number-font;
-      font-size: 24px;
-      // padding-bottom: 10px;
-      // padding-top: 5px;
+      font-family: $number-font;
+      font-weight: bold;
+      font-size: 22px;
     }  
     .encumbered {
       color: var(--fo-highlight-color);

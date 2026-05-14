@@ -199,7 +199,15 @@
             margin-bottom: 10px;
             text-align: center;;
             text-decoration: underline;
-        }        
+        }       
+        
+        .sheet-label {
+          font-family: $label-font;
+          font-size: 20px;
+          font-weight: bold;
+          margin-right: 10px;
+          text-align: right;
+        }
     
         .sheet-button {
             background-color: var(--fo-button-background-color);
