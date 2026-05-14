@@ -6,6 +6,13 @@ import { d20Formula } from "../utils.js";
 const ATTACK_ROLL_CARD_TEMPLATE =
   "systems/fomoria/templates/chat/attack-roll-card.html";
 
+
+function rollTwiceKeepLowerFormula(damageFormula) {
+  // e.g., d2, 1d2. This isn't particularly robust.
+  const parts = damageFormula.split("d");
+  return `2d${parts[1]}kl`;
+}
+
 /**
  * Do the actual attack rolls and resolution.
  */
@@ -56,8 +63,12 @@ export async function rollAttack(
     );
 
     // roll 2: damage.
-    const baseDamage = item.system.damage;
-    let damageFormula = baseDamage;
+    let damageFormula = item.system.damage;
+    // check for off-hand weapon
+    if (offHandWeapon) {
+      const offhandFormula = rollTwiceKeepLowerFormula(offHandWeapon.system.damage);
+      damageFormula = `${damageFormula}+${offhandFormula}`;
+    }    
     if (damageFormula.includes("+") || damageFormula.includes("-")) {
       // wrap formula in parentheses in case of crit multiplying
       // e.g., chainsaw 1d6+1
@@ -73,14 +84,7 @@ export async function rollAttack(
     addShowDicePromise(dicePromises, damageRoll);
     let damage = damageRoll.total;
 
-    // check for off-hand weapon
-    if (offHandWeapon) {
-      // offhand hits if main weapon hits, roll twice for damage and take lower
-      const off1 = await new Roll(offHandWeapon.system.damage).evaluate();
-      const off2 = await new Roll(offHandWeapon.system.damage).evaluate();
-      const lower = Math.min(off1.total, off2.total);
-      damage += lower;
-    }
+
 
     // roll 3: target armor soak
     if (targetArmor) {
@@ -128,21 +132,7 @@ export async function rollAttack(
 };
 
 async function missText(isFumble) {
-  let missKey;
-  if (isFumble) {
-    const fumbleRoll = new Roll("1d6");
-    await fumbleRoll.evaluate();
-    if (fumbleRoll.total < 4) {
-      missKey = "FO.AttackFumbleText1";
-    } else if (fumbleRoll.total < 6) {
-      missKey = "FO.AttackFumbleText2";
-    } else {
-      missKey = "FO.AttackFumbleText3";
-    }
-  } else {
-    missKey = "FO.Miss";
-  }
-  return game.i18n.localize(missKey);
+  return game.i18n.localize(isFumble ? "FO.AttackFumbleText" : "FO.Miss");
 };
 
 /**
