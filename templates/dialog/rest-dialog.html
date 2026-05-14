@@ -16,6 +16,27 @@
       </ul>
     </div>
   </div>
+  <div class="section">
+    <div class="subtitle">{{localize 'FO.DetrimentalConditions'}}</div>
+    <div>
+      <ul>
+        <li>
+          <label><input name="starving" type="checkbox" />
+            <div>{{localize 'FO.Starving'}} - {{localize 'FO.StarvingHelp'}}</div></label>
+        </li>
+        <li>
+          <label
+            ><input name="infected" type="checkbox" />
+            <div>{{localize 'FO.Infected'}} - {{localize 'FO.InfectedHelp'}}</div></label>
+        </li>
+        <li>
+          <label
+            ><input name="dread" type="checkbox" />
+            <div>{{localize 'FO.Dread'}} - {{localize 'FO.DreadHelp'}}</div></label>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div class="button-row">
     <button type="submit" class="dialog-button rest-button" name="rest" value="1">
       {{localize 'FO.Rest'}}

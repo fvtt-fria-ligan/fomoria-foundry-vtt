@@ -2,75 +2,106 @@ import { FO } from "../config.js";
 import { pluralize } from "../utils.js";
 
 
-export async function rollRest(actor, restLength) {
-  const starving = actor.hasCondition("starvation");
-  const infected = actor.hasCondition("infection");
-  const dread = actor.hasCondition("infection");
+export async function rollRest(actor, restLength, starving, infected, dread) {
+  let canHealHP = true;
+  let canHealSP = true;
+  let canHealWyrd = true;
 
   if (starving) {
-    // Starvation: A PC who doesn't eat or drink in 2 days starts to suffer D4 HP and SP loss per day and cannot benefit from a rest.
+    canHealHP = false;
+    canHealSP = false;
+    canHealWyrd = false;
+    await rollStarvation(actor);      
   }
 
   if (infected) {
-    // Infection: Sickness, poison, untreated wounds… something is not right with you. You can't recover HP while infected. Lose D4 HP every day until treated.
+    canHealHP = false;
+    await rollInfection(actor);
   }
 
   if (dread) {
-    // Dread: Stress, horror, mental exhaustion, lack of sleep. You can't recover SP while suffering from dread. Lose D4 SP every day until you rest for a shift in a Shrine.
+    canHealSP = false;
+    await rollDread(actor);
   }
-
-  // TODO: figure out boolean logic of what blocks what
-
+  
   if (restLength === "short") {
-    await rollHeal(actor, "d4");
+    await rollHeal(actor, "d4", canHealHP, canHealSP);
   } else if (restLength === "long") {
-    await rollHeal(actor, "d6");
-    await rollWyrd(actor);
+    await rollHeal(actor, "d6", canHealHP, canHealSP);
+    if (canHealWyrd) {
+      await rollWyrd(actor);
+    }
     if (actor.system.threads.value === 0) {
       await rollThreads(actor);
     }
   }
 };
 
-async function rollStarvation(actor) {
-  const roll = new Roll("1d4");
-  await roll.evaluate();
-  const flavor = `${game.i18n.localize("FO.Starving")}: ${game.i18n.localize("FO.Lose")} ${roll.total} ${pluralize("FO.HitPoint", "FO.HitPoints", roll.total)}`;
-  await roll.toMessage({
-    flavor,
-    speaker: ChatMessage.getSpeaker({ actor: actor }),
-  });
-
-  const newHP = actor.system.hitPoints.value - roll.total;
-  await actor.update({ ["system.hitPoints.value"]: newHP });
-};
-
-async function rollHeal(actor, dieRoll) {
-  const hp = new Roll(dieRoll);
-  await hp.evaluate();
-  const hpFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${hp.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hp.total)}`;
-  await hp.toMessage({
+async function rollLoseHitPointa(actor, formula, causeKey) {
+  const hpRoll = new Roll(formula);
+  await hpRoll.evaluate();
+  const hpFlavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${hpRoll.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hpRoll.total)}`;
+  await hpRoll.toMessage({
     hpFlavor,
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
+  await actor.loseHitPoints(hpRoll.total);
+}
 
-  const sp = new Roll(dieRoll);
-  await sp.evaluate();
-  const spFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${sp.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", sp.total)}`;
-  await sp.toMessage({
+async function rollLoseStabilityPoints(actor, formula, causeKey) {
+  const spRoll = new Roll("1d4");
+  await spRoll.evaluate();
+  const spFlavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${spRoll.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", spRoll.total)}`;
+  await spRoll.toMessage({
     spFlavor,
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
+  await actor.loseStabilityPoints(spRoll.total);
+}
 
-  const newHP = Math.min(
-    actor.system.hitPoints.max,
-    actor.system.hitPoints.value + hp.total
-  );
-  const newSP = Math.min(
-    actor.system.stabilityPoints.max,
-    actor.system.stabilityPoints.value + sp.total
-  );
-  await actor.update({ ["system.hitPoints.value"]: newHP, ["system.stabilityPoints.value"]: newSP });
+async function rollStarvation(actor) {
+  await rollLoseHitPointa(actor, "1d4", "FO.Starving");
+  await rollLoseStabilityPoints(actor, "1d4", "FO.Starving");
+};
+
+async function rollInfection(actor) {
+  await rollLoseHitPointa(actor, "1d4", "FO.Infected");
+};
+
+async function rollDread(actor) {
+  await rollLoseStabilityPoints(actor, "1d4", "FO.Dread");
+};
+
+async function rollHeal(actor, formula, canHealHP, canHealSP) {
+  if (canHealHP) {
+    const hp = new Roll(formula);
+    await hp.evaluate();
+    const hpFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${hp.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hp.total)}`;
+    await hp.toMessage({
+      hpFlavor,
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+    });
+    const newHP = Math.min(
+      actor.system.hitPoints.max,
+      actor.system.hitPoints.value + hp.total
+    );
+    await actor.update({ ["system.hitPoints.value"]: newHP });
+  }
+
+  if (canHealSP) {
+    const sp = new Roll();
+    await sp.evaluate();
+    const spFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${sp.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", sp.total)}`;
+    await sp.toMessage({
+      spFlavor,
+      speaker: ChatMessage.getSpeaker({ actor: actor }),
+    });
+    const newSP = Math.min(
+      actor.system.stabilityPoints.max,
+      actor.system.stabilityPoints.value + sp.total
+    );
+    await actor.update({ ["system.stabilityPoints.value"]: newSP });
+  }
 };
 
 async function rollWyrd(actor) {
