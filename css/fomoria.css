@@ -1153,6 +1153,9 @@
   height: 14px;
   width: 14px;
 }
+.rest-dialog li label {
+  display: flex;
+}
 .rest-dialog li label div {
   display: block;
   margin-left: 30px;
