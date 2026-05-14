@@ -157,8 +157,6 @@
   "FO.StabilityPoint": "Stability Point",
   "FO.StabilityPoints": "Stability Points",
   "FO.StabilityPointsAbbrev": "SP",
-  "FO.Starving": "Starving",
-  "FO.StarvingHelp": "No healing when resting, lose d4 HP. All tests are +2DR per restless day.",
   "FO.Strength": "Strength",
   "FO.StrengthAbbrev": "STR",
   "FO.StyleFormat": "{text} style.",

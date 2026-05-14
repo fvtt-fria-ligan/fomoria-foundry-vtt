@@ -2,10 +2,26 @@ import { FO } from "../config.js";
 import { pluralize } from "../utils.js";
 
 
-export async function rollRest(actor, restLength, starving) {
+export async function rollRest(actor, restLength) {
+  const starving = actor.hasCondition("starvation");
+  const infected = actor.hasCondition("infection");
+  const dread = actor.hasCondition("infection");
+
   if (starving) {
-    await rollStarvation(actor);      
-  } else if (restLength === "short") {
+    // Starvation: A PC who doesn't eat or drink in 2 days starts to suffer D4 HP and SP loss per day and cannot benefit from a rest.
+  }
+
+  if (infected) {
+    // Infection: Sickness, poison, untreated wounds… something is not right with you. You can't recover HP while infected. Lose D4 HP every day until treated.
+  }
+
+  if (dread) {
+    // Dread: Stress, horror, mental exhaustion, lack of sleep. You can't recover SP while suffering from dread. Lose D4 SP every day until you rest for a shift in a Shrine.
+  }
+
+  // TODO: figure out boolean logic of what blocks what
+
+  if (restLength === "short") {
     await rollHeal(actor, "d4");
   } else if (restLength === "long") {
     await rollHeal(actor, "d6");

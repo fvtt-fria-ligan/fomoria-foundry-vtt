@@ -31,8 +31,7 @@ export class RestDialog extends FOApplication {
     event.preventDefault();
     const form = $(event.currentTarget).parents(".rest-dialog")[0];
     const restLength = $(form).find("input[name=rest-length]:checked").val();
-    const starving = $(form).find("input[name=starving]:checked").val() ? true : false;
     this.close();
-    rollRest(this.actor, restLength, starving);
+    rollRest(this.actor, restLength);
   }
 }
