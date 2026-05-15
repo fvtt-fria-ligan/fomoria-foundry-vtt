@@ -101,7 +101,7 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   async gainCondition(name, uuid) {
-    if (this.hasCondition("name")) {
+    if (this.hasCondition(name)) {
       return;
     }
     const condition = await fromUuid(uuid);
