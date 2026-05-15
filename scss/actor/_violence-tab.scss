@@ -70,20 +70,31 @@
         display: none;
         &:checked {
           + span.tier-num {
-            background: var(--fo-highlight-color);
-            color: var(--fo-background-color);
-            border: none;
+            box-shadow: 1px 1px 3px 3px #FFAAAA, -1px -1px 3px 3px #FFAAAA;
           }
         }
         &:disabled {
           + span.tier-num {
+            opacity: 0;
             color: #444444;
             border: 1px solid #444444;
           }
           ~ span.tier-dmg {
+            opacity: 0;
             color: #444444;
           }
         }
+      }
+
+      input[type="radio"][data-marker]:enabled {
+          + span.tier-num {
+            background-color: var(--fo-foreground-color);
+            color: var(--fo-background-color);
+            opacity: 0.5;
+          }
+          ~ span.tier-dmg {
+            opacity: 0.5;
+          }
       }
 
       span {

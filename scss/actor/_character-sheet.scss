@@ -239,20 +239,13 @@
           input.dark + span {
             background: var(--fo-foreground-color);
             color: var(--fo-background-color);
+            opacity: 0.5;
           }
 
           input[type="radio"]:checked + span {
-            // background: var(--fo-background-color);
-            // color: var(--fo-foreground-color);
             background: var(--fo-background-color);
-            // border: 2px solid var(--fo-flame-color);
-            // border-radius: 100%;
             box-shadow:1px 1px 2px 2px #FFAAAA, -1px -1px 2px 2px #FFAAAA;
             color: var(--fo-foreground-color);
-            // background: var(--fo-foreground-color);
-            // color: var(--fo-background-color);
-            // border: 1px solid red;
-            // border-width: 2px;
           }
 
         }

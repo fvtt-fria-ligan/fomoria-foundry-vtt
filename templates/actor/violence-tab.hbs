@@ -81,46 +81,48 @@
                   <label class="tier-label">{{ localize 'FO.Tier' }}</label>
                   <ul class="tiers">
                     <li>
-                      <label
-                        ><input class="tier-radio" type="radio"
-                        name="{{data.system.equippedArmor._id}}.tier.value" value="0" {{#ifEq
-                        data.system.equippedArmor.system.tier.value
-                        0}}checked{{/ifEq}}/><span class="tier-num">0</span
-                        ><span class="tier-dmg">-0</span></label
-                      >
+                      <label>
+                        <input class="tier-radio" type="radio"
+                        name="{{data.system.equippedArmor._id}}.tier.value" value="0" 
+                        {{#ifEq data.system.equippedArmor.system.tier.value 0}}checked{{/ifEq}}/>
+                        <span class="tier-num">0</span>
+                        <span class="tier-dmg">-0</span>
+                      </label>
                     </li>
                     <li>
                       <label
                         ><input class="tier-radio" type="radio"
-                        name="{{data.system.equippedArmor._id}}.tier.value" value="1" {{#ifEq
-                        data.system.equippedArmor.system.tier.value
-                        1}}checked{{/ifEq}}/><span class="tier-num">1</span
-                        ><span class="tier-dmg">-d2</span></label
-                      >
+                        name="{{data.system.equippedArmor._id}}.tier.value" value="1" 
+                        {{#ifEq data.system.equippedArmor.system.tier.value 1}}checked{{/ifEq}}
+                        {{#ifLt data.system.equippedArmor.system.tier.value 1}}data-marker="1"{{/ifLt}} 
+                        />
+                        <span class="tier-num">1</span>
+                        <span class="tier-dmg">-d2</span>
+                      </label>
                     </li>
                     <li>
-                      <label
-                        ><input class="tier-radio" type="radio"
-                        name="{{data.system.equippedArmor._id}}.tier.value" value="2" {{#ifEq
-                        data.system.equippedArmor.system.tier.value
-                        2}}checked{{/ifEq}} {{#ifLt
-                        data.system.equippedArmor.system.tier.max
-                        2}}disabled="true"{{/ifLt}}/><span class="tier-num"
-                          >2</span
-                        ><span class="tier-dmg">-d4</span></label
-                      >
+                      <label>
+                        <input class="tier-radio" type="radio"
+                        name="{{data.system.equippedArmor._id}}.tier.value" value="2" 
+                        {{#ifEq data.system.equippedArmor.system.tier.value 2}}checked{{/ifEq}} 
+                        {{#ifLt data.system.equippedArmor.system.tier.value 2}}data-marker="1"{{/ifLt}} 
+                        {{#ifLt data.system.equippedArmor.system.tier.max 2}}disabled="true"{{/ifLt}}
+                        />
+                        <span class="tier-num">2</span>
+                        <span class="tier-dmg">-d4</span>
+                      </label>
                     </li>
                     <li>
-                      <label
-                        ><input class="tier-radio" type="radio"
-                        name="{{data.system.equippedArmor._id}}.tier.value" value="3" {{#ifEq
-                        data.system.equippedArmor.system.tier.value
-                        3}}checked{{/ifEq}} {{#ifLt
-                        data.system.equippedArmor.system.tier.max
-                        3}}disabled="true"{{/ifLt}}/><span class="tier-num"
-                          >3</span
-                        ><span class="tier-dmg">-d6</span></label
-                      >
+                      <label>
+                        <input class="tier-radio" type="radio"
+                        name="{{data.system.equippedArmor._id}}.tier.value" value="3" 
+                        {{#ifEq data.system.equippedArmor.system.tier.value 3}}checked{{/ifEq}} 
+                        {{#ifLt data.system.equippedArmor.system.tier.value 3}}data-marker="1"{{/ifLt}} 
+                        {{#ifLt data.system.equippedArmor.system.tier.max 3}}disabled="true"{{/ifLt}}
+                        />
+                        <span class="tier-num">3</span>
+                        <span class="tier-dmg">-d6</span>
+                      </label>
                     </li>              
                   </ul>
                 </div>

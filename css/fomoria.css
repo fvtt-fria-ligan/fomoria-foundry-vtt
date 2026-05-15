@@ -720,6 +720,7 @@
 .fomoria.sheet.actor.character section.window-content .sheet-header .hours-of-light-row ul.light-bullets input.dark + span {
   background: var(--fo-foreground-color);
   color: var(--fo-background-color);
+  opacity: 0.5;
 }
 .fomoria.sheet.actor.character section.window-content .sheet-header .hours-of-light-row ul.light-bullets input[type=radio]:checked + span {
   background: var(--fo-background-color);
@@ -880,16 +881,24 @@
   display: none;
 }
 .fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:checked + span.tier-num {
-  background: var(--fo-highlight-color);
-  color: var(--fo-background-color);
-  border: none;
+  box-shadow: 1px 1px 3px 3px #FFAAAA, -1px -1px 3px 3px #FFAAAA;
 }
 .fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:disabled + span.tier-num {
+  opacity: 0;
   color: #444444;
   border: 1px solid #444444;
 }
 .fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
+  opacity: 0;
   color: #444444;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio][data-marker]:enabled + span.tier-num {
+  background-color: var(--fo-foreground-color);
+  color: var(--fo-background-color);
+  opacity: 0.5;
+}
+.fomoria.sheet section.window-content .violence-tab .armor ul.tiers input[type=radio][data-marker]:enabled ~ span.tier-dmg {
+  opacity: 0.5;
 }
 .fomoria.sheet section.window-content .violence-tab .armor ul.tiers span.tier-num {
   border: 1px solid #7a7971;
