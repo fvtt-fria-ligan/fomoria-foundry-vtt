@@ -241,4 +241,4 @@ FO.dizzyCondition = "Compendium.fomoria.fomoria-items.Item.s2uDlX2iI7chmOY9";
 FO.direInjuriesTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.NtilgUYkLBSkrjWb";
 FO.dismalBreakdownsTable = "Compendium.fomoria.fomoria-rollable-tables.RollTable.tkw733wQ0qnXHxL1";
 FO.dreadCondition = "Compendium.fomoria.fomoria-items.Item.ZT9e0NPMuOUeb5cZ";
-
+FO.deathCondition = "Compendium.fomoria.fomoria-items.Item.QtAO1o9e5H4YePPe";

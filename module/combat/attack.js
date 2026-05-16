@@ -84,8 +84,6 @@ export async function rollAttack(
     addShowDicePromise(dicePromises, damageRoll);
     let damage = damageRoll.total;
 
-
-
     // roll 3: target armor soak
     if (targetArmor) {
       targetArmorRoll = new Roll(targetArmor, {});

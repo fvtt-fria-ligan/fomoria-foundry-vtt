@@ -3,46 +3,62 @@ import { pluralize } from "../utils.js";
 
 
 export async function rollRest(actor, restLength, starving, infected, dread) {
+  console.log("infected", infected);
+  if (actor.isDead()) {
+    // no resting when dead
+    return;
+  }
+
   let canHealHP = true;
   let canHealSP = true;
-  let canHealWyrd = true;
 
   if (starving) {
     canHealHP = false;
     canHealSP = false;
-    canHealWyrd = false;
-    await rollStarvation(actor);      
+    await rollStarvation(actor);
+    if (actor.isDead()) {
+      // died from starvation breakdown
+      return;
+    }
+    if (actor.system.hitPoints.value === 0) {
+      await actor.die();
+      return;
+    }
   }
 
   if (infected) {
     canHealHP = false;
     await rollInfection(actor);
+    if (actor.system.hitPoints.value === 0) {
+      await actor.die();
+      return;
+    }
   }
 
   if (dread) {
     canHealSP = false;
     await rollDread(actor);
+    if (actor.isDead()) {
+      // died from dread breakdown
+      return;
+    }
   }
-  
+
   if (restLength === "short") {
     await rollHeal(actor, "d4", canHealHP, canHealSP);
   } else if (restLength === "long") {
     await rollHeal(actor, "d6", canHealHP, canHealSP);
-    if (canHealWyrd) {
-      await rollWyrd(actor);
-    }
-    if (actor.system.threads.value === 0) {
-      await rollThreads(actor);
-    }
+    await rollWyrd(actor);
+    await rollThreads(actor);
   }
 };
 
 async function rollLoseHitPointa(actor, formula, causeKey) {
   const hpRoll = new Roll(formula);
   await hpRoll.evaluate();
-  const hpFlavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${hpRoll.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hpRoll.total)}`;
+  const flavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${hpRoll.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hpRoll.total)}`;
   await hpRoll.toMessage({
-    hpFlavor,
+    flavor,
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
   await actor.loseHitPoints(hpRoll.total);
@@ -51,9 +67,9 @@ async function rollLoseHitPointa(actor, formula, causeKey) {
 async function rollLoseStabilityPoints(actor, formula, causeKey) {
   const spRoll = new Roll("1d4");
   await spRoll.evaluate();
-  const spFlavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${spRoll.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", spRoll.total)}`;
+  const flavor = `${game.i18n.localize(causeKey)}: ${game.i18n.localize("FO.Lose")} ${spRoll.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", spRoll.total)}`;
   await spRoll.toMessage({
-    spFlavor,
+    flavor,
     speaker: ChatMessage.getSpeaker({ actor: actor }),
   });
   await actor.loseStabilityPoints(spRoll.total);
@@ -78,7 +94,7 @@ async function rollHeal(actor, formula, canHealHP, canHealSP) {
     await hp.evaluate();
     const hpFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${hp.total} ${pluralize("FO.HitPoint", "FO.HitPoints", hp.total)}`;
     await hp.toMessage({
-      hpFlavor,
+      flavor: hpFlavor,
       speaker: ChatMessage.getSpeaker({ actor: actor }),
     });
     const newHP = Math.min(
@@ -89,11 +105,11 @@ async function rollHeal(actor, formula, canHealHP, canHealSP) {
   }
 
   if (canHealSP) {
-    const sp = new Roll();
+    const sp = new Roll(formula);
     await sp.evaluate();
     const spFlavor = `${game.i18n.localize("FO.Rest")}: ${game.i18n.localize("FO.Heal")} ${sp.total} ${pluralize("FO.StabilityPoint", "FO.StabilityPoints", sp.total)}`;
     await sp.toMessage({
-      spFlavor,
+      flavor: spFlavor,
       speaker: ChatMessage.getSpeaker({ actor: actor }),
     });
     const newSP = Math.min(

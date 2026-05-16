@@ -1,9 +1,7 @@
-import {rollBreakdown} from "../combat/breakdown.js";
-import {rollInjury} from "../combat/injury.js";
 import { FO } from "../config.js";
 import { FOItem } from "../item/item.js";
 import { trackCarryingCapacity } from "../settings.js";
-import { documentsFromDraw, documentFromPack, drawFromTableUuid, drawDocumentFromTableUuid, simpleData } from "../packutils.js";
+import { documentFromDraw, simpleData } from "../packutils.js";
 import { showMakeFolkDialog } from "../generator/make-folk-dialog.js";
 
 const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ? 1 : b.system.tier.value < a.system.tier.value ? -1 : 0);
@@ -140,19 +138,73 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
     await this.gainCondition("dread", FO.dreadCondition);
   }
 
+  // losing hit points may cause injury or may cause death depending on what's doing it...
+  // so let callers decide that themselves
   async loseHitPoints(dmg) {
+    if (dmg === 0) {
+      return;
+    }
     const newHP = Math.max(this.system.hitPoints.value - dmg, 0);
     await this.update({ ["system.hitPoints.value"]: newHP });
-    if (newHP === 0) {
-      await rollInjury(this);
-    }
   }
 
   async loseStabilityPoints(dmg) {
+    if (dmg === 0) {
+      return;
+    }
     const newSP = Math.max(this.system.stabilityPoints.value - dmg, 0);
     await this.update({ ["system.stabilityPoints.value"]: newSP });
     if (newSP === 0) {
-      await rollBreakdown(this);
+      await this.rollBreakdown();
+    }
+    if (this.system.abilities.occult.modified < -6) {
+      await this.die();
     }
   }
+
+  isDead() {
+    return this.hasCondition("death");
+  }
+
+  async die() {
+    if (this.isDead()) {
+      // already dead
+      return;
+    }
+    await this.gainCondition("death", FO.deathCondition);
+    const html = `<div style="margin-top: 20px; margin-bottom: 20px; text-align: center;">💀💀💀 ${game.i18n.localize("FO.YouAreDead")} 💀💀💀</div>`;
+    ChatMessage.create({
+      content: html,
+      sound: CONFIG.sounds.combat,
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+    });    
+  }
+
+  async rollInjury() {
+    await this.drawNewCondition(FO.direInjuriesTable);
+  }
+
+  async rollBreakdown() {
+    await this.drawNewCondition(FO.dismalBreakdownsTable);
+  }
+
+  async drawNewCondition(tableUuid) {
+    const table = await fromUuid(tableUuid);
+    if (!table) {
+      console.log(`Could not find table ${uuid}`);
+      return;
+    }
+    while (true) {
+      // const tableDraw = await table.draw({ displayChat: false });
+      const tableDraw = await table.draw();
+      const condition = await documentFromDraw(tableDraw);
+      if (!this.hasCondition(condition.name)) {
+        // await table.toMessage([tableDraw.results[0]], {roll: tableDraw.roll});
+        // await table.toMessage([tableDraw.results[0]], {roll: tableDraw.roll});
+        // await table.toMessage(tableDraw.results[0]);
+        await this.createEmbeddedDocuments("Item", [simpleData(condition)]);
+        return;
+      }
+    }
+  }  
  }

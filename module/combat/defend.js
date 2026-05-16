@@ -71,6 +71,7 @@ export async function defendStabilityPoints(actor, defendDR, incomingAttack) {
 
   if (damage > 0) {
     await actor.loseStabilityPoints(damage);
+    // also takes care of breakdowns and death check
   }
 }
 
@@ -160,6 +161,17 @@ export async function defendHitPoints(actor, defendDR, incomingAttack) {
 
   if (damage > 0) {
     await actor.loseHitPoints(damage);
+    if (actor.system.hitPoints.value === 0) {
+      await actor.rollInjury();
+      if (actor.hasCondition("decapitation") ||
+        this.system.abilities.strength.modified < -6 ||
+        this.system.abilities.agility.modified < -6 ||
+        this.system.abilities.presence.modified < -6 ||
+        this.system.abilities.toughness.modified < -6 ||
+        this.system.abilities.occult.modified < -6) {
+        await this.die();
+      }
+    }
   }
 };
 

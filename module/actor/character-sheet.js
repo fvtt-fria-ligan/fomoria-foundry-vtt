@@ -1,9 +1,7 @@
 import { testAgility, testOccult, testPresence, testStrength, testToughness } from "./ability-tests.js";
 import { FOActorSheet } from "./actor-sheet.js";
 import { learnBoon, useBoon } from "./boons.js";
-import { rollBreakdown } from "../combat/breakdown.js";
 import { useFeat } from "./feats.js";
-import { rollInjury } from "../combat/injury.js";
 import { showThreadsHelp } from "./threads.js";
 import { byName } from "../utils.js";
 
@@ -144,12 +142,11 @@ export class FOCharacterSheet extends FOActorSheet {
 
   async _rollBreakdown(event) {
     event.preventDefault();
-    await rollBreakdown(this.actor);
+    await this.actor.rollBreakdown();
   }
 
   async _rollInjury(event) {
     event.preventDefault();
-    await rollInjury(this.actor);
+    await this.actor.rollInjury();
   }
-
  }

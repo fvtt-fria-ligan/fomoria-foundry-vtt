@@ -33,6 +33,8 @@ export class RestDialog extends FOApplication {
     const restLength = $(form).find("input[name=rest-length]:checked").val();
     const starving = $(form).find("input[name=starving]:checked").val() ? true : false;
     const infected = $(form).find("input[name=infected]:checked").val() ? true : false;
+    console.log("infected", infected);
+
     const dread = $(form).find("input[name=dread]:checked").val() ? true : false;
     this.close();
     rollRest(this.actor, restLength, starving, infected, dread);
