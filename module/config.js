@@ -235,6 +235,7 @@ FO.colorSchemes = {
 FO.useBoonFumbleOn = 1;
 FO.useBoonCritOn = 20;
 
+FO.defaultClan = "Compendium.fomoria.fomoria-items.Item.K6KOSN3RTVErwf3z";
 FO.defaultFolk = "Compendium.fomoria.fomoria-items.Item.yWL4ljE4bezK1kRh";
 FO.defaultTradition = "Compendium.fomoria.fomoria-items.Item.7Z7BhRgQE4bLDZJa";
 FO.dizzyCondition = "Compendium.fomoria.fomoria-items.Item.s2uDlX2iI7chmOY9";

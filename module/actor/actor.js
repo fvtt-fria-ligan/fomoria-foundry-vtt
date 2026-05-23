@@ -35,16 +35,21 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   /** @override */
   async _onCreate(data, options, userId) {
     if (data.type === FO.actorTypes.character) {
-      // give Characters a default Folk and Tradition
-      await this.addDefaultFolkAndTradition();
+      // give Characters a default Clan, Folk, and Tradition
+      await this.addDefaultItems();
     }
     super._onCreate(data, options, userId);
   }
 
-  async addDefaultFolkAndTradition() {
+  async addDefaultItems() {
+    const defaultClan = await fromUuid(FO.defaultClan);
     const defaultFolk = await fromUuid(FO.defaultFolk);
     const defaultTradition = await fromUuid(FO.defaultTradition);
-    await this.createEmbeddedDocuments("Item", [simpleData(defaultFolk), simpleData(defaultTradition)]);
+    await this.createEmbeddedDocuments("Item", [
+      simpleData(defaultClan), 
+      simpleData(defaultFolk), 
+      simpleData(defaultTradition)
+    ]);
   }
 
   /** @override */
