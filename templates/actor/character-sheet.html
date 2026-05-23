@@ -16,20 +16,20 @@
               {{> systems/fomoria/templates/actor/stability-points.hbs}}
           </div>
           <div class="widget-row">
-              <div class="header-widget threads-widget">
-                <div class="header-widget-label">
-                  {{localize 'FO.Threads'}}
-                </div>
-                <div class="header-widget-value">
-                  <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
-                </div>
-              </div>
               <div class="header-widget wyrd-widget">
                 <div class="header-widget-label">
                   {{localize 'FO.Wyrd'}}
                 </div>
                 <div class="header-widget-value">
                   <input class="wyrd" type="number" name="system.wyrd.value" value="{{data.system.wyrd.value}}" />
+                </div>
+              </div>
+              <div class="header-widget threads-widget">
+                <div class="header-widget-label">
+                  {{localize 'FO.Threads'}}
+                </div>
+                <div class="header-widget-value">
+                  <input class="threads" type="number" name="system.threads.value" value="{{data.system.threads.value}}" />
                 </div>
               </div>
               <button type="button" class="sheet-button medium-button rest-button">{{ localize "FO.Rest" }} <i class="fas fa-moon fa-fw"></i></button>              
