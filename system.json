@@ -32,6 +32,13 @@
   ],
   "packs": [
     {
+      "name": "fomoria-actors",
+      "label": "Fomoria (Actors)",
+      "system": "fomoria",
+      "path": "./packs/fomoria-actors",
+      "type": "Actor"
+    },
+    {
       "name": "fomoria-items",
       "label": "Fomoria (Items)",
       "system": "fomoria",
