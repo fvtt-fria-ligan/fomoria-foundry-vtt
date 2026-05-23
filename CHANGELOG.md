@@ -1,3 +1,12 @@
+# 0.4.0
+
+- Add actors compendium with pregens.
+
+# 0.3.0
+
+- Add weapons, armor, and equipment to items compendium.
+- Fix shield sheet.
+
 # 0.2.0
 
 - Fix rest death conditions.
