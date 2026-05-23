@@ -1,6 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{> systems/fomoria/templates/item/item-sheet-header.hbs itemType='BOON'}}
-  {{> systems/fomoria/templates/item/item-sheet-tabs.hbs }}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">{{localize 'FO.Description'}}</a>    
+  </nav>
   <div class="sheet-body">
     {{> systems/fomoria/templates/item/item-description-tab.hbs }}
   </div>
