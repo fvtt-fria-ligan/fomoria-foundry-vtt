@@ -1,3 +1,8 @@
+
+# 0.4.1
+- Fix missing portraits.
+- Fix character-copy losing folk/clan/tradition.
+
 # 0.4.0
 
 - Add actors compendium with pregens.

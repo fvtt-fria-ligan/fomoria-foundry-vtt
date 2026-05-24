@@ -40,8 +40,7 @@ export class FOCharacterSheet extends FOActorSheet {
       .filter(item => item.type === CONFIG.FO.itemTypes.boon)
       .sort(byName);
     superData.data.system.clan = superData.data.items
-      .filter(item => item.type === CONFIG.FO.itemTypes.clan)
-      .pop();
+      .find(item => item.type === CONFIG.FO.itemTypes.clan);
     superData.data.system.conditions = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.condition)
       .sort(byName);
@@ -56,26 +55,21 @@ export class FOCharacterSheet extends FOActorSheet {
       })
       .sort(byName);
     superData.data.system.equippedArmor = superData.data.items
-      .filter(item => item.system.equippedArmor)
-      .pop();
+      .find(item => item.system.equippedArmor);
     superData.data.system.equippedMainHand = superData.data.items
-      .filter(item => item.system.equippedMainHand)
-      .pop();
+      .find(item => item.system.equippedMainHand);
     superData.data.system.equippedOffHand = superData.data.items
-      .filter(item => item.system.equippedOffHand)
-      .pop();
+      .find(item => item.system.equippedOffHand);
     superData.data.system.expertise = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.expertise)
       .sort(byName);
     superData.data.system.folk = superData.data.items
-      .filter(item => item.type === CONFIG.FO.itemTypes.folk)
-      .pop();
+      .find(item => item.type === CONFIG.FO.itemTypes.folk);
     superData.data.system.feats = superData.data.items
       .filter(item => item.type === CONFIG.FO.itemTypes.feat)
       .sort(byName);
     superData.data.system.tradition = superData.data.items
-      .filter(item => item.type === CONFIG.FO.itemTypes.tradition)
-      .pop();
+      .find(item => item.type === CONFIG.FO.itemTypes.tradition);
     superData.data.system.weaponfeats = superData.data.items
       .filter((item) => item.type === CONFIG.FO.itemTypes.weaponfeat)
       .sort(byName);

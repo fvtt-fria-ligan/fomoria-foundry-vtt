@@ -42,14 +42,26 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   async addDefaultItems() {
-    const defaultClan = await fromUuid(FO.defaultClan);
-    const defaultFolk = await fromUuid(FO.defaultFolk);
-    const defaultTradition = await fromUuid(FO.defaultTradition);
-    await this.createEmbeddedDocuments("Item", [
-      simpleData(defaultClan), 
-      simpleData(defaultFolk), 
-      simpleData(defaultTradition)
-    ]);
+    if (!this.folk()) {
+      const defaultFolk = await fromUuid(FO.defaultFolk);
+      await this.createEmbeddedDocuments("Item", [
+        simpleData(defaultFolk), 
+      ]);
+    }
+
+    if (!this.clan()) {
+      const defaultClan = await fromUuid(FO.defaultClan);
+      await this.createEmbeddedDocuments("Item", [
+        simpleData(defaultClan),
+      ]);
+    }
+
+    if (!this.tradition()) {
+      const defaultTradition = await fromUuid(FO.defaultTradition);
+      await this.createEmbeddedDocuments("Item", [
+        simpleData(defaultTradition)
+      ]);
+    }
   }
 
   /** @override */
@@ -112,23 +124,39 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   }
 
   equippedArmor() {
-    return this.items.filter((item) => item.system.equippedArmor && item.type === FO.itemTypes.armor).pop();
+    return this.items.find((item) => item.system.equippedArmor && item.type === FO.itemTypes.armor);
   }
 
   offHandWeapon() {
-    return this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.weapon).pop();
+    return this.items.find((item) => item.system.equippedOffHand && item.type === FO.itemTypes.weapon);
   }
 
   offHandShield() {
-    return this.items.filter((item) => item.system.equippedOffHand && item.type === FO.itemTypes.shield).pop();    
+    return this.items.find((item) => item.system.equippedOffHand && item.type === FO.itemTypes.shield);
+  }
+
+  folk() {
+    return this._first(FO.itemTypes.folk);
+  }
+
+  clan() {
+    return this._first(FO.itemTypes.clan);
+  }
+
+  tradition() {
+    return this._first(FO.itemTypes.tradition);
   }
 
   _first(itemType) {
-    return this.items.filter(x => x.type === itemType).shift();
+    return this.items.find(x => x.type === itemType);
+  }
+
+  _last(itemType) {
+    return this.items.filter(x => x.type === itemType).pop();
   }
 
   findItem(itemType, itemName) {
-    return this.items.filter(x => x.type === itemType && x.name === itemName).shift();
+    return this.items.find(x => x.type === itemType && x.name === itemName);
   }
 
   async reroll() {
