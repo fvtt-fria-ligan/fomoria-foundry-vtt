@@ -60,6 +60,7 @@
       "boon",
       "clan",
       "condition",
+      "container",
       "equipment",
       "expertise",
       "feat",
@@ -105,6 +106,10 @@
         "toughness": 0,
         "occult": 0
       }
+    },
+    "container": {
+      "templates": ["baseEquipment"],
+      "carryingCapacity": 1
     },
     "equipment": {
       "templates": ["baseEquipment"]

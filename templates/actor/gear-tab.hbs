@@ -5,6 +5,17 @@
     <div class="item-field-row item-name-row">        
       <div class="item-name">
         <a class="item-control item-edit" title="{{localize 'FO.Edit'}}">{{item.name}}</a>
+        {{#if item.system.damage}}
+          ({{item.system.damage}})
+        {{/if}}
+        {{#if item.system.tier}}
+          {{#ifEq item.system.tier.max 1}}(-d2){{/ifEq}}
+          {{#ifEq item.system.tier.max 2}}(-d4){{/ifEq}}
+          {{#ifEq item.system.tier.max 3}}(-d6){{/ifEq}}
+        {{/if}}
+        {{#if item.system.carryingCapacity}}
+        : +{{item.system.carryingCapacity}} {{localize 'FO.CarryingCapacity'}}
+        {{/if}}
         {{#if item.system.usesQuantity}}    
           &nbsp;
           ( {{item.system.quantity}} )

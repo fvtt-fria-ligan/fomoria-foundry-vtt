@@ -90,7 +90,9 @@ const byCurrentTierDesc = (a, b) => (a.system.tier.value < b.system.tier.value ?
   // ===== encumbrance =====
   
   get carryingCapacity() {
-    return this.system.abilities.strength.value + 12;
+    const containers = this.items.filter(item => item.type === FO.itemTypes.container);
+    const containerCapacity = containers.reduce((capacity, item) => capacity + item.system.carryingCapacity, 0);
+    return 12 + this.system.abilities.strength.value + containerCapacity;
   }
 
   get carryingSlots() {

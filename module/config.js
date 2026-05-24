@@ -19,6 +19,7 @@ FO.itemTypes = {
   boon: "boon",
   clan: "clan",
   condition: "condition",
+  container: "container",
   equipment: "equipment",
   expertise: "expertise",
   feat: "feat",

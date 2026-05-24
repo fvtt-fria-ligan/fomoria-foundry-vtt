@@ -1,0 +1,27 @@
+<form class="{{cssClass}}" autocomplete="off">
+  {{> systems/fomoria/templates/item/item-sheet-header.hbs itemType='CONTAINER'}}
+  {{> systems/fomoria/templates/item/item-sheet-tabs.hbs }}
+  <div class="sheet-body">
+    {{> systems/fomoria/templates/item/item-description-tab.hbs }}
+    <div class="tab data-tab" data-group="primary" data-tab="details">
+      <div class="fields">
+        <div class="widget field-row">
+        <div class="field-label">
+            {{ localize 'FO.Price'}}
+        </div>
+        <div class="field-value">
+            <input class="field-input" type="number" name="system.price" value="{{data.system.price}}"/>
+        </div>
+        </div>
+        <div class="widget field-row">
+            <div class="field-label">
+            {{ localize 'FO.CarryingCapacity'}}
+            </div>
+            <div class="field-value">
+            <input class="field-input" type="number" name="system.carryingCapacity" value="{{data.system.carryingCapacity}}"/>
+            </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</form>

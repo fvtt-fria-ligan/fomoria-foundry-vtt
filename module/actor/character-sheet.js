@@ -47,6 +47,7 @@ export class FOCharacterSheet extends FOActorSheet {
     superData.data.system.equipment = superData.data.items
       .filter(item => {
         return (
+          item.type === CONFIG.FO.itemTypes.container ||
           item.type === CONFIG.FO.itemTypes.equipment ||
           item.type === CONFIG.FO.itemTypes.armor ||
           item.type === CONFIG.FO.itemTypes.shield ||
