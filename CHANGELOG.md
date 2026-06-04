@@ -1,3 +1,6 @@
+# 0.4.3
+- Fix missing packs.
+
 # 0.4.2
 - Add container item type.
 - Remake backpack and satchel as containers.
