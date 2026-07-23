@@ -1,3 +1,7 @@
+# 1.0.0
+
+- Foundry v14 compatibility.
+
 # 0.4.3
 - Fix missing packs.
 

@@ -2,7 +2,7 @@
   "id": "fomoria",
   "title": "Fomoria",
   "description": "Fomoria - Epic Folk Horror Roleplaying",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "mcglintlock"
@@ -62,9 +62,9 @@
   "primaryTokenAttribute": "hitPoints",
   "secondaryTokenAttribute": "stabilityPoints",
   "compatibility": {
-    "minimum": "13",
-    "maximum": "13",
-    "verified": "13"
+    "minimum": "14",
+    "maximum": "14",
+    "verified": "14"
   },
   "background": "systems/fomoria/assets/images/backgrounds/fomoria-quickstart.jpg",
   "url": "https://github.com/fvtt-fria-ligan/fomoria-foundry-vtt",
